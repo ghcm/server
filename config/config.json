@@ -1,0 +1,22 @@
+{
+    "mongoose": {
+        "uri": "mongodb://localhost/chat",
+        "options": {
+            "server": {
+                "socketOptions": {
+                    "keepAlive": 1
+                }
+            }
+        }
+    },
+    "session": {
+        "secret": "KillerIsJim",
+        "maxAge": 14400000
+    },
+    "key": "sid",
+    "cookie": {
+        "path": "/",
+        "httpOnly": true,
+        "maxAge": null
+    }
+}

@@ -1,0 +1,130 @@
+<%-partial('partials/bootstrapCss')%>
+
+
+<style type="text/css">
+    body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #eee;
+    }
+    .form-signin {
+        max-width: 500px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .form-signin .form-signin-heading, .form-signin .checkbox {
+        margin-bottom: 10px;
+    }
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+    .form-signin .form-control {
+        position: relative;
+        font-size: 16px;
+        height: auto;
+        padding: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+    .form-signin input[type="text"], .form-signin input[type="password"] {
+        margin-bottom: 10px;
+    }
+    .form-signin label {
+        font-weight: normal;
+    }
+    .error {
+        color: #b94a48;
+    }
+
+    body {
+        padding: 30px;
+    }
+
+    .navbar {
+        margin-bottom: 30px;
+    }
+</style>
+
+
+<div class="container" >
+    <form class="form-signin" method="post" action="" id="form-signin" name="login-form">
+
+        <h2 class="form-signin-heading">Введите логин и пароль</h2>
+        <span class="help-block error"></span>
+        <div class="control-group">
+            <label class="control-label" for="login">Логин:</label>
+            <div class="controls">
+                <input size="50" name="username" id="login" value="" type="text" class="form-control" placeholder="Логин">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Пароль:</label>
+            <div class="controls">
+                <input size="50" name="password" id="password" value="" type="password" class="form-control" placeholder="Пароль">
+            </div>
+        </div>
+
+        <button name="submit" id="submit" value="" type="submit" class="btn btn-large btn-primary btn-block">Войти</button>
+
+    </form>
+</div>
+
+
+<!--<p>Введите имя пользователя и пароль. Если такого пользователя нет - он будет создан.</p>
+
+<form class="form-horizontal login-form" action="/auth/login" method="POST" name="login-form">
+  <div class="form-group">
+    <label for="input-username" class="col-lg-2 control-label">Имя</label>
+
+    <div class="col-lg-10">
+      <input name="username" value="name" type="text" class="form-control" id="input-username" placeholder="Имя">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="input-password" class="col-lg-2 control-label">Пароль</label>
+
+    <div class="col-lg-10">
+      <input name="password" value="pass" type="password" class="form-control" id="input-password" placeholder="Пароль">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-primary" data-loading-text="Отправляю...">Войти</button>
+      <span class="help-block error"></span>
+    </div>
+  </div>
+</form>-->
+
+<script>
+  $(document.forms['login-form']).on('submit', function(event) {
+    var form = $(this);
+
+    $('.error', form).html('').removeClass("alert alert-danger");
+    $(":submit", form).button("loading");
+
+    $.ajax({
+      url: "/login",
+      data: form.serialize(),
+      method: "POST",
+      complete: function() {
+        $(":submit", form).button("reset");
+      },
+      statusCode: {
+        200: function() {
+          form.html("Вы вошли в сайт").addClass('alert-success');
+          window.location.href = "/";
+        },
+        403: function(jqXHR) {
+          var error = jqXHR.responseText;
+          $('.error', form).html(error).addClass("alert alert-danger");
+        }
+      }
+    });
+      event.preventDefault();
+    return false;
+  });
+</script>
