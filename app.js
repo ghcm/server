@@ -4,10 +4,8 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-var mongoose = require('lib/mongoose');
 var config = require('config');
 var app = express();
 
@@ -21,6 +19,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.bodyParser({uploadDir:'/home/proger/www/foodserver/public/files'}));
 app.use(express.cookieParser('your secret here'));
 
 // Setup database
@@ -39,15 +38,7 @@ app.use(express.session({
 
 app.use(require("middleware/loadUser.js"))
 
-  //console.log(mongoose.connection)
-/*app.use(function(req, res, next){
-  req.session.numberOfVisits = req.session.numberOfVisits + 1 || 1;
-    res.send("visits" + req.session.numberOfVisits ) ;
-})*/
 
-
-//app.use(app.router);
-    //console.log(app.router);
 require('./routes')(app);
 app.use(express.static(path.join(__dirname, 'public')));
 

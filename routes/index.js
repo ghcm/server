@@ -5,6 +5,8 @@ module.exports = function(app) {
 
     app.get('/login', require('./login').get);
 
+    app.post('/upload', require('./photos').post);
+
     app.post('/login', require('./login').post);
 
     app.post("/logout", require('./logout').post);
