@@ -4,6 +4,7 @@
       <env name="NODE_PATH" value="." />
       <env name="NODE_ENV" value="development" />
     </envs>
+    <browser start="false" url="" with-js-debugger="false" />
     <RunnerSettings RunnerId="NodeJS.run" />
     <ConfigurationWrapper RunnerId="NodeJS.run" />
     <method />
