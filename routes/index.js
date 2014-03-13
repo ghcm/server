@@ -17,6 +17,9 @@ module.exports = function(app) {
     app.get("/edit_company/:companyName", require('./edit_company').get);
     app.post("/edit_company/:companyName", require('./edit_company').post);
 
+    app.get("/show_company/:companyName", require('./show_company').get);
+    app.get("/all_companies", require('./all_companies').get);
+
     app.get('/', checkAuth, require('./root').get);
 
    app.get('/chat', require('./chat').get);
