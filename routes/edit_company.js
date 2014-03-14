@@ -30,8 +30,12 @@ exports.post = function(req, res, next){
     var replaceObject = {}
 
     replaceObject.name = req.body.name;
-    var objectId = req.body.objectId;
 
+    if (!Company.schema.methods.validateObj(replaceObject)) {
+        res.render('edit_company', { title: 'Express', error: "Please, check entered data" });
+    }
+
+    var objectId = req.body.objectId;
 
     if (req.files.file.name) {
         var tempPath = req.files.file.path,
@@ -50,12 +54,6 @@ exports.post = function(req, res, next){
                     res.render('show_company', { title: 'Express', company: result  });
             })
         }
-        else {
-            res.render('add_company', { title: 'Express', error: err.errors });
-        }
-
-
-
     });
    
 

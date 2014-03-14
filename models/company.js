@@ -65,6 +65,15 @@ schema.methods.checkPassword = function(password) {
     return this.encryptPassword(password) === this.hashedPassword;
 };
 
+schema.methods.validateObj = function(obj) {
+    for (var i in obj) {
+        if (obj[i] == "") {
+            console.log("1");
+            return false;
+        }
+    }
+    return true;
+};
 
 schema.methods.getPublicFields = function() {
     return {

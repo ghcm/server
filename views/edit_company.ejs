@@ -8,17 +8,12 @@
 
 
     <% if (typeof error != "undefined") {%>
-    <div class="alert alert-danger">
-    <%  for (var i in error) {
+        <div class="alert alert-danger">
 
-    %>
+        <%- error  %>
+        <br/>
 
-    <%- error[i].message  %>
-    <br/>
-
-    <%  } %>
-
-    </div>
+        </div>
 
     <% } %>
 
