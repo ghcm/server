@@ -44,12 +44,16 @@ exports.post = function(req, res, next){
     }
 
 
+    Company.update({"_id": objectId }, {$set: replaceObject }, function(err, object, affected) {
+        if (!err) {
+            Company.findOne({ "_id": objectId}, function(err, result) {
+                    res.render('show_company', { title: 'Express', company: result  });
+            })
+        }
+        else {
+            res.render('add_company', { title: 'Express', error: err.errors });
+        }
 
-    Company.update({"_id": objectId }, {$set: replaceObject }, function(err, object) {
-
-        Company.findOne({ "_id": objectId}, function(err, result) {
-            res.render('show_company', { title: 'Express', company: result  });
-        })
 
 
     });

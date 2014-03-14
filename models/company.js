@@ -39,7 +39,7 @@ var schema = new Schema({
     },
     image: {
         type: String,
-        required: false
+        required: true
     },
     created: {
         type: Date,

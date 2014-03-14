@@ -11,7 +11,6 @@ exports.get = function(req, res){
         if (err) { /* handle err */ }
 
         if (result) {
-            console.log(result);
             res.render('all_companies', { title: 'Express', companies: result });
         } else {
             // we don't

@@ -4,10 +4,29 @@
 <% layout('layout/layout') -%>
 
 
-<% console.log(company); %>
+<% console.log(typeof error); %>
+
+
+    <% if (typeof error != "undefined") {%>
+    <div class="alert alert-danger">
+    <%  for (var i in error) {
+
+    %>
+
+    <%- error[i].message  %>
+    <br/>
+
+    <%  } %>
+
+    </div>
+
+    <% } %>
 
 
 <form method="post" id="uploadForm" enctype="multipart/form-data"  enctype="multipart/form-data" action="/edit_company/<%- company.name %>" method="post">
+
+
+
     <div class="row">
         <div class="col-lg-4 col-xs-4" >
             <img class="img-thumbnail" src="/files/<%- company.image %>" alt="" style="max-height: 300px; max-width: 300px">

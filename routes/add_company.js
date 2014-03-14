@@ -26,22 +26,26 @@ exports.post = function(req, res, next){
             if (err) throw err;
         });
     }
-    else {
+   /* else {
         addObject.image = "no-logo.jpg";
-    }
+    }*/
 
     addObject.name = req.body.name;
 
     company = new Company(addObject);
 
-    // если просто user.save(callback), то будет лишний аргумент у следующей функции
     company.save(function(err, company, affected) {
-        if (err) {
-            next(err);
+        if (!err) {
+            res.render('show_company', { title: 'Express', company: company  });
         }
-
-        res.render('show_company', { title: 'Express', company: company  });
+        else {
+            console.log(err);
+            res.render('add_company', { title: 'Express', error: err.errors });
+        }
     });
+
+
+    // если просто user.save(callback), то будет лишний аргумент у следующей функции
 
 
     /**
