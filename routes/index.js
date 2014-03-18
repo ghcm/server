@@ -11,6 +11,7 @@ module.exports = function(app) {
 
     app.post("/logout", require('./logout').post);
 
+//companies
     app.get("/add_company", require('./add_company').get);
     app.post("/add_company", require('./add_company').post);
 
@@ -19,6 +20,19 @@ module.exports = function(app) {
 
     app.get("/show_company/:companyName", require('./show_company').get);
     app.get("/all_companies", require('./all_companies').get);
+
+
+
+
+//    departments
+    app.get("/add_department", require('./add_department').get);
+    app.post("/add_department", require('./add_department').post);
+
+    app.get("/edit_department/:departName", require('./edit_department').get);
+    app.post("/edit_department/:departName", require('./edit_department').post);
+    app.get("/all_departments", require('./all_departments').get);
+
+
 
     app.get('/', checkAuth, require('./root').get);
 
