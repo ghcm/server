@@ -1,0 +1,79 @@
+<% if (user)  { %>
+<% block('title', 'Администратор ' + user.username ); -%>
+<% } %>
+<% layout('layout/layout') -%>
+
+
+
+
+    <% if (typeof error != "undefined") {  %>
+
+    <div class="alert alert-danger">
+
+    <%       for (var i in error) {    %>
+
+    <%- error[i].message  %>
+    <br/>
+
+    <%  } %>
+
+    </div>
+
+    <% } %>
+
+<!--<h1 class="text-center">Добавление товара</h1>-->
+
+<form enctype="multipart/form-data" action="/add_good" method="post">
+    <strong>Выберите изображение для загрузки</strong><br>
+    <input type="file" name="file"><br><br>
+
+    <div class="form-group">
+        <label><strong>Введите название*</strong></label><strong>
+            <input class="form-control" type="text" name="title">
+        </strong></div><strong>
+
+        <div class="form-group">
+    <!--        <label><strong>Введите короткое описание</strong></label>
+            <input class="form-control" type="text" name="short_des">
+
+        </div>
+
+        <div class="form-group">
+            <label><strong>Введите цену*</strong></label>
+            <input class="form-control" type="text" name="price">
+        </div>
+
+
+        <div class="form-group">
+            <label><strong>Введите полное описание товара</strong></label>
+            <textarea class="form-control" name="long_des"></textarea>
+
+        </div>
+        <div class="form-group">
+            <label><strong>Выберите категорию*</strong></label>
+            <div>
+                <select name="cat">
+                    <option></option>            </select>
+            </div>
+
+        </div>-->
+
+
+        <p style="font-size:9px">* - поля, обязательные для заполнения </p>
+
+
+        <p>
+            <label>
+                <input type="submit" class="btn btn-primary" name="submit" id="submit" value="Отправить!">
+            </label>
+            <br>
+        </p>
+
+
+    </strong>
+</form>
+
+<!--
+<script type="text/javascript" src="/vendor/jquery.form.js"></script>
+<script type="text/javascript" src="/vendor/upload.js"></script>
+-->

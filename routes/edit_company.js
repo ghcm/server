@@ -12,7 +12,6 @@ exports.get = function(req, res){
         if (err) { /* handle err */ }
 
         if (result) {
-
             res.render('edit_company', { title: 'Express', company: result  });
         } else {
             // we don't
@@ -30,12 +29,18 @@ exports.post = function(req, res, next){
     var replaceObject = {}
 
     replaceObject.name = req.body.name;
+    var objectId = req.body.objectId;
 
     if (!Company.schema.methods.validateObj(replaceObject)) {
-        res.render('edit_company', { title: 'Express', error: "Please, check entered data" });
+        Company.findOne({ "_id": objectId}, function(err, result) {
+            console.log(result);
+            res.render('edit_company', { title: 'Express', error: "Please, check entered data", company: result });
+        });
+
+        return;
     }
 
-    var objectId = req.body.objectId;
+
 
     if (req.files.file.name) {
         var tempPath = req.files.file.path,

@@ -1,0 +1,55 @@
+<% if (user)  { %>
+<% block('title', 'Администратор ' + user.username ); -%>
+<% } %>
+<% layout('layout/layout') -%>
+
+
+
+
+    <% if (typeof error != "undefined") {  %>
+
+    <div class="alert alert-danger">
+
+    <%       for (var i in error) {    %>
+
+    <%- error[i].message  %>
+    <br/>
+
+    <%  } %>
+
+    </div>
+
+    <% } else if (typeof message != "undefined") { %>
+<div class="alert alert-success"><%- message %></div>
+
+
+    <% } %>
+
+
+<form class="form-horizontal well" method="POST" action="" name="addUserForm">
+
+    <div class="row">
+        <div class="col-lg-10">
+
+            <fieldset>
+                <legend>Введите название категории</legend>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="companyname">Название</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" name="cat_title" type="text" placeholder="Название" required="" autofocus="">
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10">
+            <input type="submit" class="btn btn-primary pull-right btn-lg" value="Сохранить">
+        </div>
+    </div>
+</form>
+<!--
+<script type="text/javascript" src="/vendor/jquery.form.js"></script>
+<script type="text/javascript" src="/vendor/upload.js"></script>
+-->

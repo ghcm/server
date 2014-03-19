@@ -33,6 +33,29 @@ module.exports = function(app) {
     app.get("/all_departments", require('./all_departments').get);
 
 
+    //goods
+    app.get("/add_good", require('./add_good').get);
+    app.post("/add_good", require('./add_good').post);
+
+    app.get("/edit_good/:goodName", require('./edit_good').get);
+    app.post("/edit_good/:goodName", require('./edit_good').post);
+
+    app.get("/show_good/:goodName", require('./show_good').get);
+    app.get("/all_goods", require('./all_goods').get);
+
+
+    //goods categories
+    app.get("/add_cat", require('./add_cat').get);
+    app.post("/add_cat", require('./add_cat').post);
+
+   app.get("/edit_cat/:catName", require('./edit_cat').get);
+    app.post("/edit_cat/:catName", require('./edit_cat').post);
+
+
+    app.get("/all_cats", require('./all_cats').get);
+
+
+
 
     app.get('/', checkAuth, require('./root').get);
 
