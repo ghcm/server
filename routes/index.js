@@ -12,47 +12,47 @@ module.exports = function(app) {
     app.post("/logout", require('./logout').post);
 
 //companies
-    app.get("/add_company", require('./add_company').get);
-    app.post("/add_company", require('./add_company').post);
+    app.get("/add_company", require('./company/add_company').get);
+    app.post("/add_company", require('./company/add_company').post);
 
-    app.get("/edit_company/:companyName", require('./edit_company').get);
-    app.post("/edit_company/:companyName", require('./edit_company').post);
+    app.get("/edit_company/:companyName", require('./company/edit_company').get);
+    app.post("/edit_company/:companyName", require('./company/edit_company').post);
 
-    app.get("/show_company/:companyName", require('./show_company').get);
-    app.get("/all_companies", require('./all_companies').get);
+    app.get("/show_company/:companyName", require('./company/show_company').get);
+    app.get("/all_companies", require('./company/all_companies').get);
 
 
 
 
 //    departments
-    app.get("/add_department", require('./add_department').get);
-    app.post("/add_department", require('./add_department').post);
+    app.get("/add_department", require('./department/add_department').get);
+    app.post("/add_department", require('./department/add_department').post);
 
-    app.get("/edit_department/:departName", require('./edit_department').get);
-    app.post("/edit_department/:departName", require('./edit_department').post);
-    app.get("/all_departments", require('./all_departments').get);
+    app.get("/edit_department/:departName", require('./department/edit_department').get);
+    app.post("/edit_department/:departName", require('./department/edit_department').post);
+    app.get("/all_departments", require('./department/all_departments').get);
 
 
     //goods
-    app.get("/add_good", require('./add_good').get);
-    app.post("/add_good", require('./add_good').post);
+    app.get("/add_good", require('./good/add_good').get);
+    app.post("/add_good", require('./good/add_good').post);
 
-    app.get("/edit_good/:goodName", require('./edit_good').get);
-    app.post("/edit_good/:goodName", require('./edit_good').post);
+    app.get("/edit_good/:goodName", require('./good/edit_good').get);
+    app.post("/edit_good/:goodName", require('./good/edit_good').post);
 
-    app.get("/show_good/:goodName", require('./show_good').get);
-    app.get("/all_goods", require('./all_goods').get);
+    app.get("/show_good/:goodName", require('./good/show_good').get);
+    app.get("/all_goods", require('./good/all_goods').get);
 
 
     //goods categories
-    app.get("/add_cat", require('./add_cat').get);
-    app.post("/add_cat", require('./add_cat').post);
+    app.get("/add_cat", require('./goods_category/add_cat').get);
+    app.post("/add_cat", require('./goods_category/add_cat').post);
 
-   app.get("/edit_cat/:catName", require('./edit_cat').get);
-    app.post("/edit_cat/:catName", require('./edit_cat').post);
+   app.get("/edit_cat/:catName", require('./goods_category/edit_cat').get);
+    app.post("/edit_cat/:catName", require('./goods_category/edit_cat').post);
 
 
-    app.get("/all_cats", require('./all_cats').get);
+    app.get("/all_cats", require('./goods_category/all_cats').get);
 
 
 

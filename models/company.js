@@ -52,6 +52,11 @@ schema.methods.encryptPassword = function(password) {
     return password;
 };
 
+
+schema.methods.addCommonCat = function() {
+    console.log(this);
+};
+
 schema.virtual('password')
     .set(function(password) {
         this._plainPassword = password;
@@ -82,5 +87,7 @@ schema.methods.getPublicFields = function() {
         id: this.id
     };
 };
+
+
 
 exports.Company = mongoose.model('Company', schema);
