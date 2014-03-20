@@ -2,10 +2,12 @@
 /*
  * GET login page.
  */
-
+Cat = require('models/cat').Cat;
 
 exports.get = function(req, res){
-    res.render('add_good', { title: 'Express' });
+    Cat.find(function(err, result){
+        res.render('add_good', { title: 'Express', cats: result });
+    });
 };
 
 
@@ -16,7 +18,7 @@ var path = require('path'),
 exports.post = function(req, res, next){
 
     var addObject = {}
-console.log(req.files);
+
     if (req.files.file.name) {
         var tempPath = req.files.file.path,
             targetPath = path.resolve(req.files.file.path);
@@ -31,6 +33,7 @@ console.log(req.files);
     }*/
 
     addObject.name = req.body.title;
+    addObject.cat = req.body.cat;
 
     good = new Good(addObject);
 

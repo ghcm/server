@@ -9,6 +9,11 @@ var schema = new Schema({
         unique: false,
         required: true
     },
+    cat: {
+        type: [{ type: Schema.Types.ObjectId, ref: 'Cat' }],
+        unique: false,
+        required: true
+    },
     image: {
         type: String,
         required: true
