@@ -39,8 +39,9 @@ exports.post = function(req, res, next){
 
     if (req.files.file.name) {
         var tempPath = req.files.file.path,
-            targetPath = path.resolve(req.files.file.path);
-
+            targetPath = path.dirname(req.files.file.path)  + "/company/"  + path.basename(req.files.file.path);
+console.log(targetPath);
+console.log(path.dirname(req.files.file.path));
         addObject.image = path.basename(targetPath);
         fs.rename(tempPath, targetPath, function(err) {
             if (err) throw err;
