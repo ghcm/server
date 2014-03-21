@@ -32,17 +32,15 @@
 </tr>
 </thead>
 <tbody>
-<%- console.log("====") %>
 
-<%- console.log(companies) %>
 <% for (var j = 0; j < companies[i].length; j++) { %>
 
 <tr>
     <td>1</td>
     <td class="text-center"><a href="/show_company/<%- companies[i][j].name %>"><img src="files/<%- companies[i][j].image %>" alt="" style="max-height: 50px; max-width: 50px"></a></td>
-    <td class="text-center"><%- companies[i].name %></td>
-    <td class="text-center">200</td>
-    <td class="text-center">800</td>
+    <td class="text-center"><%- companies[i][j].name %></td>
+    <td class="text-center"></td>
+    <td class="text-center"></td>
 
     <td class="text-center">
         <a href="edit_company/<%- companies[i][j].name %>" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
@@ -76,6 +74,7 @@
 </div>
 
 </div>
+
 <% } %>
 <!--
 <script type="text/javascript" src="/vendor/jquery.form.js"></script>

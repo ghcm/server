@@ -6,15 +6,16 @@
 Department = require('models/department').Department;
 
 
-exports.get = function(req, res){
+exports.get = function(req, res, next){
 
     Department.find(function(err, result){
         if (result.length == 0) {
-            var depart = new Department({name: "Common"});
+            var depart = new Department({name: "Common", rusname: "Common"});
             depart.save(function(err, depart, affected) {
+                if (err) next(err);
                 var arr = [];
-                arr.push(cat);
-                res.render('company/add_company', { title: 'Express', depart: arr });
+                arr.push(depart);
+                res.render('company/add_company', { title: 'Express', departs: arr });
             });
         }
         else {
