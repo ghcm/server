@@ -14,6 +14,11 @@ var schema = new Schema({
         unique: false,
         required: false
     },
+    department: {
+        type: [{ type: Schema.Types.ObjectId, ref: 'Department' }],
+        unique: false,
+        required: false
+    },
     email: {
         type: String,
         unique: false,
@@ -39,7 +44,7 @@ var schema = new Schema({
     },
     image: {
         type: String,
-        required: false
+        required: true
     },
     created: {
         type: Date,
@@ -50,6 +55,11 @@ var schema = new Schema({
 schema.methods.encryptPassword = function(password) {
   //  return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
     return password;
+};
+
+
+schema.methods.addCommonCat = function() {
+    console.log(this);
 };
 
 schema.virtual('password')
@@ -65,6 +75,15 @@ schema.methods.checkPassword = function(password) {
     return this.encryptPassword(password) === this.hashedPassword;
 };
 
+schema.methods.validateObj = function(obj) {
+    for (var i in obj) {
+        if (obj[i] == "") {
+            console.log("1");
+            return false;
+        }
+    }
+    return true;
+};
 
 schema.methods.getPublicFields = function() {
     return {
@@ -73,5 +92,7 @@ schema.methods.getPublicFields = function() {
         id: this.id
     };
 };
+
+
 
 exports.Company = mongoose.model('Company', schema);

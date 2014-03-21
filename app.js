@@ -10,7 +10,7 @@ var config = require('config');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 app.engine('ejs', require('ejs-locals'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,7 +19,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.bodyParser({uploadDir:'/home/proger/www/foodserver/public/files'}));
+app.use(express.bodyParser({uploadDir:'/home/proger/www/server/public/files'}));
 app.use(express.cookieParser('your secret here'));
 
 // Setup database
