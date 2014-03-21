@@ -14,6 +14,11 @@ var schema = new Schema({
         unique: false,
         required: false
     },
+    department: {
+        type: [{ type: Schema.Types.ObjectId, ref: 'Department' }],
+        unique: false,
+        required: false
+    },
     email: {
         type: String,
         unique: false,

@@ -11,7 +11,8 @@ module.exports = function(app) {
 
     app.post("/logout", require('./logout').post);
 
-//companies
+
+//  companies
     app.get("/add_company", require('./company/add_company').get);
     app.post("/add_company", require('./company/add_company').post);
 
@@ -22,18 +23,17 @@ module.exports = function(app) {
     app.get("/all_companies", require('./company/all_companies').get);
 
 
-
-
-//    departments
+//  departments
     app.get("/add_department", require('./department/add_department').get);
     app.post("/add_department", require('./department/add_department').post);
 
     app.get("/edit_department/:departName", require('./department/edit_department').get);
     app.post("/edit_department/:departName", require('./department/edit_department').post);
+
     app.get("/all_departments", require('./department/all_departments').get);
 
 
-    //goods
+//  goods
     app.get("/add_good", require('./good/add_good').get);
     app.post("/add_good", require('./good/add_good').post);
 
@@ -44,18 +44,15 @@ module.exports = function(app) {
     app.get("/all_goods", require('./good/all_goods').get);
 
 
-    //goods categories
+//  goods categories
     app.get("/add_cat", require('./goods_category/add_cat').get);
     app.post("/add_cat", require('./goods_category/add_cat').post);
 
-   app.get("/edit_cat/:catName", require('./goods_category/edit_cat').get);
+    app.get("/edit_cat/:catName", require('./goods_category/edit_cat').get);
     app.post("/edit_cat/:catName", require('./goods_category/edit_cat').post);
 
 
     app.get("/all_cats", require('./goods_category/all_cats').get);
-
-
-
 
     app.get('/', checkAuth, require('./root').get);
 

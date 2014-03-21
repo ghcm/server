@@ -3,10 +3,29 @@
  * GET login page.
  */
 
+Department = require('models/department').Department;
+
 
 exports.get = function(req, res){
-    res.render('company/add_company', { title: 'Express' });
-};
+
+    Department.find(function(err, result){
+        if (result.length == 0) {
+            var depart = new Department({name: "Common"});
+            depart.save(function(err, depart, affected) {
+                var arr = [];
+                arr.push(cat);
+                res.render('company/add_company', { title: 'Express', depart: arr });
+            });
+        }
+        else {
+            console.log(result);
+            res.render('company/add_company', { title: 'Express', departs: result });
+        }
+
+    });
+}
+
+
 
 
 var path = require('path'),
@@ -31,10 +50,12 @@ exports.post = function(req, res, next){
     }*/
 
     addObject.name = req.body.name;
+    addObject.department = req.body.department;
 
     company = new Company(addObject);
 
     company.save(function(err, company, affected) {
+        console.log(company);
         if (!err) {
             res.render('company/show_company', { title: 'Express', company: company  });
         }

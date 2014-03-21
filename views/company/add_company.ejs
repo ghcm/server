@@ -66,6 +66,23 @@
 
     <p style="font-size:9px">* - поля, обязательные для заполнения </p>-->
 
+        <div class="form-group">
+            <label><strong>Выберите раздел</strong></label>
+            <div>
+                <select name="department">
+                    <% for (var i = 0; i < departs.length; i++) { %>
+
+                    <option value="<%- departs[i]._id %>" ><%- departs[i].name %></option>
+
+
+                    <% } %>
+
+
+                </select>
+            </div>
+
+        </div>
+
 
     <p>
         <label>
