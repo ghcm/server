@@ -8,12 +8,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Администратор</a>
+            <a class="navbar-brand" href="/"><%= l('administrator') %></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Товар <b class="caret"></b></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= l("goods") %> <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                           <li><a href="/add_good">Добавить</a></li>
                           <li><a href="/all_goods">Все товары</a></li>
@@ -21,7 +21,7 @@
                   </li>
 
              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Категории <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= l("goodsCats") %> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="/add_cat">Добавить</a></li>
                     <li><a href="/all_cats">Все категории</a></li>

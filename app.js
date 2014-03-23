@@ -4,6 +4,7 @@
  */
 
 var express = require('express');
+var i18n = require("i18n");
 var http = require('http');
 var path = require('path');
 var config = require('config');
@@ -35,6 +36,22 @@ app.use(express.session({
 
 }));
 
+//--------------------localization
+i18n.configure({
+    locales:['ru', 'en'],
+    directory: __dirname + '/locales'    ,
+    defaultLocale: 'en'
+});
+
+app.use(function(req, res, next){
+    res.locals.l = i18n.__;
+    res.locals.ln = i18n.__n;
+
+    console.log(i18n.getLocale());
+    next();
+});
+app.use(i18n.init);
+//--------------------//localization
 
 app.use(require("middleware/loadUser.js"))
 
