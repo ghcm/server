@@ -1,4 +1,5 @@
 
+
 /*
  * GET login page.
  */
@@ -26,13 +27,19 @@ var path = require('path'),
     fs = require('fs'),
     Good = require('models/good').Good;
 
+
+var config = require("config");
+
+var filePath = config.get("fileOrganizer:good:path");
+var filePathView = config.get("fileOrganizer:good:viewPath");
+
 exports.post = function(req, res, next){
 
     var addObject = {}
 
     if (req.files.file.name) {
         var tempPath = req.files.file.path,
-            targetPath = path.resolve(req.files.file.path);
+            targetPath = path.dirname(req.files.file.path)  + "/" + filePath + "/"  + path.basename(req.files.file.path);
 
         addObject.image = path.basename(targetPath);
         fs.rename(tempPath, targetPath, function(err) {
@@ -50,11 +57,11 @@ exports.post = function(req, res, next){
 
     good.save(function(err, good, affected) {
         if (!err) {
-            res.render('good/show_good', { title: 'Express', good: good  });
+            res.render(filePath + '/show_good', { title: 'Express', good: good, filePathView: filePathView  });
         }
         else {
             console.log(err);
-            res.render('good/add_good', { title: 'Express', error: err.errors });
+            res.render(filePath + '/add_good', { title: 'Express', error: err.errors });
         }
     });
 

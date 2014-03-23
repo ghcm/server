@@ -2,6 +2,10 @@
 /*
  * GET login page.
  */
+var config = require("config");
+
+var filePath = config.get("fileOrganizer:company:path");
+var filePathView = config.get("fileOrganizer:company:viewPath");
 
 
 exports.get = function(req, res){
@@ -11,7 +15,7 @@ exports.get = function(req, res){
         if (err) { /* handle err */ }
 
         if (result) {
-            res.render('company/show_company', { title: 'Express', company: result });
+            res.render( filePath + '/show_company', { title: 'Express', company: result, filePathView: filePathView });
         } else {
             // we don't
         }

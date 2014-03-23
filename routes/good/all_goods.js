@@ -1,4 +1,7 @@
+var config = require("config");
 
+var filePath = config.get("fileOrganizer:good:path");
+var filePathView = config.get("fileOrganizer:good:viewPath");
 /*
  * GET login page.
  */
@@ -22,7 +25,7 @@ exports.get = function(req, res){
             },
 
             function(err, results){
-                res.render('good/all_goods', { title: 'Express', goods: categories });
+                res.render(filePath + '/all_goods', { title: 'Express', goods: categories, filePathView: filePathView });
             console.log(categories);
         });
 

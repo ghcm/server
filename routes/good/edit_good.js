@@ -2,7 +2,13 @@
 /*
  * GET login page.
  */
-Good = require('models/good').Good;
+Good = require('models/good').Good,
+    config = require("config");
+
+var filePath = config.get("fileOrganizer:good:path");
+var filePathView = config.get("fileOrganizer:good:viewPath");
+
+
 
 exports.get = function(req, res){
 
@@ -12,7 +18,7 @@ exports.get = function(req, res){
         if (err) { /* handle err */ }
 
         if (result) {
-            res.render('good/edit_good', { title: 'Express', good: result  });
+            res.render(filePath + '/edit_good', { title: 'Express', good: result, filePathView: filePathView  });
         } else {
             // we don't
         }
@@ -33,7 +39,7 @@ exports.post = function(req, res, next){
 
     if (!Good.schema.methods.validateObj(replaceObject)) {
         Good.findOne({ "_id": objectId}, function(err, result) {
-            res.render('good/edit_good', { title: 'Express', error: "Please, check entered data" , good: result});
+            res.render(filePath + '/edit_good', { title: 'Express', error: "Please, check entered data" , good: result});
 
         });
         return;
@@ -43,7 +49,7 @@ exports.post = function(req, res, next){
 
     if (req.files.file.name) {
         var tempPath = req.files.file.path,
-            targetPath = path.resolve(req.files.file.path);
+            targetPath = path.dirname(req.files.file.path)  + "/" + filePath + "/"  + path.basename(req.files.file.path);
 
         replaceObject.image = path.basename(targetPath);
         fs.rename(tempPath, targetPath, function(err) {
@@ -55,7 +61,7 @@ exports.post = function(req, res, next){
     Good.update({"_id": objectId }, {$set: replaceObject }, function(err, object, affected) {
         if (!err) {
             Good.findOne({ "_id": objectId}, function(err, result) {
-                    res.render('good/edit_good', { title: 'Express', good: result  });
+                    res.render(filePath + '/edit_good', { title: 'Express', good: result, filePathView: filePathView  });
             })
         }
     });

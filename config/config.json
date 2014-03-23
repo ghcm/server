@@ -18,5 +18,15 @@
         "path": "/",
         "httpOnly": true,
         "maxAge": null
+    },
+    "fileOrganizer": {
+        "company": {
+            "path": "company",
+            "viewPath": "/files/company/"
+        },
+        "good": {
+            "path": "good",
+            "viewPath": "/files/good/"
+        }
     }
 }

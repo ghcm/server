@@ -3,7 +3,11 @@
  * GET login page.
  */
 
-Department = require('models/department').Department;
+var Department = require('models/department').Department,
+ config = require("config");
+
+var filePath = config.get("fileOrganizer:company:path");
+var filePathView = config.get("fileOrganizer:company:viewPath");
 
 
 exports.get = function(req, res, next){
@@ -15,18 +19,16 @@ exports.get = function(req, res, next){
                 if (err) next(err);
                 var arr = [];
                 arr.push(depart);
-                res.render('company/add_company', { title: 'Express', departs: arr });
+                res.render(filePath + '/add_company', { title: 'Express', departs: arr });
             });
         }
         else {
             console.log(result);
-            res.render('company/add_company', { title: 'Express', departs: result });
+            res.render(filePath + '/add_company', { title: 'Express', departs: result });
         }
 
     });
 }
-
-
 
 
 var path = require('path'),
@@ -39,17 +41,13 @@ exports.post = function(req, res, next){
 
     if (req.files.file.name) {
         var tempPath = req.files.file.path,
-            targetPath = path.dirname(req.files.file.path)  + "/company/"  + path.basename(req.files.file.path);
-console.log(targetPath);
-console.log(path.dirname(req.files.file.path));
+            targetPath = path.dirname(req.files.file.path)  + "/" + filePath + "/"  + path.basename(req.files.file.path);
+
         addObject.image = path.basename(targetPath);
         fs.rename(tempPath, targetPath, function(err) {
             if (err) throw err;
         });
     }
-   /* else {
-        addObject.image = "no-logo.jpg";
-    }*/
 
     addObject.name = req.body.name;
     addObject.department = req.body.department;
@@ -59,25 +57,11 @@ console.log(path.dirname(req.files.file.path));
     company.save(function(err, company, affected) {
         console.log(company);
         if (!err) {
-            res.render('company/show_company', { title: 'Express', company: company  });
+            res.render( filePath + '/show_company', { title: 'Express', filePathView: filePathView, company: company  });
         }
         else {
             console.log(err);
-            res.render('company/add_company', { title: 'Express', error: err.errors });
+            res.render( filePath + '/add_company', { title: 'Express', filePathView: filePathView,  error: err.errors });
         }
     });
-
-
-    // если просто user.save(callback), то будет лишний аргумент у следующей функции
-
-
-    /**
-     * этот код удаляет файл из временной папки
-     */
-    /*fs.unlink(tempPath, function () {
-        if (err) throw err;
-        console.error("Only .png files are allowed!");
-    });*/
-
-
 }

@@ -6,6 +6,12 @@ Company = require('models/company').Company;
 Department = require('models/department').Department;
 var async = require('async');
 
+var config = require("config");
+
+var filePath = config.get("fileOrganizer:company:path");
+var filePathView = config.get("fileOrganizer:company:viewPath");
+
+
 exports.get = function(req, res){
 
     Department.find(function(err, result) {
@@ -30,7 +36,7 @@ exports.get = function(req, res){
 
                 function(err, results){
                     console.log(departments);
-                    res.render('company/all_companies', { title: 'Express', companies: departments });
+                    res.render('company/all_companies', { title: 'Express', companies: departments, filePathView: filePathView });
 
                 });
 
