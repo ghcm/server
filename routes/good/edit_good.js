@@ -2,8 +2,8 @@
 /*
  * GET login page.
  */
-Good = require('models/good').Good,
-    config = require("config");
+Good = require('../../models/good').Good,
+    config = require("../../config");
 
 var filePath = config.get("fileOrganizer:good:path");
 var filePathView = config.get("fileOrganizer:good:viewPath");

@@ -11,7 +11,7 @@ exports.get = function(req, res){
 
 
 
-var Cat = require('models/cat').Cat;
+var Cat = require('../../models/cat').Cat;
 
 exports.post = function(req, res, next){
 

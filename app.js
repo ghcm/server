@@ -7,7 +7,7 @@ var express = require('express');
 var i18n = require("i18n");
 var http = require('http');
 var path = require('path');
-var config = require('config');
+var config = require('./config');
 var app = express();
 
 // all environments
@@ -24,7 +24,7 @@ app.use(express.bodyParser({uploadDir:'/home/proger/www/server/public/files'}));
 app.use(express.cookieParser('your secret here'));
 
 // Setup database
-var mongoose = require('lib/mongoose');
+var mongoose = require('./lib/mongoose');
 
 var MongoStore = require("connect-mongo")(express);
 
@@ -53,7 +53,7 @@ app.use(function(req, res, next){
 app.use(i18n.init);
 //--------------------//localization
 
-app.use(require("middleware/loadUser.js"))
+app.use(require("./middleware/loadUser.js"))
 
 
 require('./routes')(app);

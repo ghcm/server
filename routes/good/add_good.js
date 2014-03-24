@@ -3,7 +3,7 @@
 /*
  * GET login page.
  */
-Cat = require('models/cat').Cat;
+Cat = require('../../models/cat').Cat;
 
 exports.get = function(req, res){
     Cat.find(function(err, result){
@@ -25,10 +25,10 @@ exports.get = function(req, res){
 
 var path = require('path'),
     fs = require('fs'),
-    Good = require('models/good').Good;
+    Good = require('../../models/good').Good;
 
 
-var config = require("config");
+var config = require("../../config");
 
 var filePath = config.get("fileOrganizer:good:path");
 var filePathView = config.get("fileOrganizer:good:viewPath");

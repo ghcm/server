@@ -1,4 +1,5 @@
 {
 	"administrator": "Администратор",
-    "goods": "Товары"
+	"goods": "Товары",
+	"goodsCats": "goodsCats"
 }

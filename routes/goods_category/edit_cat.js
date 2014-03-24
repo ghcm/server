@@ -2,7 +2,7 @@
 /*
  * GET login page.
  */
-Cat = require('models/cat').Cat;
+Cat = require('../../models/cat').Cat;
 
 exports.get = function(req, res){
 

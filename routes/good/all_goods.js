@@ -1,12 +1,12 @@
-var config = require("config");
+var config = require("../../config");
 
 var filePath = config.get("fileOrganizer:good:path");
 var filePathView = config.get("fileOrganizer:good:viewPath");
 /*
  * GET login page.
  */
-Good = require('models/good').Good;
-Cat = require('models/cat').Cat;
+Good = require('../../models/good').Good;
+Cat = require('../../models/cat').Cat;
 var async = require('async');
 
 exports.get = function(req, res){

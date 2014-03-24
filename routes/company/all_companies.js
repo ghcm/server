@@ -2,11 +2,11 @@
 /*
  * GET login page.
  */
-Company = require('models/company').Company;
-Department = require('models/department').Department;
+Company = require('../../models/company').Company;
+Department = require('../../models/department').Department;
 var async = require('async');
 
-var config = require("config");
+var config = require("../../config");
 
 var filePath = config.get("fileOrganizer:company:path");
 var filePathView = config.get("fileOrganizer:company:viewPath");
