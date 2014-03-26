@@ -1,6 +1,6 @@
 {
     "mongoose": {
-        "uri": "mongodb://localhost/chat",
+        "uri": "mongodb://username:a123123@ds031347.mongolab.com:31347/heroku_app23319278",
         "options": {
             "server": {
                 "socketOptions": {
