@@ -51,7 +51,7 @@ app.use(function(req, res, next){
     next();
 });
 app.use(i18n.init);
-//--------------------//localization
+
 
 app.use(require("middleware/loadUser.js"))
 

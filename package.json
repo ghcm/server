@@ -15,6 +15,7 @@
     "mongoose": "*",
     "nconf": "*",
     "bower": "*",
-    "bson": "*"
+    "bson": "*",
+    "i18n": "*"
   }
 }
