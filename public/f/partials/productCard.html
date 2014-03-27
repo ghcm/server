@@ -1,0 +1,149 @@
+<div class="col-lg-8 col-md-10 col-sm-10" style="margin-top: 10px">
+
+    <br>
+
+   <!-- <ol class="breadcrumb">
+        <li><a href="#!/pizza/">Пицца  </a></li>
+        <li><a href="#!/pizza/{{  product_detail.firm_id }}">{{ product_detail.firm_name }}</a></li>
+        <li class="active">{{ product_detail.title }}</li>
+    </ol>-->
+
+
+    <ol class="breadcrumb">
+        <li><a href="#!/{{  department }}/">Пицца  </a></li>
+        <li><a href="#!/{{  department }}/{{  product_detail.firm_id }}">{{ product_detail.firm_name_rus }}</a></li>
+        <li class="active">{{ product_detail.title }}</li>
+    </ol>
+
+    <h2 style="font-family: Verdana">{{product_detail.title}}</h2>
+
+
+
+
+    <div class="row product-detail">
+
+
+        <div class="col-lg-5 col-md-5 col-sm-5 text-center">
+            <!--<a class="product-detail-lightbox colorbox hidden-phone cboxElement" rel="colorbox1" href="img/product_01.jpg" title="Product A">-->
+            <div class="img-outer col-md-12 col-sm-12" style="float: left; display: inline-block;  " >
+                <a href=""> <img  ng-src="{{product_detail.imageUrl}}"  style="max-width: 300px" class="col-md-12 col-sm-12" alt=""/> </a>
+            </div>
+
+
+            <!--</a>-->
+        </div>
+
+
+
+        <div class="col-lg-7 col-md-7 col-sm-7 well" style="margin-bottom: 0">
+
+            <div class="row">
+
+                <div class="col-lg-7 col-md-7 col-sm-7">
+                    <strong>Компания:</strong> <span>{{product_detail.firm_name_rus}}</span><br>
+                    <strong>Цена доставки:</strong> <span>{{product_detail.firm_delivery_price}}</span><br><br><br>
+                </div>
+
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <span class="label label-danger  price" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 400%;
+    line-height: 150%;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    text-align: center;
+    transform: rotate(5deg);
+    z-index: 10;"> {{product_detail.price}}</span>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <br>
+                    <h3>Описание</h3>
+                    <p>{{product_detail.short_des}}</p>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3  col-sm-3">
+                    <a class="btn btn-default" href="#!/products/pizza/{{ product_detail.firm_id }}"><i class="glyphicon glyphicon-chevron-left"></i> Назад</a>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6" >
+                    <form class="form-horizontal" >
+                        <fieldset >
+                            <div class="form-group"  >
+                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">Количество</label>
+                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                    <div class="controls">
+                                        <!--<select id="countValue" ng-options="count.i for count in countArray" class="input-mini" ng-model="count" ng-change="selectChanged()"></select>-->
+                                        <!--<select id="countValue"  ng-model="countda" ng-options="option.item as option.name for option in countArray" ></select>-->
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-sm"  ng-click="changeCountMinus(product_detail.id)">-</button>
+                                            <div id="countValue" class="btn btn-default btn-sm" style="width: 40px;" type="text" >{{ count }}</div>
+                                            <button class="btn btn-default btn-sm" ng-click="changeCountPlus(product_detail.id)">+</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-3" >
+                    <div class="row">
+                        <button class="btn btn-{{ isOrdered }}"  ng-click="toBasket(  $index  )"><i class="glyphicon glyphicon-shopping-cart"></i> {{ isOrderedText }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bs-example bs-example-tabs">
+        <ul id="myTab" class="nav nav-tabs" style="margin-bottom: 10px">
+            <li class="active"><a href="#home" data-toggle="tab">Описание</a></li>
+            <li class=""><a href="#profile" data-toggle="tab">Комментарий</a></li>
+            <!--<li class="dropdown">
+                <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                    <li class=""><a href="#dropdown1" tabindex="-1" data-toggle="tab">@fat</a></li>
+                    <li><a href="#dropdown2" tabindex="-1" data-toggle="tab">@mdo</a></li>
+                </ul>
+            </li>-->
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="home">
+                <p>{{product_detail.long_des}}</p>
+            </div>
+            <div class="tab-pane fade" id="profile">
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                    var disqus_shortname = 'fooddelivery'; // required: replace example with your forum shortname
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            </div>
+            <div class="tab-pane fade" id="dropdown1">
+                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+            </div>
+            <div class="tab-pane fade" id="dropdown2">
+                <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
+            </div>
+        </div>
+    </div>
+
+</div>

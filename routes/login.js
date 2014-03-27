@@ -1,6 +1,6 @@
 
 var async = require('async');
-var User = require('models/user').User;
+var User = require('../models/user').User;
 
 
 exports.post = function(req, res, next) {

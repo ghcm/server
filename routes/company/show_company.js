@@ -2,7 +2,7 @@
 /*
  * GET login page.
  */
-var config = require("config");
+var config = require("../../config");
 
 var filePath = config.get("fileOrganizer:company:path");
 var filePathView = config.get("fileOrganizer:company:viewPath");

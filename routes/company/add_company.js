@@ -3,8 +3,8 @@
  * GET login page.
  */
 
-var Department = require('models/department').Department,
- config = require("config");
+var Department = require('../../models/department').Department,
+ config = require("../../config");
 
 var filePath = config.get("fileOrganizer:company:path");
 var filePathView = config.get("fileOrganizer:company:viewPath");
@@ -33,7 +33,7 @@ exports.get = function(req, res, next){
 
 var path = require('path'),
     fs = require('fs'),
-    Company = require('models/company').Company;
+    Company = require('../../models/company').Company;
 
 exports.post = function(req, res, next){
 

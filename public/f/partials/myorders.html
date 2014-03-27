@@ -1,0 +1,40 @@
+
+    <div class="col-lg-10" style="margin-top: 10px">
+        <h2>Мои заказы</h2>
+        <table class="table table-bordered col-lg-10">
+            <tr>
+                <th class="text-center">
+                    Номер заказа
+                </th>
+                <th class="text-center">
+                    Название блюда
+                </th>
+                <th class="text-center">
+                    Количество
+                </th>
+                <th class="text-center">
+                    Название фирмы
+                </th>
+                <th class="text-center">
+                    Время добавления
+                </th>
+            </tr>
+            <tr ng-repeat="order in orderss">
+                <td class="text-center">
+                    {{ order.id }}
+                </td>
+                <td class="text-center">
+                    {{ order.goods_id }}
+                </td>
+                <td class="text-center">
+                    {{ order.goods_count }}
+                </td>
+                <td class="text-center">
+                    {{ order.firm_id }}
+                </td>
+                <td class="text-center">
+                    {{ order.added_time }}
+                </td>
+            </tr>
+        </table>
+    </div>

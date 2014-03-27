@@ -1,5 +1,5 @@
 
-var checkAuth = require("middleware/checkAuth");
+var checkAuth = require("../middleware/checkAuth");
 
 module.exports = function(app) {
 
@@ -55,6 +55,14 @@ module.exports = function(app) {
     app.get("/all_cats", require('./goods_category/all_cats').get);
 
     app.get('/', checkAuth, require('./root').get);
+    app.get('/admin', checkAuth, require('./adminroot').get);
+
+
+
+//server response for client side queries
+
+    app.get("/getFirmList", require('./fResponse/firmsList').get);
+    app.get("/brand", require('./fResponse/brand').get);
 
    app.get('/chat', require('./chat').get);
 };

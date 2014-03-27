@@ -1,0 +1,64 @@
+<div class="col-lg-10">
+<div class="row" >
+    <div class="container col-lg-10" >
+        <h1 style="padding-top: 20px; padding-bottom: 20px">Добавление компании</h1>
+
+        <div id="result"></div>
+
+            <div class="form-group">
+                <label><strong>Введите название</label>
+                <input class="form-control" type="text" ng-model="name"  />
+            </div>
+
+            <div class="form-group">
+                <label><strong>Введите короткое описание</strong></label>
+                <input class="form-control" type="text" ng-model="snippet"  />
+
+            </div>
+
+            <div class="form-group">
+                <label><strong>Введите цену доставки </strong></label>
+                <input class="form-control" type="text" ng-model="delivery_price"  />
+            </div>
+
+            <div class="form-group">
+                <label><strong>Введите минимальную цену блюда компании</strong></label>
+                <input class="form-control" type="text" ng-model="min_price"  />
+            </div>
+
+
+            <div class="form-group">
+                <label><strong>Введите полное описание компании</strong></label>
+                <textarea  class="form-control" ng-model="description"  ></textarea>
+
+            </div>
+            <div class="form-group">
+                <label><strong>Введите предположительный раздел</strong></label>
+                <input class="form-control" type="text" ng-model="department"  />
+            </div>
+
+            <div class="form-group">
+                <label><strong>Введите email для компании*</strong></label>
+                <input class="form-control" type="text" ng-model="email"  />
+            </div>
+
+            <div class="form-group">
+                <label><strong>Введите телефон для компании*</strong></label>
+                <input class="form-control" type="text" ng-model="phone"  />
+            </div>
+
+
+            <p style="font-size:9px">* - поля, обязательные для заполнения </p>
+
+
+            <p>
+                <label>
+                    <input type="button" class="btn btn-primary" name="submit" ng-click="addCompany()" id="submit" value="Отправить!" />
+                </label>
+                <br />
+            </p>
+
+
+    </div>
+</div>
+</div>

@@ -1,0 +1,165 @@
+<div class="col-lg-10" style=" min-height: 1000px; " >
+    <br>
+
+    <ol class="breadcrumb">
+        <li><a href="#!/{{  department }}/">{{ categoryName.name_rus }}  </a></li>
+        <li class="active">{{ firm_name_rus }}</li>
+    </ol>
+
+     <my-modal>
+         <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row product-detail">
+
+                            <div class="col-lg-5 col-md-5 col-sm-5 text-center" style="position: relative; ">
+                                <!--<a class="product-detail-lightbox colorbox hidden-phone cboxElement" rel="colorbox1" href="img/product_01.jpg" title="Product A">-->
+                                <div class="img-outer col-md-12 col-sm-12" style="float: left; display: inline-block;  " >
+                                    <a href="" > <img  ng-src="{{product_detail.imageUrl}}"  style="max-width: 250px; max-height: 250px" class="col-md-12 col-sm-12" alt=""/> </a>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <a data-dismiss="modal" ng-click="changeRoute(product_detail.firm_id, product_detail.id)" href="" ><button class="btn btn-default"  style="position: relative; bottom: -40px">Карточка товара</button></a>
+                                    <!--<a href="products.html" class="btn btn-block">all products in category</a>-->
+                                </div>
+                                <!--</a>-->
+                            </div>
+
+
+
+                            <div class="col-lg-7 col-md-7 col-sm-7 well" style="margin-bottom: 0">
+
+                                <div class="row">
+
+                                    <div class="col-lg-7 col-md-7 col-sm-7">
+                                        <strong>Компания:</strong> <span>{{product_detail.firm_name_rus}}</span><br>
+                                        <strong>Цена доставки:</strong> <span>{{product_detail.firm_delivery_price}}</span><br><br><br>
+                                    </div>
+
+                                    <div class="col-lg-5 col-md-5 col-sm-5">
+                    <span class="label label-danger  price" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 400%;
+    line-height: 150%;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    text-align: center;
+    transform: rotate(5deg);
+    z-index: 10;"> {{product_detail.price}}</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-10 col-md-10 col-sm-10">
+                                        <br>
+                                        <h3>Описание</h3>
+                                        <p>{{product_detail.short_des}}</p>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3  col-sm-3">
+                                        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-chevron-left"></i> Назад</button>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6" >
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">Количество</label>
+                                                    <div class="col-lg-7 col-md-7 col-sm-7 ">
+                                                        <div class="controls">
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-default btn-sm"  ng-click="changeCountMinus(product_detail.id)">-</button>
+                                                                <div id="countValue" class="btn btn-default btn-sm" style="width: 40px;" type="text" >{{ count }}</div>
+                                                                <button class="btn btn-default btn-sm" ng-click="changeCountPlus(product_detail.id)">+</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <div class="row">
+                                            <button class="btn btn-{{ isOrdered }}"  ng-click="toBasket(  $index  )"><i class="glyphicon glyphicon-shopping-cart"></i> {{ isOrderedText }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+     </my-modal>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#popular">
+                        Популярное
+                    </a>
+                </h4>
+            </div>
+            <div id="popular" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <span class="row" style="height: 0">
+                        <span class="col-lg-3 thumbnail rowItem" ng-repeat="pizzafirm_detail in pizzafirm | filter:query">
+                          <div class="img-outer rowItemWrapper">
+                              <a data-toggle="modal" href="#myModal" ng-click="addChatBox(pizzafirm_detail.id)">
+                                  <img  ng-src="files/good/{{pizzafirm_detail.imageUrl}}" alt=""/>
+                              </a>
+                          </div>
+
+                          <div class="caption">
+                              <a data-toggle="modal" href="#myModal" ng-click="addChatBox(pizzafirm_detail.id)">{{ pizzafirm_detail.title }}</a>
+                              <p>{{ pizzafirm_detail.short_des }}<span class="label label-info price pull-right" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                font-size: 125%;
+                padding: 5px 10px;
+                transform: rotate(355deg);" ng-model="deliveryCost"> {{ pizzafirm_detail.price }}</span>
+                              </p>
+                          </div>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!--<div class="panel-group" id="accordion">-->
+        <div class="panel panel-primary" ng-repeat="category in categories | filter:query">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{category.id}}">
+                        {{category.name}}
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse{{category.id}}" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <span class="row" style="height: 0">
+                        <span class="col-lg-3 thumbnail rowItem" ng-repeat="a in category.products | filter:query">
+                          <div class="img-outer rowItemWrapper">
+                              <a data-toggle="modal" href="#myModal" ng-click="addChatBox(a.id)">
+                                  <img  ng-src="files/good/{{a.imageUrl}}" alt=""/>
+                              </a>
+                          </div>
+
+                          <div class="caption">
+                              <a data-toggle="modal" href="#myModal" ng-click="addChatBox(a.id)">{{ a.title }}</a>
+                              <p>{{ a.short_des }} <span class="label label-info price pull-right" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                font-size: 125%;
+                padding: 5px 10px;
+                transform: rotate(355deg);" ng-model="deliveryCost"> {{ a.price }}</span>                         </p>
+                          </div>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    <!--</div>-->
+
+</div>
+</div>
+

@@ -1,0 +1,138 @@
+<div class="col-lg-12 col-md-12 col-sm-12">
+<div class="row product-detail" style="position: relative;
+padding: 10px;
+border: 1px solid #b3c9ce;
+border-radius: 4px;
+background: #fff;
+box-shadow: 3px 3px 3px rgba(0,0,0,.3);
+z-index: 1000;">
+         <a class="" style="position: absolute; right: 20px; top: 15px; z-index: 10000; cursor: pointer" ng-click="yaha($index)">Закрыть</a>
+        <div class="col-lg-5 col-md-5 col-sm-5 text-center">
+            <!--<a class="product-detail-lightbox colorbox hidden-phone cboxElement" rel="colorbox1" href="img/product_01.jpg" title="Product A">-->
+                <div class="img-outer col-md-12 col-sm-12" style="float: left; display: inline-block;  " >
+                    <a href=""> <img  ng-src="{{product_detail.imageUrl}}"  style="max-width: 300px" class="col-md-12 col-sm-12" alt=""/> </a>
+                </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12">
+
+        <a href="#!/pizza/product_card/{{product_detail.id}}&firmId={{product_detail.firm_id}}" style="padding-top: 100px" ><button class="btn btn-info">Карточка1</button></a>
+    </div>
+            <!--</a>-->
+        </div>
+
+
+
+        <div class="col-lg-7 col-md-7 col-sm-7 well" style="margin-bottom: 0">
+
+            <div class="row">
+
+                <div class="col-lg-7 col-md-7 col-sm-7">
+                    <strong>Brand:</strong> <span>Squeezer</span><br>
+                    <strong>Model:</strong> <span>Duck</span><br>
+                    <strong>Size:</strong> <span>7</span><br>
+                    <strong>Color</strong> <span>Yellow</span><br>
+                    <strong>Quality:</strong> <span>new</span><br>
+                </div>
+
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <span class="label label-danger  price" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 400%;
+    line-height: 150%;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    text-align: center;
+    transform: rotate(5deg);
+    z-index: 10;"> 0,50</span>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <br>
+                    <h3>Описание</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rhoncus, nisl nec volutpat pretium, tellus lectus condimentum leo, non facilisis tortor sapien a lectus.</p>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-3 col-md-3  col-sm-3">
+                    <button class="btn btn-default" ng-click="yaha($index)"><i class="glyphicon glyphicon-chevron-left"></i> Назад</button>
+                </div>
+
+
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">Количество</label>   <br>
+                                <div class="col-lg-7 col-md-7 col-sm-7 control-label">
+                                    <div class="controls">
+                                        <!--<select id="countValue" ng-options="count.i for count in countArray" class="input-mini" ng-model="count" ng-change="selectChanged()"></select>-->
+                                        <!--<select id="countValue"  ng-model="countda" ng-options="option.item as option.name for option in countArray" ></select>-->
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-sm"  ng-click="changeCountMinus()">-</button>
+                                            <div id="countValue" class="btn btn-default btn-sm" style="width: 40px;" type="text" >{{ count }}</div>
+                                            <button class="btn btn-default btn-sm" ng-click="changeCountPlus()">+</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                          <!--  <div class="control-group">
+                                <label class="control-label">Количество</label>
+                                <div class="controls">
+                                    <select class="input-mini">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>-->
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="row">
+                            <button class="btn btn-{{ isOrdered }}"  ng-click="toBasket(  $index  )"><i class="glyphicon glyphicon-shopping-cart"></i> {{ isOrderedText }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+        <!--<div style="border: 10px solid red; z-index: 1001">
+        <span ng-click="yaha($index)" style="float: right; cursor: pointer; width: 44px; height: 36px; padding: 0; border: 0px solid #000;
+        background: url('img/close.png')"></span>
+                       <div class="img-outer" style="float: left; display: inline-block; width: 300px; border: 1px solid greenyellow;" >
+                           <a href="#!/sushi/{{product_detail.id}}"> <img  ng-src="{{product_detail.imageUrl}}"  style="max-width: 300px" alt=""/> </a>
+                       </div>
+
+        <div style="margin-left: 300px; display: inline">
+                   <div>
+                       {{product_detail.title}}
+                   </div>
+
+        <div >
+                     <span class="btn btn-default dropdown-toggle" ng-click="toBasket(  $index  )">Заказать</span>
+        </div>
+        </div>
+
+            <div style="clear: both"></div>
+
+        </div>
+-->
