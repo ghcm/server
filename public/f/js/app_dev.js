@@ -55,17 +55,17 @@ var foodModule = angular.module('food', [ 'pizzaFilters', 'pizzaServices', 'sush
     config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         $routeProvider.
             when('/index', {templateUrl: 'f/partials/pizzafirms.html',   controller: PizzaListCtrl}).
-            when('/products/:department/', {templateUrl: 'partials/pizzafirms.html', controller: PizzaListCtrl}).
-            when('/products/:department/:firmId', {templateUrl: 'partials/pizzafirmdetail.html', controller: PizzaDetailCtrl}).
-            when('/products/:department/:firmId/product_card/:pizzaId', {templateUrl: 'partials/productCard.html', controller: ProductCardCtrl}). //ProductCardCtrl}).
-            when('/aboutCompany/:firmId', {templateUrl: 'partials/firmCard.html', controller: FirmCardCtrl}). //ProductCardCtrl}).
-            when('/contact', {templateUrl: 'partials/contact.html', controller: ContactCtrl}). //ProductCardCtrl}).
-            when('/addCompany', {templateUrl: 'partials/addCompany.html', controller: AddCompanyCtrl}). //ProductCardCtrl}).
+            when('/products/:department/', {templateUrl: 'f/partials/pizzafirms.html', controller: PizzaListCtrl}).
+            when('/products/:department/:firmId', {templateUrl: 'f/partials/pizzafirmdetail.html', controller: PizzaDetailCtrl}).
+            when('/products/:department/:firmId/product_card/:pizzaId', {templateUrl: 'f/partials/productCard.html', controller: ProductCardCtrl}). //ProductCardCtrl}).
+            when('/aboutCompany/:firmId', {templateUrl: 'f/partials/firmCard.html', controller: FirmCardCtrl}). //ProductCardCtrl}).
+            when('/contact', {templateUrl: 'f/partials/contact.html', controller: ContactCtrl}). //ProductCardCtrl}).
+            when('/addCompany', {templateUrl: 'f/partials/addCompany.html', controller: AddCompanyCtrl}). //ProductCardCtrl}).
             // when('/sushi/:sushiId', {templateUrl: 'partials/sushifirmdetail.html', controller: SushiDetailCtrl}).
             //when('/sushi/product/:sushi_product_Id', {templateUrl: 'partials/sushi_product_detail.html', controller: SushiProductDetailCtrl}).
             // when('/sushi', {templateUrl: 'partials/sushifirms.html', controller: SushiListCtrl}).
-            when('/basket', {templateUrl: 'partials/basket.html', controller: BasketCtrl}).
-            when('/myorders', {templateUrl: 'partials/myorders.html', controller: MyOrdersCtrl}).
+            when('/basket', {templateUrl: 'f/partials/basket.html', controller: BasketCtrl}).
+            when('/myorders', {templateUrl: 'f/partials/myorders.html', controller: MyOrdersCtrl}).
             otherwise({redirectTo: '/index'});
             $locationProvider.hashPrefix('!');
     }]);

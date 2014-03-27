@@ -6,7 +6,8 @@
 
     <span class="row m-pizzafirms">
           <span  class="col-lg-3  thumbnail rowItem" ng-repeat="pizzafirm in pizzafirms | filter:query">
-               <a href="#!/products/{{ categoryName.name }}/{{pizzafirm.id}}" >
+               <!--<a href="#!/products/{{ categoryName.name }}/{{pizzafirm.id}}" >-->
+               <a href="#!/products/pizza/{{pizzafirm.id}}" >
                    <div class="img-outer rowItemWrapper">
                        <img  ng-src="{{pizzafirm.imageUrl}}" class="rowItemImage"  alt=""/>
                    </div>

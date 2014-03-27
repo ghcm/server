@@ -8,6 +8,10 @@ angular.module('pizzaServices', ['ngResource']).
         return $resource('/getFirmList', {}, {
             query: {method:'GET', params:{}, isArray:true}
         });
+    }).factory('Brand', function($resource){
+    return $resource('/brand', {"_" : Math.random()}, {
+        query: {method:'GET', params:{}, isArray:true}
+    })
     });
 
 angular.module('sushiServices', ['ngResource']).

@@ -20,13 +20,13 @@ function PizzaListCtrl($scope, Pizza, $rootScope, webStorage, $routeParams ) {
 
 }
 
-function PizzaDetailCtrl($scope, Pizza, $routeParams, $rootScope, webStorage, $templateCache, $location) {
+function PizzaDetailCtrl($scope, Pizza, Brand, $routeParams, $rootScope, webStorage, $templateCache, $location) {
 
     $rootScope.header = "Pizza App";
-    $scope.categoryName = Pizza.get({ departName: $routeParams.department });//для breadcrumbs
+   // $scope.categoryName = Pizza.get({ departName: $routeParams.department });//для breadcrumbs
 
    //сперва вытягиваем популярное, потом все остальное
-    $scope.pizzafirm = Pizza.query({ pizzaFirmId: $routeParams.firmId, popular: true, depart: $routeParams.department }, function (response) {
+    $scope.pizzafirm = Brand.query({ pizzaFirmId: $routeParams.firmId, popular: true, depart: $routeParams.department }, function (response) {
 
         try {
             $scope.deliveryCost = response[0].delivery_price;
@@ -40,7 +40,7 @@ function PizzaDetailCtrl($scope, Pizza, $routeParams, $rootScope, webStorage, $t
             //console.log(response[0].name);
             $scope.firm_name_rus = response[0].name_rus;
 
-            $scope.categories = Pizza.query({ pizzaFirmId: $routeParams.firmId, getCategories: true, depart: $routeParams.department });
+            $scope.categories = Brand.query({ pizzaFirmId: $routeParams.firmId, getCategories: true, depart: $routeParams.department });
         }
         catch (e) {
 
@@ -77,7 +77,7 @@ function PizzaDetailCtrl($scope, Pizza, $routeParams, $rootScope, webStorage, $t
 
     $scope.addChatBox = function(id) {
        // //console.log($routeParams);
-        $scope.product_detail = commonMethods.getProduct.call(this, id, $routeParams.firmId, $scope, Pizza, webStorage, $routeParams.department);
+        $scope.product_detail = commonMethods.getProduct.call(this, id, $routeParams.firmId, $scope, Brand, Pizza, webStorage, $routeParams.department);
        // alert($scope.product_detail);
     };
 
@@ -359,7 +359,7 @@ var commonMethods =  {
             }
         }
     }    ,
-    getProduct: function (id, firm_id, $scope, Pizza, webStorage, department) {
+    getProduct: function (id, firm_id, $scope, Brand, Pizza, webStorage, department) {
 
         
         console.log(department);
@@ -371,7 +371,7 @@ var commonMethods =  {
        // var department = $scope.department;
 
 
-        $scope.product_detail = Pizza.get({ pizzaFirmId: firm_id, pizzaProductId: id, depart: department  },function(response) {
+        $scope.product_detail = Brand.get({ pizzaFirmId: firm_id, pizzaProductId: id, depart: department  },function(response) {
             var arr = webStorage.get("products");
             if (arr.length > 0) {
                 for (var i = 0; i < arr.length; i++) {

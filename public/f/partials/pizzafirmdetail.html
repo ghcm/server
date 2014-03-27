@@ -108,7 +108,7 @@
                         <span class="col-lg-3 thumbnail rowItem" ng-repeat="pizzafirm_detail in pizzafirm | filter:query">
                           <div class="img-outer rowItemWrapper">
                               <a data-toggle="modal" href="#myModal" ng-click="addChatBox(pizzafirm_detail.id)">
-                                  <img  ng-src="{{pizzafirm_detail.imageUrl}}" alt=""/>
+                                  <img  ng-src="files/good/{{pizzafirm_detail.imageUrl}}" alt=""/>
                               </a>
                           </div>
 
@@ -142,7 +142,7 @@
                         <span class="col-lg-3 thumbnail rowItem" ng-repeat="a in category.products | filter:query">
                           <div class="img-outer rowItemWrapper">
                               <a data-toggle="modal" href="#myModal" ng-click="addChatBox(a.id)">
-                                  <img  ng-src="{{a.imageUrl}}" alt=""/>
+                                  <img  ng-src="files/good/{{a.imageUrl}}" alt=""/>
                               </a>
                           </div>
 

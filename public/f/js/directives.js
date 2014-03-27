@@ -9,7 +9,7 @@ foodModule
                 restrict: "E",
                 replace: true,
                 transclude: true,
-                templateUrl: "partials/modalWrapper.html"
+                templateUrl: "f/partials/modalWrapper.html"
             }
       });
 
