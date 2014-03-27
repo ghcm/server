@@ -1,0 +1,18 @@
+
+<div class="col-lg-10" style=" min-height: 1000px; border: 1px solid #000;">
+      <span class="row">
+            <div ng-model="chatbox" style="position: fixed; z-index: 100000; background: white">
+                <div ng-include="chatbox"></div>
+            </div>
+          <span class="col-lg-3 thumbnail" ng-repeat="sushifirm_detail in sushifirm | filter:query">
+                  <div class="img-outer">
+                      <a class="various fancybox.ajax" href="" ng-click="addChatBox(sushifirm_detail.id)">
+                          <img  ng-src="{{sushifirm_detail.imageUrl}}"   alt=""/>
+                      </a>
+                  </div>
+
+          </span>
+      </span>
+</div>
+
+

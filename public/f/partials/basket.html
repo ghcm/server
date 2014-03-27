@@ -1,0 +1,264 @@
+<!--<div class="col-lg-10" style=" min-height: 1000px; border: 1px solid #000;">-->
+<!--              <span class="row">
+                    <div ng-repeat="product in basket">
+                        <span>{{ product.title }}</span>
+                        <span><img  ng-src="{{product.imageUrl}}" style="max-height: 20px; max-width: 20px;"   alt=""/></span>
+                        <span style="cursor: pointer" ng-click="deleteItem(product)">X</span>
+                    </div>
+              </span>
+             <span class="row"><a href="#!/confirmed"><span class="btn-danger">Да</span></a></span>-->
+
+
+
+
+<div class="col-lg-10" style=" min-height: 1000px; margin-top: 10px">
+
+
+
+            <h2>Корзина</h2> <br>
+
+    <ul class="nav nav-tabs" id="basketHeaders">
+        <li class="active" ><a href="#step1" ng-click="stop()" data-toggle="tab"><b>Шаг 1:</b> Обзор</a></li>
+        <li class=""><a href="#step2" data-toggle="tab"><b>Шаг 2:</b> Персональная информация</a></li>
+        <li><a href="#step3" data-toggle="tab"><b>Шаг 3:</b> Подтверждение</a></li>
+        <li><a href="#step4" data-toggle="tab"><b>Шаг 4:</b> Платеж</a></li>
+    </ul>
+
+     <br>
+     <div id="#step1">
+     <div class="tab-content">
+
+     <div class="tab-pane active" id="step1">
+         <div class="row-fluid">
+             <div class="span12">
+                 <table class="table table-bordered table-striped table-hover col-lg-10" >
+                     <thead>
+                     <tr>
+                         <th class="text-center">Изображение</th>
+                         <th class="text-center">Название</th>
+                         <th class="text-center">Количество</th>
+                         <th class="text-center">Каждый</th>
+                         <th class="text-center">Фирма</th>
+                         <th class="text-center">Доставка</th>
+                         <th class="text-center">Всего</th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                     <tr ng-repeat="product in basket " >
+                         <td class="text-center text-vertical-middle"><a href="#!/pizza/{{ product.firm_id }}/product_card/{{ product.id }}"><img  ng-src="{{product.imageUrl}}" style="max-height: 75px; max-width: 75px;"   alt=""/></a></td>
+                         <td class="text-center text-vertical-middle"><a href="#!/pizza/{{ product.firm_id }}/product_card/{{ product.id }}">{{ product.title }}</a></td>
+                         <td class="text-center text-vertical-middle">
+
+                             <div class="input-prepend input-append">
+
+                                 <div class="btn-group">
+
+
+
+                                 <button class="btn btn-default btn-lg" ng-click="changeCountMinus(product.id)">-</button>
+                                 <div class="btn btn-default btn-lg"  type="text" ng-model="count">{{ product.count }}</div>
+                                 <button class="btn btn-default btn-lg" ng-click="changeCountPlus(product.id)">+</button>
+
+
+                                 <button type="button" class="btn btn-default btn-lg" ng-click="deleteItem(product)">
+                                     <span class="glyphicon glyphicon-trash"></span>
+                                 </button>
+
+                                 </div>
+                             </div>
+
+
+
+                         </td>
+                         <td class="text-center text-vertical-middle">{{ product.price }}</td>
+                         <td class="text-center text-vertical-middle">{{ product.firm_name_rus }}</td>
+                         <td class="text-center text-vertical-middle">{{ product.firm_delivery_price }}</td>
+                         <td class="text-center text-vertical-middle"><strong>{{ product.sum }}</strong></td>
+                     </tr>
+
+                     <tr>
+                         <td align="right" colspan="6">Итого без доставки:<br>Доставка:<br>Итого с доставкой: </td>
+                         <td align="right" colspan="1">
+                             <strong> {{ sumWithoutDelivery }},-</strong><br>
+                             {{ deliveryCost }},-<br>
+                             {{ sumWithDelivery }},-<br>
+                         </td>
+                     </tr>
+                     </tbody>
+                 </table>
+
+                 <div class="row-fluid">
+                     <div class="col-lg-4 col-md-4 col-xs-4">
+                         <a href="#!/index" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-chevron-left"></i> Продолжить покупки</a>
+                     </div>
+                     <div class="col-lg-4 col-md-4 col-xs-4">
+                         <button class="btn  btn-lg" ng-click="setTrashEmpty()"><i class="icon-trash"></i> Очистить корзину</button>
+                     </div>
+                     <div class="col-lg-4 col-md-4 col-xs-4">
+                         <button class="btn btn-primary pull-right btn-lg" data-target="#step2" data-toggle="tab">Далее <i class="icon-chevron-right icon-white"></i></button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="tab-pane" id="step2">
+         <div class="row">
+             <div class="col-lg-6">
+                 <form class="form-horizontal well" name="addUserForm">
+                     <fieldset>
+                         <legend>Персональная информация</legend>
+                         <div class="form-group">
+                             <label class="col-lg-2 control-label" for="companyname">Имя</label>
+                             <div class="col-lg-10">
+                                 <input class="form-control" ng-model="name" type="text" placeholder="Имя" required >
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             <label class="col-lg-2 control-label" for="companyname">Телефон</label>
+                             <div class="col-lg-10">
+                                 <input  class="form-control" ng-model="phone" type="text" placeholder="Телефон" required >
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             <label class="col-lg-2 control-label" for="companyname">Адрес</label>
+                             <div class="col-lg-10">
+                                 <input id="companyname" class="form-control" ng-model="address" type="text" placeholder="Адрес" required >
+                             </div>
+                         </div>
+                     </fieldset>
+                 </form>
+             </div>
+             <div class="col-lg-6 col-md-6 col-xs-6">
+                 <form class="form-horizontal">
+                     <fieldset>
+                         <legend>Комментарий</legend>
+                         <div class="control-group">
+                             <textarea id="comments" rows="12" maxlength="255"  class="form-control" ng-model="comment">{{ comment }}</textarea>
+                         </div>
+                         <hr>
+                         <div class="control-group">
+                             <label class="checkbox">
+                                 <input id="termsandconditions" type="checkbox" value="yes"> Да, я согласен <a href="#">с договором &amp; условиями</a>
+                             </label>
+                         </div>
+                     </fieldset>
+                 </form>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-lg-6 col-md-6 col-xs-6">
+                 <button class="btn btn-default btn-lg" data-target="#step1" data-toggle="tab"><i class="glyphicon glyphicon-chevron-left"></i> Обзор</button>
+             </div>
+             <div class="col-lg-6 col-md-6 col-xs-6">
+                 <button class="btn btn-primary pull-right btn-lg" data-target="#step3" data-toggle="tab" ng-disabled="!addUserForm.$valid" ng-click="saveUserInfo()">Далее <i class="icon-chevron-right icon-white"></i></button>
+             </div>
+         </div>
+
+
+
+
+
+     </div>
+
+     <div class="tab-pane" id="step3">
+         <div class="row">
+             <div class="col-lg-5 well">
+                 <table class="table">
+                     <thead>
+                     <tr>
+                         <th>Персональная информация</th></tr>
+                     <tr>
+                         <td>
+                             {{ name }}<br>
+                             {{ phone }}<br>
+                             {{ address }}<br>
+
+                             <br>
+                             <b>Комментарий</b>
+                             <br>
+                             <i>{{ comment }}</i>
+                         </td>
+                     </tr>
+                     </thead>
+                 </table>
+             </div>
+             <div class="col-lg-7">
+                 <table class="table table-bordered">
+                     <thead>
+                     <tr>
+                         <th>Обзор</th>
+                         <th width="50">Количество</th>
+                         <th width="70">Итого</th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                     <tr ng-repeat="product in basket">
+                         <td>{{ product.title }}</td>
+                         <td align="center">{{ product.count }}</td>
+                         <td align="right">{{ product.sum }},-</td>
+                     </tr>
+                     <tr>
+                         <td>Доставка:</td>
+                         <td align="right" colspan="2"> {{ deliveryCost }},-</td>
+                     </tr>
+                     <tr>
+                         <td>Платеж: наличными</td>
+                         <td align="right" colspan="2"> {{ sumWithoutDelivery }},-</td>
+                     </tr>
+                     <tr>
+                         <td align="right" colspan="3"><strong> {{ sumWithDelivery }},-</strong></td>
+                     </tr>
+                     </tbody>
+                 </table>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-lg-6 col-md-6 col-xs-6">
+                 <button class="btn btn-default btn-lg" data-target="#step2" data-toggle="tab"><i class="glyphicon glyphicon-chevron-left"></i> Персональная информация</button>
+             </div>
+             <div class="col-lg-6 col-md-6 col-xs-6">
+                 <button class="btn btn-primary pull-right btn-lg" data-target="#step4" data-toggle="tab" ng-click="confirmation(true)">Далее <i class="icon-chevron-right icon-white"></i></button>
+             </div>
+         </div>
+     </div>
+
+     <div class="tab-pane" id="step4">
+         <div class="row-fluid">
+             <div class="col-lg-6 col-md-6 col-xs-6">
+                 <h2>Платеж наличными</h2>
+                 <p>Ваш заказ поступил в обработку</p>
+             </div>
+             <div class="col-lg-6 col-md-6 col-xs-6">
+                 <h2>Доставка</h2>
+                 <p>Ваш заказ будет доставлен в ближайшее время. </p>
+             </div>
+         </div>
+         <br><br><br>
+         <div class="row-fluid">
+             <div class="col-lg-6 col-md-6 col-xs-6">
+             </div>
+             <div class="col-lg-6 col-md-6 col-xs-6">
+                 <a href="#" class="btn btn-primary pull-right btn-lg">Перейти на главную <i class="icon-chevron-right icon-white"></i></a>
+             </div>
+         </div>
+     </div>
+     </div>
+     </div>
+</div>
+
+
+<script>
+    $(function(){
+        $('[data-target^=#step]').on('click', function (e) {
+            e.preventDefault();
+
+            var props = $(this).attr('data-target');
+            $("ul#basketHeaders li[class*='active']").removeClass("active");
+            $("ul#basketHeaders a[href='" + props + "']").parent().addClass("active");
+
+        });
+    });
+</script>

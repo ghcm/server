@@ -46,8 +46,6 @@ i18n.configure({
 app.use(function(req, res, next){
     res.locals.l = i18n.__;
     res.locals.ln = i18n.__n;
-
-    console.log(i18n.getLocale());
     next();
 });
 app.use(i18n.init);

@@ -1,0 +1,11 @@
+
+<div class="col-lg-10" style=" min-height: 1000px; border: 1px solid #000;">
+              <span class="row">
+                  <span class="col-lg-3 thumbnail" ng-repeat="sushifirm in sushifirms | filter:query">
+                        <div class="img-outer">
+                            <a href="#!/sushi/{{sushifirm.id}}"> <img  ng-src="{{sushifirm.imageUrl}}"  alt=""/> </a>
+                        </div>
+                  </span>
+              </span>
+
+</div>

@@ -1,0 +1,26 @@
+<div class="col-lg-10" style="min-height: 1000px;"><!--in production delete this inline style-->
+    <br />
+    <ol class="breadcrumb m-mainPageList">
+        <li class="active">{{ categoryName.name_rus }}</li>
+    </ol>
+
+    <span class="row m-pizzafirms">
+          <span  class="col-lg-3  thumbnail rowItem" ng-repeat="pizzafirm in pizzafirms | filter:query">
+               <a href="#!/products/{{ categoryName.name }}/{{pizzafirm.id}}" >
+                   <div class="img-outer rowItemWrapper">
+                       <img  ng-src="{{pizzafirm.imageUrl}}" class="rowItemImage"  alt=""/>
+                   </div>
+               </a>
+
+            <div class="caption">
+                <a href="#!/pizza/products/{{pizzafirm.id}}" >{{pizzafirm.name_rus}}</a>
+                <p>Мин. сумма заказа <span class="label label-info price pull-right m-mainPageBadges"> {{pizzafirm.min_price}}</span></p>
+                <p>Стоимость доставки <span class="label label-info price pull-right m-mainPageBadges"> {{pizzafirm.delivery_price}}</span></p><br />
+                <div class="well m-mainPageFirmDes" >{{pizzafirm.snippet}}</div>
+                <!--<a href="#!/aboutCompany/{{pizzafirm.id}}" >Описание</a>ссылка на карточку компании - подумать где расположить-->
+            </div>
+          </span>
+    </span>
+</div>
+
+<!--это очень уникальный сео текст, смотрю как поисковики будут обрабатывать подобную ересь, если вы случайно увидели данную надпись. то прошу не обращать на нее никакого внимания, так как это сделано для проверки поисковиками индексации данной страницы и ни для чего более. недано прочитал про проблемы индексации angularjs поисковиками, надеюсь что мой план сработает и все будет круто, поскольку от этого завсисит что будет происходить в ближайшее время, и стоит ли писать сайт полностью на другом фреймворке, например backbonejs. но возможно и не придется так как поисковики могут увидеть этот сайт и нормального его проиндексировать.-->
