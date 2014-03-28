@@ -2,31 +2,43 @@
 
 /* Controllers */
 
-function PizzaListCtrl($scope, Pizza, $rootScope, webStorage, $routeParams ) {
+function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
     $rootScope.header = "Pizza Firms";
     if (!$routeParams.department) $routeParams.department = "pizza";
 
-    $scope.pizzafirms = Pizza.query({depart: $routeParams.department}, function () {
+/*    $scope.pizzafirms = Pizza.query({depart: $routeParams.department}, function () {
         $scope.htmlReady();
-    });
+    });*/
+
+
+    $http.get('/getFirmList', {params: {depart: $routeParams.department}}).
+        success(function(data, status, headers, config) {
+            $scope.pizzafirms = data;
+            $scope.htmlReady();
+        }).
+        error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
     $rootScope.basket = webStorage.get("goodsCount");
 
    // $scope.firm_detail = Firm.get({ pizzaFirmId: $routeParams.firmId });
 
 
-    $scope.categoryName = Pizza.get({ departName: $routeParams.department });//для breadcrumbs
+   // $scope.categoryName = Pizza.get({ departName: $routeParams.department });//для breadcrumbs
 
     //console.log( $scope.categoryName );
 
 }
 
-function PizzaDetailCtrl($scope, Pizza, Brand, $routeParams, $rootScope, webStorage, $templateCache, $location) {
+function DetailCtrl($scope, $http, $routeParams, $rootScope, webStorage, $templateCache, $location) {
 
     $rootScope.header = "Pizza App";
    // $scope.categoryName = Pizza.get({ departName: $routeParams.department });//для breadcrumbs
 
    //сперва вытягиваем популярное, потом все остальное
-    $scope.pizzafirm = Brand.query({ pizzaFirmId: $routeParams.firmId, popular: true, depart: $routeParams.department }, function (response) {
+/*    $scope.pizzafirm = Brand.query({ pizzaFirmId: $routeParams.firmId, popular: true, depart: $routeParams.department }, function (response) {
 
         try {
             $scope.deliveryCost = response[0].delivery_price;
@@ -47,7 +59,41 @@ function PizzaDetailCtrl($scope, Pizza, Brand, $routeParams, $rootScope, webStor
         }
 
 
-    });
+    });*/
+
+
+
+    $http.get('/brand', {params: { pizzaFirmId: $routeParams.firmId, popular: true, depart: $routeParams.department }}).
+        success(function(data, status, headers, config) {
+            $scope.pizzafirm = data;
+            $scope.deliveryCost = data[0].delivery_price;
+
+
+            //раздел - передается как параметр - очень важен, так как влияет из какой базы будут тянуться данные - должна быть
+            // папка фирм с таким именем и товары в ней
+            $scope.department = $routeParams.department;
+
+            //$scope.categoryName = "pizza";//для breadcrumbs
+            //console.log(response[0].name);
+            $scope.firm_name_rus = data[0].name_rus;
+
+           // $scope.categories = Brand.query({ pizzaFirmId: $routeParams.firmId, getCategories: true, depart: $routeParams.department });
+
+            $http.get('/brand', {params: { pizzaFirmId: $routeParams.firmId, getCategories: true, depart: $routeParams.department }}).
+                success(function(cats, status, headers, config) {
+                    $scope.categories = cats;
+
+                }).
+                error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+
+        }).
+        error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
 
     $scope.count = 1;
 
@@ -77,7 +123,7 @@ function PizzaDetailCtrl($scope, Pizza, Brand, $routeParams, $rootScope, webStor
 
     $scope.addChatBox = function(id) {
        // //console.log($routeParams);
-        $scope.product_detail = commonMethods.getProduct.call(this, id, $routeParams.firmId, $scope, Brand, Pizza, webStorage, $routeParams.department);
+        $scope.product_detail = commonMethods.getProduct.call(this, id, $routeParams.firmId, $scope, webStorage, $routeParams.department, $http);
        // alert($scope.product_detail);
     };
 
@@ -88,7 +134,7 @@ function PizzaDetailCtrl($scope, Pizza, Brand, $routeParams, $rootScope, webStor
 
 }
 
-function ProductCardCtrl($scope, Pizza, $routeParams, $rootScope, webStorage) {
+function ProductCardCtrl($scope, $routeParams, $rootScope, webStorage, $http) {
 
     //раздел - передается как параметр - очень важен, так как влияет из какой базы будут тянуться данные - должна быть
     // папка фирм с таким именем и товары в ней
@@ -100,7 +146,7 @@ function ProductCardCtrl($scope, Pizza, $routeParams, $rootScope, webStorage) {
     var index = parseInt($routeParams.pizzaId);
     --index;
 
-    $scope.product_detail = commonMethods.getProduct.call(this, $routeParams.pizzaId, $routeParams.firmId, $scope, Pizza, webStorage, $routeParams.department);
+    $scope.product_detail = commonMethods.getProduct.call(this, $routeParams.pizzaId, $routeParams.firmId, $scope, webStorage, $routeParams.department, $http);
 
     console.log($scope.product_detail);
 
@@ -117,11 +163,6 @@ function ProductCardCtrl($scope, Pizza, $routeParams, $rootScope, webStorage) {
         commonMethods.toBasketFunc.call(this, $scope, $rootScope, webStorage, $routeParams.department)
     }
 
-}
-
-function FirmCardCtrl($scope, Firm, $routeParams) {
-    $scope.firm_detail = Firm.get({ pizzaFirmId: $routeParams.firmId });
-    //console.log($scope.firm_detail);
 }
 
 function BasketCtrl ($scope, webStorage, $rootScope, Order, $http) {
@@ -261,40 +302,6 @@ function BasketCtrl ($scope, webStorage, $rootScope, Order, $http) {
 
 }
 
-function MyOrdersCtrl (webStorage, $http, $scope) {
-    var ordersInfo = webStorage.get("orders");
-
-/*    $scope.orderss;
-
-    var promise = $http.post('food/pizza/getOrders.php',{ orders: ordersInfo  }, function (data) {
-        console.log(data);
-    });
-    promise.success(function (data) {
-        console.log(data);
-        $scope.orderss = data;
-    })
-    //webStorage.add("orders", []);
-    console.log(ordersInfo);*/
-
-
-    $http({
-        url: 'food/pizza/getOrders.php',
-        method: "POST",
-        data: {"ordersInfo":ordersInfo},
-        headers: {}
-    }).success(function (data, status, headers, config) {
-            console.log(data);
-            $scope.orderss = data; // assign  $scope.persons here as promise is resolved here
-        }).error(function (data, status, headers, config) {
-            console.log("error");
-            $scope.status = status;
-        });
-
-}
-
-
-
-
 var commonMethods =  {
     plusCount: function (id, $scope, webStorage, isBasket) {
         ++$scope.count;
@@ -359,10 +366,10 @@ var commonMethods =  {
             }
         }
     }    ,
-    getProduct: function (id, firm_id, $scope, Brand, Pizza, webStorage, department) {
+    getProduct: function (id, firm_id, $scope,webStorage, department, $http) {
 
         
-        console.log(department);
+
         $scope.isOrdered = "primary";
         $scope.isOrderedText = "Заказать";
         $scope.link = "";
@@ -371,7 +378,41 @@ var commonMethods =  {
        // var department = $scope.department;
 
 
-        $scope.product_detail = Brand.get({ pizzaFirmId: firm_id, pizzaProductId: id, depart: department  },function(response) {
+        $http.get('/getProduct', { params: { pizzaFirmId: firm_id, pizzaProductId: id, depart: department  }}).
+            success(function(data, status, headers, config) {
+                $scope.product_detail = data;
+                var arr = webStorage.get("products");
+                if (arr.length > 0) {
+                    for (var i = 0; i < arr.length; i++) {
+                        if (arr[i].id ==  id) {
+                            $scope.isOrdered = "danger";
+                            $scope.isOrderedText = "В корзине";
+                            $scope.toBasket = commonMethods.changeLocationBasket;
+                            $scope.count = arr[i].count;
+                            //console.log($scope.count);
+                            break;
+                        }
+                        else {
+                            $scope.isOrdered = "primary";
+                            $scope.isOrderedText = "Заказать";
+                            $scope.link = "";
+                            $scope.toBasket = $scope.toBasketFunc;
+                            $scope.count = 1;
+                            ////console.log($scope.countda);
+                        }
+                    }
+                }
+                else {
+                    $scope.toBasket = $scope.toBasketFunc;
+                }
+            }).
+            error(function(data, status, headers, config) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+
+/*        $scope.product_detail = Brand.get({ pizzaFirmId: firm_id, pizzaProductId: id, depart: department  },function(response) {
             var arr = webStorage.get("products");
             if (arr.length > 0) {
                 for (var i = 0; i < arr.length; i++) {
@@ -397,7 +438,7 @@ var commonMethods =  {
                 $scope.toBasket = $scope.toBasketFunc;
             }
 
-        });
+        });*/
 
         return $scope.product_detail;
     },
@@ -427,6 +468,16 @@ var commonMethods =  {
         $(".modal-backdrop").hide();
     }
 }
+
+
+/*
+
+
+ function FirmCardCtrl($scope, Firm, $routeParams) {
+ $scope.firm_detail = Firm.get({ pizzaFirmId: $routeParams.firmId });
+ //console.log($scope.firm_detail);
+ }
+
 
 
 function ContactCtrl ($scope) {
@@ -514,4 +565,33 @@ function AddCompanyCtrl ($scope) {
 
 }
 
+function MyOrdersCtrl (webStorage, $http, $scope) {
+ var ordersInfo = webStorage.get("orders");
 
+     $scope.orderss;
+
+ var promise = $http.post('food/pizza/getOrders.php',{ orders: ordersInfo  }, function (data) {
+ console.log(data);
+ });
+ promise.success(function (data) {
+ console.log(data);
+ $scope.orderss = data;
+ })
+ //webStorage.add("orders", []);
+ console.log(ordersInfo);
+
+
+ $http({
+ url: 'food/pizza/getOrders.php',
+ method: "POST",
+ data: {"ordersInfo":ordersInfo},
+ headers: {}
+ }).success(function (data, status, headers, config) {
+ console.log(data);
+ $scope.orderss = data; // assign  $scope.persons here as promise is resolved here
+ }).error(function (data, status, headers, config) {
+ console.log("error");
+ $scope.status = status;
+ });
+
+ }*/
