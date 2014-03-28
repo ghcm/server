@@ -42,16 +42,8 @@
 }());
 
 
-// Declare app level module which depends on filters, and services
-/*angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers']).
- config(['$routeProvider', function($routeProvider) {
- $routeProvider.when('/index', {templateUrl: 'partials/index_partial.html', controller: 'indexCtrl'});
- // $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
- $routeProvider.otherwise({redirectTo: '/index'});
- }]);*/
 
-
-var foodModule = angular.module('food', [ 'pizzaFilters', 'pizzaServices', 'sushiServices', 'webStorageModule', 'commonServices','seo']).
+var foodModule = angular.module('food', [ 'pizzaFilters', 'webStorageModule']).
     config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         $routeProvider.
             when('/index', {templateUrl: 'f/partials/list.html',   controller: ListCtrl}).
@@ -66,9 +58,7 @@ var foodModule = angular.module('food', [ 'pizzaFilters', 'pizzaServices', 'sush
          //   when('/aboutCompany/:firmId', {templateUrl: 'f/partials/firmCard.html', controller: FirmCardCtrl}). //ProductCardCtrl}).
         //    when('/contact', {templateUrl: 'f/partials/contact.html', controller: ContactCtrl}). //ProductCardCtrl}).
         //    when('/addCompany', {templateUrl: 'f/partials/addCompany.html', controller: AddCompanyCtrl}). //ProductCardCtrl}).
-            // when('/sushi/:sushiId', {templateUrl: 'partials/sushifirmdetail.html', controller: SushiDetailCtrl}).
-            //when('/sushi/product/:sushi_product_Id', {templateUrl: 'partials/sushi_product_detail.html', controller: SushiProductDetailCtrl}).
-            // when('/sushi', {templateUrl: 'partials/sushifirms.html', controller: SushiListCtrl}).
+
 
          //   when('/myorders', {templateUrl: 'f/partials/myorders.html', controller: MyOrdersCtrl}).
 
