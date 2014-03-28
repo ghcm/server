@@ -15,13 +15,13 @@
 
 
 
-            <h2>Корзина</h2> <br>
+            <h2>Basket</h2> <br>
 
     <ul class="nav nav-tabs" id="basketHeaders">
-        <li class="active" ><a href="#step1" ng-click="stop()" data-toggle="tab"><b>Шаг 1:</b> Обзор</a></li>
-        <li class=""><a href="#step2" data-toggle="tab"><b>Шаг 2:</b> Персональная информация</a></li>
-        <li><a href="#step3" data-toggle="tab"><b>Шаг 3:</b> Подтверждение</a></li>
-        <li><a href="#step4" data-toggle="tab"><b>Шаг 4:</b> Платеж</a></li>
+        <li class="active" ><a href="#step1" ng-click="stop()" data-toggle="tab"><b>Step 1:</b> Overview</a></li>
+        <li class=""><a href="#step2" data-toggle="tab"><b>Step 2:</b> Personal info</a></li>
+        <li><a href="#step3" data-toggle="tab"><b>Step 3:</b> Confirmation</a></li>
+        <li><a href="#step4" data-toggle="tab"><b>Step 4:</b> Payment</a></li>
     </ul>
 
      <br>
@@ -34,13 +34,13 @@
                  <table class="table table-bordered table-striped table-hover col-lg-10" >
                      <thead>
                      <tr>
-                         <th class="text-center">Изображение</th>
-                         <th class="text-center">Название</th>
-                         <th class="text-center">Количество</th>
-                         <th class="text-center">Каждый</th>
-                         <th class="text-center">Фирма</th>
-                         <th class="text-center">Доставка</th>
-                         <th class="text-center">Всего</th>
+                         <th class="text-center">Image</th>
+                         <th class="text-center">Title</th>
+                         <th class="text-center">Count</th>
+                         <th class="text-center">Each (incl. tax)</th>
+                         <th class="text-center">Firm</th>
+                         <th class="text-center">Shipping</th>
+                         <th class="text-center">Total</th>
                      </tr>
                      </thead>
                      <tbody>
@@ -52,9 +52,6 @@
                              <div class="input-prepend input-append">
 
                                  <div class="btn-group">
-
-
-
                                  <button class="btn btn-default btn-lg" ng-click="changeCountMinus(product.id)">-</button>
                                  <div class="btn btn-default btn-lg"  type="text" ng-model="count">{{ product.count }}</div>
                                  <button class="btn btn-default btn-lg" ng-click="changeCountPlus(product.id)">+</button>
@@ -77,7 +74,7 @@
                      </tr>
 
                      <tr>
-                         <td align="right" colspan="6">Итого без доставки:<br>Доставка:<br>Итого с доставкой: </td>
+                         <td align="right" colspan="6">Total excl. delivery::<br>Delivery:<br>Total with delivery: </td>
                          <td align="right" colspan="1">
                              <strong> {{ sumWithoutDelivery }},-</strong><br>
                              {{ deliveryCost }},-<br>
@@ -89,13 +86,13 @@
 
                  <div class="row-fluid">
                      <div class="col-lg-4 col-md-4 col-xs-4">
-                         <a href="#!/index" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-chevron-left"></i> Продолжить покупки</a>
+                         <a href="#!/index" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-chevron-left"></i> Continue shopping</a>
                      </div>
                      <div class="col-lg-4 col-md-4 col-xs-4">
-                         <button class="btn  btn-lg" ng-click="setTrashEmpty()"><i class="icon-trash"></i> Очистить корзину</button>
+                         <button class="btn  btn-lg" ng-click="setTrashEmpty()"><i class="icon-trash"></i> Empty cart</button>
                      </div>
                      <div class="col-lg-4 col-md-4 col-xs-4">
-                         <button class="btn btn-primary pull-right btn-lg" data-target="#step2" data-toggle="tab">Далее <i class="icon-chevron-right icon-white"></i></button>
+                         <button class="btn btn-primary pull-right btn-lg" data-target="#step2" data-toggle="tab">Next <i class="icon-chevron-right icon-white"></i></button>
                      </div>
                  </div>
              </div>
@@ -107,23 +104,23 @@
              <div class="col-lg-6">
                  <form class="form-horizontal well" name="addUserForm">
                      <fieldset>
-                         <legend>Персональная информация</legend>
+                         <legend>Personal info</legend>
                          <div class="form-group">
-                             <label class="col-lg-2 control-label" for="companyname">Имя</label>
+                             <label class="col-lg-2 control-label" for="companyname">Name</label>
                              <div class="col-lg-10">
                                  <input class="form-control" ng-model="name" type="text" placeholder="Имя" required >
                              </div>
                          </div>
 
                          <div class="form-group">
-                             <label class="col-lg-2 control-label" for="companyname">Телефон</label>
+                             <label class="col-lg-2 control-label" for="companyname">Phone</label>
                              <div class="col-lg-10">
                                  <input  class="form-control" ng-model="phone" type="text" placeholder="Телефон" required >
                              </div>
                          </div>
 
                          <div class="form-group">
-                             <label class="col-lg-2 control-label" for="companyname">Адрес</label>
+                             <label class="col-lg-2 control-label" for="companyname">Address</label>
                              <div class="col-lg-10">
                                  <input id="companyname" class="form-control" ng-model="address" type="text" placeholder="Адрес" required >
                              </div>
@@ -134,14 +131,14 @@
              <div class="col-lg-6 col-md-6 col-xs-6">
                  <form class="form-horizontal">
                      <fieldset>
-                         <legend>Комментарий</legend>
+                         <legend>Сomment</legend>
                          <div class="control-group">
                              <textarea id="comments" rows="12" maxlength="255"  class="form-control" ng-model="comment">{{ comment }}</textarea>
                          </div>
                          <hr>
                          <div class="control-group">
                              <label class="checkbox">
-                                 <input id="termsandconditions" type="checkbox" value="yes"> Да, я согласен <a href="#">с договором &amp; условиями</a>
+                                 <input id="termsandconditions" type="checkbox" value="yes"> Yes, I agree to the  <a href="#">terms &amp; conditions</a>
                              </label>
                          </div>
                      </fieldset>
@@ -150,10 +147,10 @@
          </div>
          <div class="row">
              <div class="col-lg-6 col-md-6 col-xs-6">
-                 <button class="btn btn-default btn-lg" data-target="#step1" data-toggle="tab"><i class="glyphicon glyphicon-chevron-left"></i> Обзор</button>
+                 <button class="btn btn-default btn-lg" data-target="#step1" data-toggle="tab"><i class="glyphicon glyphicon-chevron-left"></i> Overview</button>
              </div>
              <div class="col-lg-6 col-md-6 col-xs-6">
-                 <button class="btn btn-primary pull-right btn-lg" data-target="#step3" data-toggle="tab" ng-disabled="!addUserForm.$valid" ng-click="saveUserInfo()">Далее <i class="icon-chevron-right icon-white"></i></button>
+                 <button class="btn btn-primary pull-right btn-lg" data-target="#step3" data-toggle="tab" ng-disabled="!addUserForm.$valid" ng-click="saveUserInfo()">Next <i class="icon-chevron-right icon-white"></i></button>
              </div>
          </div>
 
@@ -169,7 +166,7 @@
                  <table class="table">
                      <thead>
                      <tr>
-                         <th>Персональная информация</th></tr>
+                         <th>Personal info</th></tr>
                      <tr>
                          <td>
                              {{ name }}<br>
@@ -177,7 +174,7 @@
                              {{ address }}<br>
 
                              <br>
-                             <b>Комментарий</b>
+                             <b>Comment</b>
                              <br>
                              <i>{{ comment }}</i>
                          </td>
@@ -189,9 +186,9 @@
                  <table class="table table-bordered">
                      <thead>
                      <tr>
-                         <th>Обзор</th>
-                         <th width="50">Количество</th>
-                         <th width="70">Итого</th>
+                         <th>Overview</th>
+                         <th width="50">Count</th>
+                         <th width="70">Total</th>
                      </tr>
                      </thead>
                      <tbody>
@@ -201,11 +198,11 @@
                          <td align="right">{{ product.sum }},-</td>
                      </tr>
                      <tr>
-                         <td>Доставка:</td>
+                         <td>Delivery:</td>
                          <td align="right" colspan="2"> {{ deliveryCost }},-</td>
                      </tr>
                      <tr>
-                         <td>Платеж: наличными</td>
+                         <td>Payment: </td>
                          <td align="right" colspan="2"> {{ sumWithoutDelivery }},-</td>
                      </tr>
                      <tr>
@@ -217,10 +214,10 @@
          </div>
          <div class="row">
              <div class="col-lg-6 col-md-6 col-xs-6">
-                 <button class="btn btn-default btn-lg" data-target="#step2" data-toggle="tab"><i class="glyphicon glyphicon-chevron-left"></i> Персональная информация</button>
+                 <button class="btn btn-default btn-lg" data-target="#step2" data-toggle="tab"><i class="glyphicon glyphicon-chevron-left"></i> Personal info</button>
              </div>
              <div class="col-lg-6 col-md-6 col-xs-6">
-                 <button class="btn btn-primary pull-right btn-lg" data-target="#step4" data-toggle="tab" ng-click="confirmation(true)">Далее <i class="icon-chevron-right icon-white"></i></button>
+                 <button class="btn btn-primary pull-right btn-lg" data-target="#step4" data-toggle="tab" ng-click="confirmation(true)">Next <i class="icon-chevron-right icon-white"></i></button>
              </div>
          </div>
      </div>
@@ -228,12 +225,12 @@
      <div class="tab-pane" id="step4">
          <div class="row-fluid">
              <div class="col-lg-6 col-md-6 col-xs-6">
-                 <h2>Платеж наличными</h2>
-                 <p>Ваш заказ поступил в обработку</p>
+                 <h2>Payment success</h2>
+                 <p>Your order will be processed as soon as possible.</p>
              </div>
              <div class="col-lg-6 col-md-6 col-xs-6">
-                 <h2>Доставка</h2>
-                 <p>Ваш заказ будет доставлен в ближайшее время. </p>
+                 <h2>Delivery</h2>
+                 <p>With express shipping, your order will arrive within 24 hours. </p>
              </div>
          </div>
          <br><br><br>
@@ -241,7 +238,7 @@
              <div class="col-lg-6 col-md-6 col-xs-6">
              </div>
              <div class="col-lg-6 col-md-6 col-xs-6">
-                 <a href="#" class="btn btn-primary pull-right btn-lg">Перейти на главную <i class="icon-chevron-right icon-white"></i></a>
+                 <a href="#" class="btn btn-primary pull-right btn-lg">Go to home <i class="icon-chevron-right icon-white"></i></a>
              </div>
          </div>
      </div>

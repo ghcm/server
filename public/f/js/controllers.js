@@ -378,7 +378,7 @@ var commonMethods =  {
         
 
         $scope.isOrdered = "primary";
-        $scope.isOrderedText = "Заказать";
+        $scope.isOrderedText = "Order now";
         $scope.link = "";
         $scope.toBasket = $scope.toBasketFunc;
         $scope.count = 1;
@@ -401,7 +401,7 @@ var commonMethods =  {
                         }
                         else {
                             $scope.isOrdered = "primary";
-                            $scope.isOrderedText = "Заказать";
+                            $scope.isOrderedText = "Order now";
                             $scope.link = "";
                             $scope.toBasket = $scope.toBasketFunc;
                             $scope.count = 1;
@@ -433,7 +433,7 @@ var commonMethods =  {
                     }
                     else {
                         $scope.isOrdered = "primary";
-                        $scope.isOrderedText = "Заказать";
+                        $scope.isOrderedText = "Order now";
                         $scope.link = "";
                         $scope.toBasket = $scope.toBasketFunc;
                         $scope.count = 1;
