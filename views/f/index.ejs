@@ -235,7 +235,16 @@
               </div>
           </div>
 
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+<% if (environment == "development") { %>
+
+<script src="/f/js/grunt.min.js"></script>
+
+<% } else { %>
+
+
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 
 <script src="f/js/angular-webstorage.js"></script>
@@ -249,6 +258,10 @@
 <script src="f/lib/angular/angular-resource.js"></script>
 <script type="text/javascript" src="f/js/bootstrap.js" > </script>
 <script src="f/js/custom.js"></script>
+
+
+<% } %>
+
       </div>
     </div>
 <!-- Yandex.Metrika informer -->

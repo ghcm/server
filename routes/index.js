@@ -54,7 +54,7 @@ module.exports = function(app) {
 
     app.get("/all_cats", require('./goods_category/all_cats').get);
 
-    app.get('/', checkAuth, require('./root').get);
+    app.get('/', checkAuth, require('./root').get(app));
     app.get('/admin', checkAuth, require('./adminroot').get);
 
 
