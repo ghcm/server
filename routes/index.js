@@ -63,6 +63,7 @@ module.exports = function(app) {
 
     app.get("/getFirmList", require('./fResponse/firmsList').get);
     app.get("/brand", require('./fResponse/brand').get);
+    app.get("/getProduct", require('./fResponse/getProduct').get);
 
    app.get('/chat', require('./chat').get);
 };

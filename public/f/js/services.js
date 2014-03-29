@@ -1,9 +1,8 @@
 'use strict';
 
-/* Services */
+/* Services (frozen) */
 
-
-angular.module('pizzaServices', ['ngResource']).
+/*angular.module('pizzaServices', ['ngResource']).
     factory('Pizza', function($resource){
         return $resource('/getFirmList', {}, {
             query: {method:'GET', params:{}, isArray:true}
@@ -33,7 +32,7 @@ angular.module('commonServices', ['ngResource']).
       //  query: {method:'POST', params:{goodsArray:''}, isArray:true},
        // save: {method:'POST', params:{goodsArray: "@goodsArray"}, isArray:true}
     })
-});
+});*/
 
 
 

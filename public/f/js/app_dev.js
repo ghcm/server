@@ -42,36 +42,29 @@
 }());
 
 
-// Declare app level module which depends on filters, and services
-/*angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers']).
- config(['$routeProvider', function($routeProvider) {
- $routeProvider.when('/index', {templateUrl: 'partials/index_partial.html', controller: 'indexCtrl'});
- // $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
- $routeProvider.otherwise({redirectTo: '/index'});
- }]);*/
 
-
-var foodModule = angular.module('food', [ 'pizzaFilters', 'pizzaServices', 'sushiServices', 'webStorageModule', 'commonServices','seo']).
+var foodModule = angular.module('food', [ 'pizzaFilters', 'webStorageModule']).
     config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         $routeProvider.
-            when('/index', {templateUrl: 'f/partials/pizzafirms.html',   controller: PizzaListCtrl}).
-            when('/products/:department/', {templateUrl: 'f/partials/pizzafirms.html', controller: PizzaListCtrl}).
-            when('/products/:department/:firmId', {templateUrl: 'f/partials/pizzafirmdetail.html', controller: PizzaDetailCtrl}).
+            when('/index', {templateUrl: 'f/partials/list.html',   controller: ListCtrl}).
+            when('/products/:department/', {templateUrl: 'f/partials/list.html', controller: ListCtrl}).
+            when('/products/:department/:firmId', {templateUrl: 'f/partials/listitemdetail.html', controller: DetailCtrl}).
             when('/products/:department/:firmId/product_card/:pizzaId', {templateUrl: 'f/partials/productCard.html', controller: ProductCardCtrl}). //ProductCardCtrl}).
-            when('/aboutCompany/:firmId', {templateUrl: 'f/partials/firmCard.html', controller: FirmCardCtrl}). //ProductCardCtrl}).
-            when('/contact', {templateUrl: 'f/partials/contact.html', controller: ContactCtrl}). //ProductCardCtrl}).
-            when('/addCompany', {templateUrl: 'f/partials/addCompany.html', controller: AddCompanyCtrl}). //ProductCardCtrl}).
-            // when('/sushi/:sushiId', {templateUrl: 'partials/sushifirmdetail.html', controller: SushiDetailCtrl}).
-            //when('/sushi/product/:sushi_product_Id', {templateUrl: 'partials/sushi_product_detail.html', controller: SushiProductDetailCtrl}).
-            // when('/sushi', {templateUrl: 'partials/sushifirms.html', controller: SushiListCtrl}).
             when('/basket', {templateUrl: 'f/partials/basket.html', controller: BasketCtrl}).
-            when('/myorders', {templateUrl: 'f/partials/myorders.html', controller: MyOrdersCtrl}).
             otherwise({redirectTo: '/index'});
             $locationProvider.hashPrefix('!');
+
+
+         //   when('/aboutCompany/:firmId', {templateUrl: 'f/partials/firmCard.html', controller: FirmCardCtrl}). //ProductCardCtrl}).
+        //    when('/contact', {templateUrl: 'f/partials/contact.html', controller: ContactCtrl}). //ProductCardCtrl}).
+        //    when('/addCompany', {templateUrl: 'f/partials/addCompany.html', controller: AddCompanyCtrl}). //ProductCardCtrl}).
+
+
+         //   when('/myorders', {templateUrl: 'f/partials/myorders.html', controller: MyOrdersCtrl}).
+
     }]);
 
 foodModule
-
     .config( function( $httpProvider ) {    // [url]http://habrahabr.ru/post/181009/[/url]
         $httpProvider.defaults.headers.post[ 'Content-Type' ] = 'application/x-www-form-urlencoded;charset=utf-8';
         $httpProvider.defaults.transformRequest = function( data ) {
