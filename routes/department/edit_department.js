@@ -2,7 +2,7 @@
 /*
  * GET login page.
  */
-Department = require('../../models/company').Department;
+Department = require('../../models/department').Department;
 
 exports.get = function(req, res){
 

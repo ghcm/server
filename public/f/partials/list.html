@@ -7,14 +7,14 @@
     <span class="row m-pizzafirms">
           <span  class="col-lg-3  thumbnail rowItem" ng-repeat="pizzafirm in pizzafirms | filter:query">
                <!--<a href="#!/products/{{ categoryName.name }}/{{pizzafirm.id}}" >-->
-               <a href="#!/products/pizza/{{pizzafirm.id}}" >
+               <a href="#!/products/{{ department }}/{{pizzafirm.name}}" >
                    <div class="img-outer rowItemWrapper">
                        <img  ng-src="{{pizzafirm.imageUrl}}" class="rowItemImage"  alt=""/>
                    </div>
                </a>
 
             <div class="caption">
-                <a href="#!/pizza/products/{{pizzafirm.id}}" >{{pizzafirm.name_rus}}</a>
+                <a href="#!/{{ department }}/products/{{pizzafirm.id}}" >{{pizzafirm.name_rus}}</a>
                 <p>Мин. сумма заказа <span class="label label-info price pull-right m-mainPageBadges"> {{pizzafirm.min_price}}</span></p>
                 <p>Стоимость доставки <span class="label label-info price pull-right m-mainPageBadges"> {{pizzafirm.delivery_price}}</span></p><br />
                 <div class="well m-mainPageFirmDes" >{{pizzafirm.snippet}}</div>

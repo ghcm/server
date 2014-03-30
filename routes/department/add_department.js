@@ -5,7 +5,7 @@
 
 
 exports.get = function(req, res){
-    res.render('../../department/add_department', { title: 'Express' });
+    res.render('department/add_department', { title: 'Express' });
 };
 
 
