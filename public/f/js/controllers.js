@@ -4,7 +4,7 @@
 
 function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
     $rootScope.header = "Pizza Firms";
-    if (!$routeParams.department) $routeParams.department = "Common";
+    if (!$routeParams.department) $routeParams.department = "pizza";
 
 
 /*    $scope.pizzafirms = Pizza.query({depart: $routeParams.department}, function () {
