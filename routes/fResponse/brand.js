@@ -8,12 +8,15 @@ exports.get = function(req, res){
 
        console.log(url_parts.query.depart);
     if (url_parts.query.popular == "true" && url_parts.query.depart == "pizza") {
+
         res.json([{"title":"Margarita","id":"89","firm_id":"19","category_id":"27",
+
             "imageUrl":"1387105521.png",
             "short_des":"Short description","long_des":"Long description","price":"400","delivery_price":"200","name":"San Jose Pizza","name_rus":"San Jose Pizza"}]);
     }
 
     if (url_parts.query.popular != "true" && url_parts.query.depart == "pizza") {
+
         res.json({"1":{"firm_id":"19","id":"27","name":"40 см","products":[{"title":"Margarita","id":"89","firm_id":"19","category_id":"27","short_des":"Short description","imageUrl":"1387105521.png",
             "price":"400","firm_name":"San Jose Pizza","firm_name_rus":"San Jose Pizza","delivery_price":"200"}]}});
     }
