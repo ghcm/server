@@ -15600,7 +15600,8 @@ angular.module('commonServices', ['ngResource']).
 
 function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
     $rootScope.header = "Pizza Firms";
-    if (!$routeParams.department) $routeParams.department = "pizza";
+    if (!$routeParams.department) $routeParams.department = "Common";
+
 
 /*    $scope.pizzafirms = Pizza.query({depart: $routeParams.department}, function () {
         $scope.htmlReady();
@@ -15610,7 +15611,9 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
     $http.get('/getFirmList', {params: {depart: $routeParams.department}}).
         success(function(data, status, headers, config) {
             $scope.pizzafirms = data;
-            $scope.htmlReady();
+            $scope.department = $routeParams.department;
+            console.log($scope.pizzafirms);
+            //$scope.htmlReady();
         }).
         error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
