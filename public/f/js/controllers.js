@@ -26,6 +26,8 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
 
     $rootScope.basket = webStorage.get("goodsCount");
 
+    $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
+
    // $scope.firm_detail = Firm.get({ pizzaFirmId: $routeParams.firmId });
 
 
@@ -85,6 +87,7 @@ function DetailCtrl($scope, $http, $routeParams, $rootScope, webStorage, $templa
             $http.get('/brand', {params: { pizzaFirmId: $routeParams.firmId, getCategories: true, depart: $routeParams.department }}).
                 success(function(cats, status, headers, config) {
                     $scope.categories = cats;
+                    $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
 
                 }).
                 error(function(data, status, headers, config) {
@@ -150,6 +153,8 @@ function ProductCardCtrl($scope, $routeParams, $rootScope, webStorage, $http) {
     --index;
 
     $scope.product_detail = commonMethods.getProduct.call(this, $routeParams.pizzaId, $routeParams.firmId, $scope, webStorage, $routeParams.department, $http);
+
+    $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
 
     console.log($scope.product_detail);
 
@@ -463,11 +468,25 @@ var commonMethods =  {
         $scope.toBasket = commonMethods.changeLocationBasket;
 
         var countValue = $("#countValue");
-    }
-    ,
+    },
     changeLocationBasket: function  () {
         window.location = window.location.pathname + '#!/basket';
         $(".modal-backdrop").hide();
+    },
+    getStaticBreadcumbs: function(depart) {
+        if (depart == "pizza") {
+            return {
+                depart: "Pizza",
+                listItem: "San Jose pizza",
+                product: "Margarita"
+            }
+        } else {
+            return {
+                depart: "Sushi",
+                listItem: "Sumo sushi & bento",
+                product: "California Rolls"
+            }
+        }
     }
 }
 

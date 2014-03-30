@@ -5,8 +5,13 @@ var url = require('url');
 exports.get = function(req, res){
 
     var url_parts = url.parse(req.url, true);
+    if (url_parts.query.depart == "sushi") {
+        res.json({"title":"California Rolls","id":"100","firm_id":"18","category_id":"26","imageUrl":"1387464388.png","short_des":"Short description","department":"sushi","long_des":"Long description","price":"600","firm_name":"testcompany","firm_name_rus":"Sumo","firm_delivery_price":"200"});
+    }
+    else {
+        res.json({"title":"Margarita","id":"89","firm_id":"19","category_id":"27","imageUrl":"1387105521.png","short_des":"Short description","department":"pizza","long_des":"Long description","price":"400","firm_name":"pizzasam","firm_name_rus":"San Jose pizza","firm_delivery_price":"200"});
+    }
 
-    res.json({"title":"\u041c\u0430\u0440\u0433\u0430\u0440\u0438\u0442\u0430","id":"89","firm_id":"19","category_id":"27","imageUrl":"img\/pizza\/products\/1387105521.png","short_des":"\u0421\u0443\u043f\u0435\u0440 \u043f\u0438\u0446\u0446\u0430","department":"pizza","long_des":"\u041f\u043e\u043b\u043d\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438 \u0435\u0442\u043e\u0432\u0430\u0440\u0430","price":"400","firm_name":"pizzasam","firm_name_rus":"\u0427\u0438\u043a\u0430\u0433\u043e \u041f\u0438\u0446\u0446\u0430","firm_delivery_price":"200"});
 
 
 
