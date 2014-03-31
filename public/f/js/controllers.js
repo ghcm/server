@@ -393,7 +393,7 @@ var commonMethods =  {
                     for (var i = 0; i < arr.length; i++) {
                         if (arr[i].id ==  id) {
                             $scope.isOrdered = "danger";
-                            $scope.isOrderedText = "В корзине";
+                            $scope.isOrderedText = "To cart";
                             $scope.toBasket = commonMethods.changeLocationBasket;
                             $scope.count = arr[i].count;
                             //console.log($scope.count);
@@ -462,7 +462,7 @@ var commonMethods =  {
         webStorage.add("products", arr);
 
         $scope.isOrdered = "danger";
-        $scope.isOrderedText = "В корзине";
+        $scope.isOrderedText = "To cart";
 
         $rootScope.basketProductCount = webStorage.get("products").length;
         $scope.toBasket = commonMethods.changeLocationBasket;
