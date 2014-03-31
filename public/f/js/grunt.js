@@ -15974,7 +15974,7 @@ var commonMethods =  {
         
 
         $scope.isOrdered = "primary";
-        $scope.isOrderedText = "Заказать";
+        $scope.isOrderedText = "Order now";
         $scope.link = "";
         $scope.toBasket = $scope.toBasketFunc;
         $scope.count = 1;
@@ -15989,7 +15989,7 @@ var commonMethods =  {
                     for (var i = 0; i < arr.length; i++) {
                         if (arr[i].id ==  id) {
                             $scope.isOrdered = "danger";
-                            $scope.isOrderedText = "В корзине";
+                            $scope.isOrderedText = "To cart";
                             $scope.toBasket = commonMethods.changeLocationBasket;
                             $scope.count = arr[i].count;
                             //console.log($scope.count);
@@ -15997,7 +15997,7 @@ var commonMethods =  {
                         }
                         else {
                             $scope.isOrdered = "primary";
-                            $scope.isOrderedText = "Заказать";
+                            $scope.isOrderedText = "Order now";
                             $scope.link = "";
                             $scope.toBasket = $scope.toBasketFunc;
                             $scope.count = 1;
@@ -16029,7 +16029,7 @@ var commonMethods =  {
                     }
                     else {
                         $scope.isOrdered = "primary";
-                        $scope.isOrderedText = "Заказать";
+                        $scope.isOrderedText = "Order now";
                         $scope.link = "";
                         $scope.toBasket = $scope.toBasketFunc;
                         $scope.count = 1;
@@ -16058,7 +16058,7 @@ var commonMethods =  {
         webStorage.add("products", arr);
 
         $scope.isOrdered = "danger";
-        $scope.isOrderedText = "В корзине";
+        $scope.isOrderedText = "To cart";
 
         $rootScope.basketProductCount = webStorage.get("products").length;
         $scope.toBasket = commonMethods.changeLocationBasket;
