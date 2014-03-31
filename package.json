@@ -16,7 +16,8 @@
     "nconf": "*",
     "bower": "*",
     "bson": "*",
-    "i18n": "*"
+    "i18n": "*",
+    "grunt": "*"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
