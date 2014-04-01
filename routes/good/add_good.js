@@ -4,22 +4,49 @@
  * GET login page.
  */
 Cat = require('../../models/cat').Cat;
+var async = require("async");
 
-exports.get = function(req, res){
-    Cat.find(function(err, result){
-       if (result.length == 0) {
-           var cat = new Cat({name: "Common"});
-           cat.save(function(err, cat, affected) {
-               var arr = [];
-               arr.push(cat);
-               res.render('good/add_good', { title: 'Express', cats: arr });
-           });
+
+exports.get = function(req, res, next){
+
+
+    async.parallel([
+        function(callback){
+            Cat.find(function(err, result){
+
+                if (result.length == 0) {
+                    var cat = new Cat({name: "Common"});
+                    cat.save(function(err, cat, affected) {
+                        if (err) next(err);
+                        var arr = [];
+                        arr.push(cat);
+                        callback(null, arr);
+                        // res.render('good/add_good', { title: 'Express', cats: arr });
+                    });
+                }
+                else {
+                    callback(null, result);
+                }
+            });
+        },
+        function(callback){
+            Company.find(function(err, result) {
+                if (err) next(err);
+                callback(null, result);
+            });
         }
-        else {
-           res.render('good/add_good', { title: 'Express', cats: result });
-       }
+    ],
+// optional callback
+        function(err, results){
+            console.log(results);
+            // the results array will equal ['one','two'] even though
+            // the second function had a shorter timeout.
 
-    });
+           res.render('good/add_good', { title: 'Express', cats: results[0], companies: results[1] });
+        });
+
+
+
 };
 
 
@@ -52,6 +79,7 @@ exports.post = function(req, res, next){
 
     addObject.name = req.body.title;
     addObject.cat = req.body.cat;
+    addObject.companyId = req.body.company;
 
     good = new Good(addObject);
 
@@ -60,7 +88,6 @@ exports.post = function(req, res, next){
             res.render(filePath + '/show_good', { title: 'Express', good: good, filePathView: filePathView  });
         }
         else {
-            console.log(err);
             res.render(filePath + '/add_good', { title: 'Express', error: err.errors });
         }
     });

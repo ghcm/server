@@ -2,10 +2,13 @@
 /*
  * GET login page.
  */
-
+var Company = require('../../models/company').Company;
 
 exports.get = function(req, res){
-    res.render('goods_category/add_cat', { title: 'Express' });
+
+    Company.find(function(err, result) {
+        res.render('goods_category/add_cat', { title: 'Express', companies: result });
+    });
 };
 
 
@@ -17,16 +20,19 @@ exports.post = function(req, res, next){
 
     console.log(req.params);
 
-    var cat = new Cat({name: req.body.cat_title});
-
+    var cat = new Cat({name: req.body.cat_title, companyId: req.body.company});
 
     cat.save(function(err, cat, affected) {
         if (!err) {
-            res.render('goods_category/add_cat', { title: 'Express', cat: cat, message: "Категория успешно добавлена" });
+            Company.find(function(err, result) {
+                res.render('goods_category/add_cat', { title: 'Express', cat: cat, message: "Категория успешно добавлена", companies: result });
+            });
         }
         else {
             console.log(err);
-            res.render('goods_category/add_cat', { title: 'Express', error: err.errors });
+            Company.find(function(err, result) {
+                res.render('goods_category/add_cat', { title: 'Express', error: err.errors });
+            });
         }
     });
 

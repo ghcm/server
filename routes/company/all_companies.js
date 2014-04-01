@@ -19,9 +19,7 @@ exports.get = function(req, res){
 
         var departments = {};
         Department.find(function(err, result) {
-
             console.log(result);
-
             async.map(result,
                 function (item, callback) {
                     Company.find({department: item._id}, function(err, result) {
@@ -35,7 +33,7 @@ exports.get = function(req, res){
                 },
 
                 function(err, results){
-                    console.log(departments);
+
                     res.render('company/all_companies', { title: 'Express', companies: departments, filePathView: filePathView });
 
                 });

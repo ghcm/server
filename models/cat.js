@@ -8,6 +8,11 @@ var schema = new Schema({
         type: String,
         unique: false,
         required: true
+    },
+    companyId: {
+        type: [{ type: Schema.Types.ObjectId, ref: 'Company' }],
+        unique: false,
+        required: true
     }
 });
 

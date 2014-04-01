@@ -8,6 +8,7 @@ var filePathView = config.get("fileOrganizer:good:viewPath");
 Good = require('../../models/good').Good;
 Cat = require('../../models/cat').Cat;
 var async = require('async');
+var Company = require('../../models/company').Company;
 
 exports.get = function(req, res){
     var categories = {};

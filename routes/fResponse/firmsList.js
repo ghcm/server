@@ -35,8 +35,6 @@ exports.get = function(req, res){
 
                 function(err, results){
                     res.json(results[0]);
-
-
                 });
         }
         else {

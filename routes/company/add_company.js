@@ -17,6 +17,7 @@ exports.get = function(req, res, next){
             var depart = new Department({name: "Common", rusname: "Common"});
             depart.save(function(err, depart, affected) {
                 if (err) next(err);
+
                 var arr = [];
                 arr.push(depart);
                 res.render(filePath + '/add_company', { title: 'Express', departs: arr });
