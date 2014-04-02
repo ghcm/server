@@ -17,9 +17,9 @@ exports.get = function(req, res){
                 Cat.find({companyId: item._id}, function(err, result) {
                     // console.log(result);
 
-                    companies[item.name] = result;
 
-                }).exec(callback);
+
+                }).exec(function(err, res) {      companies[item.name] = res;  callback()});
 
                 // res.json(item.getPublicFields());
             },
