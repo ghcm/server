@@ -15,7 +15,7 @@ exports.get = function(req, res){
 
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
-    console.log(query.depart);
+
     Department.find({name: query.depart}, function(err, result){
         console.log(result);
         if (result.length != 0) {

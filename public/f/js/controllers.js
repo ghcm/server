@@ -96,6 +96,7 @@ function DetailCtrl($scope, $http, $routeParams, $rootScope, webStorage, $templa
 
             $http.get('/brand', {params: { pizzaFirmId: $routeParams.firmId, getCategories: true, depart: $routeParams.department }}).
                 success(function(cats, status, headers, config) {
+                    console.log(cats);
                     $scope.categories = cats;
                     $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
 

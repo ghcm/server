@@ -120,21 +120,22 @@
     </div>
     <br>
     <!--<div class="panel-group" id="accordion">-->
-        <div class="panel panel-primary" ng-repeat="category in categories | filter:query">
+        <div class="panel panel-primary" ng-repeat="(key, value) in categories | filter:query">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{category.id}}">
-                        {{category.name}}
+
+                        {{ key }}
                     </a>
                 </h4>
             </div>
             <div id="collapse{{category.id}}" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <span class="row" style="height: 0">
-                        <span class="col-lg-3 thumbnail rowItem" ng-repeat="a in category.products | filter:query">
+                        <span class="col-lg-3 thumbnail rowItem" ng-repeat="a in value | filter:query">
                           <div class="img-outer rowItemWrapper">
-                              <a data-toggle="modal" href="#myModal" ng-click="addChatBox(a.id)">
-                                  <img  ng-src="files/good/{{a.imageUrl}}" alt=""/>
+                              <a data-toggle="modal" href="#myModal" ng-click="addChatBox(a._id)">
+                                  <img  ng-src="files/good/{{a.image}}" alt=""/>
                               </a>
                           </div>
 

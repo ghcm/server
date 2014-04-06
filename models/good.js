@@ -10,7 +10,11 @@ var schema = new Schema({
         required: true
     },
     belongs: {
-        type: [{ type: Schema.Types.ObjectId, ref: 'Cat' }, { type: Schema.Types.ObjectId, ref: 'Company' }, { type: Schema.Types.ObjectId, ref: 'Depart' }],
+        type: {
+            catId: { type: Schema.Types.ObjectId, ref: 'Cat' },
+            companyId: { type: Schema.Types.ObjectId, ref: 'Company' },
+            departId: { type: Schema.Types.ObjectId, ref: 'Depart' }
+    },
         unique: false,
         required: true
     },

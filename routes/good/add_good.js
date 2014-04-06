@@ -9,7 +9,6 @@ Company = require('../../models/company').Company;
 
 var async = require("async");
 
-
 exports.get = function(req, res, next){
 
     async.parallel([
@@ -86,10 +85,10 @@ exports.post = function(req, res, next){
     }*/
 
     addObject.name = req.body.title;
-    addObject.belongs = [];
-    addObject.belongs.push(req.body.catId);
-    addObject.belongs.push(req.body.companyId);
-    addObject.belongs.push(req.body.departId);
+    addObject.belongs = {};
+    addObject.belongs.catId = req.body.catId;
+    addObject.belongs.companyId = req.body.companyId;
+    addObject.belongs.departId  = req.body.departId;
     console.log(addObject);
 
     good = new Good(addObject);
