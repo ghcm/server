@@ -49,17 +49,45 @@
             <textarea class="form-control" name="long_des"></textarea>
 
         </div>-->
+
+            <div class="form-group">
+                <label><strong>Выберите департамент*</strong></label>
+                <div>
+                    <select name="departId">
+                        <% for (var i = 0; i < departs.length; i++) { %>
+                        <option value="<%- departs[i]._id %>"> <%- departs[i].name %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label><strong>Выберите компанию</strong></label>
+                <div>
+                    <select name="companyId">
+                        <% for (var i = 0; i < companies.length; i++) { %>
+                        <option value="<%- companies[i]._id %>"> <%- companies[i].name %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+
+
+
         <div class="form-group">
             <label><strong>Выберите категорию*</strong></label>
             <div>
-                <select name="cat">
+                <select name="catId">
                     <% for (var i = 0; i < cats.length; i++) { %>
                     <option value="<%- cats[i]._id %>"> <%- cats[i].name %></option>
                     <% } %>
                 </select>
             </div>
-
         </div>
+
+
+
 
 
 

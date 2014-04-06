@@ -10,12 +10,13 @@ Cat = require('../../models/cat').Cat;
 var async = require('async');
 var Company = require('../../models/company').Company;
 
+
 exports.get = function(req, res){
     var companies = {};
 
 
     var categories = {};
-    Cat.find(function(err, result) {
+    var cats = Cat.find(function(err, result) {
         async.map(result,
             function (item, callback) {
                 Good.find({cat: item._id}, function(err, result) {
@@ -30,12 +31,11 @@ exports.get = function(req, res){
 
             function(err, results){
                 res.render(filePath + '/all_goods', { title: 'Express', goods: categories, filePathView: filePathView });
-                console.log(categories);
+
             });
-
-
     });
 
+    console.log(cats);
 
 /*
     Company.find().exec(function(err, comps) {

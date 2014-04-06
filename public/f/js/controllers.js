@@ -7,16 +7,26 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
     if (!$routeParams.department) $routeParams.department = "pizza";
 
 
-/*    $scope.pizzafirms = Pizza.query({depart: $routeParams.department}, function () {
-        $scope.htmlReady();
-    });*/
+
+    $http.get('/getDepartId', {params: {depart: $routeParams.department}}).
+        success(function(data, status, headers, config) {
+            $scope.departmentId = data[0]._id;
+        }).
+        error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
+        /* $scope.pizzafirms = Pizza.query({depart: $routeParams.department}, function () {
+             $scope.htmlReady();
+         });*/
 
 
     $http.get('/getFirmList', {params: {depart: $routeParams.department}}).
         success(function(data, status, headers, config) {
             $scope.pizzafirms = data;
             $scope.department = $routeParams.department;
-            console.log($scope.pizzafirms);
+
             //$scope.htmlReady();
         }).
         error(function(data, status, headers, config) {

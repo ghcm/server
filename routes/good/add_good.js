@@ -4,11 +4,13 @@
  * GET login page.
  */
 Cat = require('../../models/cat').Cat;
+var Department = require('../../models/department').Department;
+Company = require('../../models/company').Company;
+
 var async = require("async");
 
 
 exports.get = function(req, res, next){
-
 
     async.parallel([
         function(callback){
@@ -34,6 +36,12 @@ exports.get = function(req, res, next){
                 if (err) next(err);
                 callback(null, result);
             });
+        } ,
+        function(callback){
+            Department.find(function(err, result) {
+                if (err) next(err);
+                callback(null, result);
+            });
         }
     ],
 // optional callback
@@ -42,7 +50,7 @@ exports.get = function(req, res, next){
             // the results array will equal ['one','two'] even though
             // the second function had a shorter timeout.
 
-           res.render('good/add_good', { title: 'Express', cats: results[0], companies: results[1] });
+           res.render('good/add_good', { title: 'Express', cats: results[0], companies: results[1], departs: results[2] });
         });
 
 
@@ -78,8 +86,11 @@ exports.post = function(req, res, next){
     }*/
 
     addObject.name = req.body.title;
-    addObject.cat = req.body.cat;
-    addObject.companyId = req.body.company;
+    addObject.belongs = [];
+    addObject.belongs.push(req.body.catId);
+    addObject.belongs.push(req.body.companyId);
+    addObject.belongs.push(req.body.departId);
+    console.log(addObject);
 
     good = new Good(addObject);
 
@@ -88,6 +99,7 @@ exports.post = function(req, res, next){
             res.render(filePath + '/show_good', { title: 'Express', good: good, filePathView: filePathView  });
         }
         else {
+            console.log(err);
             res.render(filePath + '/add_good', { title: 'Express', error: err.errors });
         }
     });

@@ -9,8 +9,8 @@ var schema = new Schema({
         unique: false,
         required: true
     },
-    cat: {
-        type: [{ type: Schema.Types.ObjectId, ref: 'Cat' }],
+    belongs: {
+        type: [{ type: Schema.Types.ObjectId, ref: 'Cat' }, { type: Schema.Types.ObjectId, ref: 'Company' }, { type: Schema.Types.ObjectId, ref: 'Depart' }],
         unique: false,
         required: true
     },
