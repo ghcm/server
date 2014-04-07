@@ -99,7 +99,7 @@
                     <span class="row" style="height: 0">
                         <span class="col-lg-3 thumbnail rowItem" ng-repeat="pizzafirm_detail in pizzafirm | filter:query">
                           <div class="img-outer rowItemWrapper">
-                              <a data-toggle="modal" href="#myModal" ng-click="addChatBox(pizzafirm_detail.id)">
+                              <a data-toggle="modal" href="#myModal" ng-click="addChatBox(pizzafirm_detail._id)">
                                   <img  ng-src="files/good/{{pizzafirm_detail.image}}" alt=""/>
                               </a>
                           </div>

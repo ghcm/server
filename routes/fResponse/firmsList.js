@@ -11,8 +11,6 @@ var url = require('url');
 exports.get = function(req, res){
 
 
-
-
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
 
