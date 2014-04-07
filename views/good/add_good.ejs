@@ -67,7 +67,7 @@
                 <div>
                     <select name="companyId">
                         <% for (var i = 0; i < companies.length; i++) { %>
-                        <option value="<%- companies[i]._id %>"> <%- companies[i].name %></option>
+                        <option value="<%- companies[i]._id %>" depart="<%- companies[i].department %>"> <%- companies[i].name %></option>
                         <% } %>
                     </select>
                 </div>
@@ -80,7 +80,7 @@
             <div>
                 <select name="catId">
                     <% for (var i = 0; i < cats.length; i++) { %>
-                    <option value="<%- cats[i]._id %>"> <%- cats[i].name %></option>
+                    <option value="<%- cats[i]._id %>" company="<%- cats[i].companyId %>"> <%- cats[i].name %></option>
                     <% } %>
                 </select>
             </div>

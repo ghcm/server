@@ -45,7 +45,7 @@ exports.get = function(req, res, next){
     ],
 // optional callback
         function(err, results){
-            console.log(results);
+            console.log(results[0]);
             // the results array will equal ['one','two'] even though
             // the second function had a shorter timeout.
 
