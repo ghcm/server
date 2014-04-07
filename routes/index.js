@@ -62,6 +62,7 @@ module.exports = function(app) {
 //server response for client side queries
 
     app.get("/getFirmList", require('./fResponse/firmsList').get);
+    app.get("/getBreadCumbs", require('./fResponse/getBreadCumbs').get);
     app.get("/brand", require('./fResponse/brand').get);
     app.get("/getProduct", require('./fResponse/getProduct').get);
     app.get("/getDepartId", require('./fResponse/getDepartId').get);

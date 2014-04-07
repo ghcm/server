@@ -14,11 +14,11 @@ exports.get = function(req, res){
     if (url_parts.query.popular == "true") {
 
 
-        console.log( query.pizzaFirmId);
+       // console.log( query.pizzaFirmId);
 
         Good.find({"belongs.companyId": query.pizzaFirmId}, function(err, result2) {
             if (err) next(err);
-            console.log(result2);
+//            console.log(result2);
 
 
         }).limit(3).exec(function(err, result3) { res.json(result3); });;
