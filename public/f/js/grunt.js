@@ -15603,16 +15603,29 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
     if (!$routeParams.department) $routeParams.department = "pizza";
 
 
-/*    $scope.pizzafirms = Pizza.query({depart: $routeParams.department}, function () {
-        $scope.htmlReady();
-    });*/
+
+    $http.get('/getDepartId', {params: {depart: $routeParams.department}}).
+        success(function(data, status, headers, config) {
+            $scope.departmentId = data[0]._id;
+            $scope.breadcumbs = {
+                depart: data[0].rusname
+            };
+        }).
+        error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
+        /* $scope.pizzafirms = Pizza.query({depart: $routeParams.department}, function () {
+             $scope.htmlReady();
+         });*/
 
 
     $http.get('/getFirmList', {params: {depart: $routeParams.department}}).
         success(function(data, status, headers, config) {
             $scope.pizzafirms = data;
             $scope.department = $routeParams.department;
-            console.log($scope.pizzafirms);
+
             //$scope.htmlReady();
         }).
         error(function(data, status, headers, config) {
@@ -15622,7 +15635,7 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
 
     $rootScope.basket = webStorage.get("goodsCount");
 
-    $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
+   // $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
 
    // $scope.firm_detail = Firm.get({ pizzaFirmId: $routeParams.firmId });
 
@@ -15637,6 +15650,19 @@ function DetailCtrl($scope, $http, $routeParams, $rootScope, webStorage, $templa
 
     $rootScope.header = "Pizza App";
    // $scope.categoryName = Pizza.get({ departName: $routeParams.department });//для breadcrumbs
+
+
+    $http.get('/getBreadCumbs', {params: {depart: $routeParams.department, company: $routeParams.firmId}}).
+        success(function(data, status, headers, config) {
+            $scope.breadcumbs = data;
+            console.log(  $scope.breadcumbs );
+
+            //$scope.htmlReady();
+        }).
+        error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
 
    //сперва вытягиваем популярное, потом все остальное
 /*    $scope.pizzafirm = Brand.query({ pizzaFirmId: $routeParams.firmId, popular: true, depart: $routeParams.department }, function (response) {
@@ -15667,7 +15693,7 @@ function DetailCtrl($scope, $http, $routeParams, $rootScope, webStorage, $templa
     $http.get('/brand', {params: { pizzaFirmId: $routeParams.firmId, popular: true, depart: $routeParams.department }}).
         success(function(data, status, headers, config) {
             $scope.pizzafirm = data;
-            $scope.deliveryCost = data[0].delivery_price;
+            $scope.deliveryCost = (data[0]) ? data[0].delivery_price : "";
 
 
             //раздел - передается как параметр - очень важен, так как влияет из какой базы будут тянуться данные - должна быть
@@ -15676,14 +15702,16 @@ function DetailCtrl($scope, $http, $routeParams, $rootScope, webStorage, $templa
 
             //$scope.categoryName = "pizza";//для breadcrumbs
             //console.log(response[0].name);
-            $scope.firm_name_rus = data[0].name_rus;
+            $scope.firm_name_rus = (data[0]) ? data[0].name_rus : "";
 
            // $scope.categories = Brand.query({ pizzaFirmId: $routeParams.firmId, getCategories: true, depart: $routeParams.department });
 
             $http.get('/brand', {params: { pizzaFirmId: $routeParams.firmId, getCategories: true, depart: $routeParams.department }}).
                 success(function(cats, status, headers, config) {
+                    console.log(cats);
                     $scope.categories = cats;
-                    $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
+
+//                    $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
 
                 }).
                 error(function(data, status, headers, config) {
@@ -15742,6 +15770,19 @@ function ProductCardCtrl($scope, $routeParams, $rootScope, webStorage, $http) {
     // папка фирм с таким именем и товары в ней
     $scope.department = $routeParams.department;
 
+
+    $http.get('/getBreadCumbs', {params: {depart: $routeParams.department, company: $routeParams.firmId, goodId: $routeParams.pizzaId}}).
+        success(function(data, status, headers, config) {
+            $scope.breadcumbs = data;
+            console.log(  $scope.breadcumbs );
+
+            //$scope.htmlReady();
+        }).
+        error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
    // $scope.categoryName = "pizza";//для breadcrumbs
 
 
@@ -15750,7 +15791,7 @@ function ProductCardCtrl($scope, $routeParams, $rootScope, webStorage, $http) {
 
     $scope.product_detail = commonMethods.getProduct.call(this, $routeParams.pizzaId, $routeParams.firmId, $scope, webStorage, $routeParams.department, $http);
 
-    $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
+   // $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
 
     console.log($scope.product_detail);
 
@@ -16069,7 +16110,7 @@ var commonMethods =  {
         window.location = window.location.pathname + '#!/basket';
         $(".modal-backdrop").hide();
     },
-    getStaticBreadcumbs: function(depart) {
+    /*getStaticBreadcumbs: function(depart) {
         if (depart == "pizza") {
             return {
                 depart: "Pizza",
@@ -16083,7 +16124,7 @@ var commonMethods =  {
                 product: "California Rolls"
             }
         }
-    }
+    }*/
 }
 
 

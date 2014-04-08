@@ -42,6 +42,7 @@ module.exports = function(app) {
 
     app.get("/show_good/:goodName", require('./good/show_good').get);
     app.get("/all_goods", require('./good/all_goods').get);
+    app.post("/del_good", require('./good/del_good').post);
 
 
 //  goods categories
@@ -53,6 +54,7 @@ module.exports = function(app) {
 
 
     app.get("/all_cats", require('./goods_category/all_cats').get);
+    app.post("/del_cat", require('./goods_category/del_cat').post);
 
     app.get('/', checkAuth, require('./root').get(app));
     app.get('/admin', checkAuth, require('./adminroot').get);

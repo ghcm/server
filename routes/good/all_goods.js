@@ -25,7 +25,7 @@ exports.get = function(req, res){
             },
 
             function(err, results){
-                console.log(categories);
+                //console.log(categories);
                 res.render(filePath + '/all_goods', { title: 'Express', goods: categories, filePathView: filePathView });
 
             });
