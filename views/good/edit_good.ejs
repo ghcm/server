@@ -33,8 +33,62 @@
 
 
     <div class="form-group">
-        <label><strong>Введите название на английском (например, citypizza)</strong></label>
+        <label><strong>Введите название на английском (например, citypizza1) <%- good.name %></strong></label>
         <input class="form-control" type="text" name="name" value="<%- good.name %>">
+    </div>
+
+
+    <div class="form-group">
+        <label><strong>Выберите департамент*</strong></label>
+        <div>
+            <select name="departId">
+                <% for (var i = 0; i < departs.length; i++) { %>
+                    <% if (departs[i]._id == good.belongs.departId) { %>
+                        <option value="<%- departs[i]._id %>" selected> <%- departs[i].name %></option>
+                    <% } else { %>
+                        <option value="<%- departs[i]._id %>"> <%- departs[i].name %></option>
+                    <% }  %>
+                <% } %>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label><strong>Выберите компанию</strong></label>
+        <div>
+            <select name="companyId">
+                <% for (var i = 0; i < companies.length; i++) { %>
+                <% if (companies[i]._id == good.belongs.companyId) { %>
+                <option value="<%- companies[i]._id %>" depart="<%- companies[i].department %>" selected> <%- companies[i].name %></option>
+                <% } else if (companies[i].department.toString() == good.belongs.departId.toString()) { %>
+                <option value="<%- companies[i]._id %>" depart="<%- companies[i].department %>" > <%- companies[i].name %></option>
+                <% } else { %>
+                <option value="<%- companies[i]._id %>" depart="<%- companies[i].department %>" style="display: none"> <%- companies[i].name %></option>
+                <% }  %>
+
+                <% } %>
+            </select>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label><strong>Выберите категорию*</strong></label>
+        <div>
+            <select name="catId">
+                <% for (var i = 0; i < cats.length; i++) { %>
+                <% if (cats[i]._id == good.belongs.catId) { %>
+                    <option value="<%- cats[i]._id %>" company="<%- cats[i].companyId %>" selected="selected"> <%- cats[i].name %></option>
+                <% } else { %>
+                    <option value="<%- cats[i]._id %>" company="<%- cats[i].companyId %>"> <%- cats[i].name %></option>
+                <% }  %>
+
+
+                <% } %>
+            </select>
+        </div>
     </div>
 
 
@@ -83,6 +137,15 @@
     </p>
 
 </form>
+
+<script>
+
+    var a = $("select[name='companyId']").find(":selected").val();
+    $("select[name='catId']").find("option[company!='" + a + "']").hide();
+
+</script>
+
+
 
 <!--
 <script type="text/javascript" src="/vendor/jquery.form.js"></script>

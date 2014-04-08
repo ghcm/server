@@ -108,6 +108,10 @@
 
 
 <script>
+//var TRIGGER = true;
+$(document).ready(function() {
+    $("select[name='departId']").trigger("change");
+});
 /*    $.getScript('http://vk.com/js/api/openapi.js', function() {
 
 // Initialize VK OPEN API

@@ -16,26 +16,22 @@ exports.get = function(req, res){
 
 
     var categories = {};
-    var cats = Cat.find(function(err, result) {
+    Cat.find(function(err, result) {
         async.map(result,
             function (item, callback) {
-                Good.find({cat: item._id}, function(err, result) {
-                    // console.log(result);
-
-                    categories[item.name] = result;
-
-                }).exec(callback);
+                Good.find({"belongs.catId": item._id.toString()}).exec(function(err, result) { console.log(result); categories[item.name] = result; callback(); });
 
                 // res.json(item.getPublicFields());
             },
 
             function(err, results){
+                console.log(categories);
                 res.render(filePath + '/all_goods', { title: 'Express', goods: categories, filePathView: filePathView });
 
             });
     });
 
-    console.log(cats);
+
 
 /*
     Company.find().exec(function(err, comps) {

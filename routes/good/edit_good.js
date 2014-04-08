@@ -2,8 +2,12 @@
 /*
  * GET login page.
  */
-Good = require('../../models/good').Good,
-    config = require("../../config");
+var Cat = require('../../models/cat').Cat;
+var Department = require('../../models/department').Department;
+var Company = require('../../models/company').Company;
+
+var async = require("async");
+var config = require("../../config");
 
 var filePath = config.get("fileOrganizer:good:path");
 var filePathView = config.get("fileOrganizer:good:viewPath");
@@ -12,17 +16,51 @@ var filePathView = config.get("fileOrganizer:good:viewPath");
 
 exports.get = function(req, res){
 
-    var goodName = req.params.goodName;
+    var goodId = req.params.goodName;
 
-    var myDocument = Good.findOne({ name: goodName }, function(err, result) {
-        if (err) { /* handle err */ }
+    async.parallel([
+            function(callback){
+                Good.findOne({ _id: goodId }, function(err, result) {
+                    if (err) { /* handle err */ }
 
-        if (result) {
-            res.render(filePath + '/edit_good', { title: 'Express', good: result, filePathView: filePathView  });
-        } else {
-            // we don't
-        }
-    });
+                    if (result) {
+                       callback(null, result);
+                    } else {
+                        // we don't
+                    }
+                });
+            },
+            function(callback){
+                Cat.find(function(err, result) {
+                    if (err) next(err);
+                    callback(null, result);
+                });
+            },
+            function(callback){
+                Company.find(function(err, result) {
+                    if (err) next(err);
+                    callback(null, result);
+                });
+            } ,
+            function(callback){
+                Department.find(function(err, result) {
+                    if (err) next(err);
+                    callback(null, result);
+                });
+            }
+        ],
+// optional callback
+        function(err, results){
+            console.log(results[0]);
+            // the results array will equal ['one','two'] even though
+            // the second function had a shorter timeout.
+
+            res.render('good/edit_good', { title: 'Express', cats: results[1], companies: results[2], departs: results[3],  good: results[0], filePathView: filePathView  });
+        });
+
+
+
+
 
 };
 

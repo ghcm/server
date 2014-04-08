@@ -22,9 +22,11 @@ $(function() {
 
             return true;
         });
+        if (!displayed.find(":selected").length) {
+            displayed.eq(0).prop("selected","selected");
+            $companuIdselect.trigger("change");
+        }
 
-        displayed.eq(0).prop("selected","selected");
-        $companuIdselect.trigger("change");
     }
 
     function companyChange() {
@@ -44,16 +46,19 @@ $(function() {
 
             return true;
         });
+        if (!displayed.find("option:selected").length) {
+            displayed.eq(0).prop("selected","selected");
+        }
 
-        displayed.eq(0).prop("selected","selected");
     }
 
     $("select[name='departId']").on("change", departChange);
 
-
-
     $("select[name='companyId']").on("change", companyChange);
 
+   // if (window.TRIGGER) {
+  // $("select[name='departId']").trigger("change");
+   // }
 
 
 });
