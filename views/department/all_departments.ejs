@@ -10,7 +10,7 @@
 <div class="widget">
 
 <div class="widget-head">
-    <div class="pull-left">Пицца</div>
+    <div class="pull-left">Департаменты</div>
     <div class="widget-icons pull-right">
         <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
         <a href="#" class="wclose"><i class="icon-remove"></i></a>
@@ -44,6 +44,7 @@
 
     <td class="text-center">
         <a href="edit_department/<%- departments[i].name %>" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+        <button action="del_depart" thisid="<%- departments[i]._id %>" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
     </td>
 </tr>
 

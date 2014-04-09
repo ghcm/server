@@ -142,12 +142,63 @@ $(function() {
 
         var $self = $(this);
 
-        var isDel = confirm("Вы действительно хотите удалить данную категорию?");
+        var isDel = confirm("Вы действительно хотите удалить данную категорию? Все товары будут удалены");
 
         var thisId = $(this).attr("thisid");
 
         if (isDel) {
             $.post("/del_cat", { catId: thisId}, function (data) {
+
+                if (data.result == "success")
+                    showConfirm(data.text);
+                else
+                    alert("Error. Please contact administrator");
+
+                $self.closest("tr").remove();
+            });
+
+
+        }
+
+    });
+
+
+    $("button[action='del_company']").on("click", function () {
+
+
+        var $self = $(this);
+
+        var isDel = confirm("Вы действительно хотите удалить данную компанию? Все категории и товары будут удалены");
+
+        var thisId = $(this).attr("thisid");
+
+        if (isDel) {
+            $.post("/del_company", { companyId: thisId}, function (data) {
+
+                if (data.result == "success")
+                    showConfirm(data.text);
+                else
+                    alert("Error. Please contact administrator");
+
+                $self.closest("tr").remove();
+            });
+
+
+        }
+
+    });
+
+    $("button[action='del_depart']").on("click", function () {
+
+
+        var $self = $(this);
+
+        var isDel = confirm("Вы действительно хотите удалить данный департамент? Все компании, категории и товары будут удалены");
+
+        var thisId = $(this).attr("thisid");
+
+        if (isDel) {
+            $.post("/del_depart", { departId: thisId}, function (data) {
 
                 if (data.result == "success")
                     showConfirm(data.text);

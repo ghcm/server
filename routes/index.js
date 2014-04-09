@@ -22,6 +22,8 @@ module.exports = function(app) {
     app.get("/show_company/:companyName", require('./company/show_company').get);
     app.get("/all_companies", require('./company/all_companies').get);
 
+    app.post("/del_company", require('./company/del_company').post);
+
 
 //  departments
     app.get("/add_department", require('./department/add_department').get);
@@ -29,6 +31,7 @@ module.exports = function(app) {
 
     app.get("/edit_department/:departName", require('./department/edit_department').get);
     app.post("/edit_department/:departName", require('./department/edit_department').post);
+    app.post("/del_depart", require('./department/del_department').post);
 
     app.get("/all_departments", require('./department/all_departments').get);
 
