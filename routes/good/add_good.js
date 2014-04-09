@@ -69,7 +69,7 @@ var filePathView = config.get("fileOrganizer:good:viewPath");
 
 exports.post = function(req, res, next){
 
-    var addObject = {}
+    var addObject = {};
 
     if (req.files.file.name) {
         var tempPath = req.files.file.path,

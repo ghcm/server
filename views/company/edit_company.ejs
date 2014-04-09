@@ -37,6 +37,22 @@
         <input class="form-control" type="text" name="name" value="<%- company.name %>">
     </div>
 
+
+    <div class="form-group">
+        <label><strong>Выберите департамент*</strong></label>
+        <div>
+            <select name="departId">
+                <% for (var i = 0; i < departs.length; i++) { %>
+                <% if (departs[i]._id == company.department.toString()) { %>
+                <option value="<%- departs[i]._id %>" selected> <%- departs[i].name %></option>
+                <% } else { %>
+                <option value="<%- departs[i]._id %>"> <%- departs[i].name %></option>
+                <% }  %>
+                <% } %>
+            </select>
+        </div>
+    </div>
+
     <input type="hidden" value="<%- company._id %>" name="objectId"/>
 
 

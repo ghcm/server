@@ -4,6 +4,8 @@
  */
 Company = require('../../models/company').Company,
     config = require("../../config");
+var async = require("async");
+var Department = require('../../models/department').Department;
 
 var filePath = config.get("fileOrganizer:company:path");
 var filePathView = config.get("fileOrganizer:company:viewPath");
@@ -13,15 +15,33 @@ exports.get = function(req, res){
 
     var companyName = req.params.companyName;
 
-    var myDocument = Company.findOne({ name: companyName }, function(err, result) {
-        if (err) { /* handle err */ }
+
+    async.parallel([
+            function(callback){
+                Department.find({}).exec(callback);
+            },
+            function(callback){
+                Company.findOne({ name: companyName }).exec(callback);
+            }
+        ],
+// optional callback
+        function(err, results){
+
+            // the results array will equal ['one','two'] even though
+            // the second function had a shorter timeout.
+
+            res.render(filePath + '/edit_company', { title: 'Express', company: results[1], departs: results[0], filePathView: filePathView  });
+        });
+
+    /*var myDocument = Company.findOne({ name: companyName }, function(err, result) {
+        if (err) { *//* handle err *//* }
 
         if (result) {
             res.render(filePath + '/edit_company', { title: 'Express', company: result, filePathView: filePathView  });
         } else {
             // we don't
         }
-    });
+    });*/
 
 };
 
@@ -34,6 +54,7 @@ exports.post = function(req, res, next){
     var replaceObject = {}
 
     replaceObject.name = req.body.name;
+    replaceObject.department = req.body.departId;
     var objectId = req.body.objectId;
 
     if (!Company.schema.methods.validateObj(replaceObject)) {
@@ -60,8 +81,27 @@ exports.post = function(req, res, next){
 
     Company.update({"_id": objectId }, {$set: replaceObject }, function(err, object, affected) {
         if (!err) {
+
+
+            async.parallel([
+                    function(callback){
+                        Department.find({}).exec(callback);
+                    },
+                    function(callback){
+                        Company.findOne({ _id: objectId }).exec(callback);
+                    }
+                ],
+// optional callback
+                function(err, results){
+
+                    // the results array will equal ['one','two'] even though
+                    // the second function had a shorter timeout.
+                    res.render(filePath + '/show_company', { title: 'Express', company: results[1], departs: results[0], filePathView: filePathView   });
+                });
+
+
             Company.findOne({ "_id": objectId}, function(err, result) {
-                    res.render(filePath + '/show_company', { title: 'Express', company: result, filePathView: filePathView   });
+
             })
         }
     });

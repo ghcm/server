@@ -38,11 +38,40 @@
             </fieldset>
         </div>
     </div>
+
+
     <div class="row">
         <div class="col-lg-10">
-            <input type="submit" class="btn btn-primary pull-right btn-lg" value="Сохранить">
+            <div class="form-group" style="padding-left: 20px; padding-top: 30px">
+                <label><strong>Выберите компанию*</strong></label>
+                <select name="companyId">
+                    <% for (var i = 0; i < companies.length; i++) { %>
+                    <% if (companies[i]._id.toString() == cat.companyId) { %>
+                        <option value="<%- companies[i]._id %>" depart="<%- companies[i].department %>" selected> <%- companies[i].name %></option>
+                    <% } else { %>
+                         <option value="<%- companies[i]._id %>" depart="<%- companies[i].department %>"> <%- companies[i].name %></option>
+                    <% }  %>
+
+                    <% } %>
+                </select>
+            </div>
         </div>
+
+        <div class="row">
+            <div class="col-lg-10">
+                <input type="submit" class="btn btn-primary pull-right btn-lg" value="Сохранить">
+            </div>
+        </div>
+
+        <!--
+        <script type="text/javascript" src="/vendor/jquery.form.js"></script>
+        <script type="text/javascript" src="/vendor/upload.js"></script>
+        -->
+
     </div>
+
+
+
 
     <input type="hidden" value="<%- cat._id %>" name="objectId"/>
 
