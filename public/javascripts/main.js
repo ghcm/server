@@ -214,9 +214,15 @@ $(function() {
     });
 
 
+    $("input[name='department_title']").on("keypress", function(e) {
 
+        var englishAlphabetDigitsAndWhiteSpace = /[a-z0-9]/g;
+        var key = String.fromCharCode(event.which);
+        if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetDigitsAndWhiteSpace.test(key)) { return true; }
+        return false;
+    });
 
-
+    $('#mytextbox').on("paste", function (e) { e.preventDefault(); });
 
 
 
