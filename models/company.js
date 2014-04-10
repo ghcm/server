@@ -14,34 +14,34 @@ var schema = new Schema({
         unique: false,
         required: false
     },
+    snippet: {
+        type: String,
+        unique: false,
+        required: false
+    },
+    name_rus: {
+        type: String,
+        unique: false,
+        required: false
+    },
+    delivery_price: {
+        type: { type: Number, min: 0 },
+        unique: false,
+        required: false
+    },
+    min_price: {
+        type: { type: Number, min: 0 },
+        unique: false,
+        required: false
+    },
     department: {
         type: [{ type: Schema.Types.ObjectId, ref: 'Department' }],
         unique: false,
         required: false
     },
-    email: {
-        type: String,
-        unique: false,
-        required: false
-    },
-    phone: {
-        type: String,
-        unique: false,
-        required: false
-    },
-    login: {
-        type: String,
-        unique: false,
-        required: false
-    },
-    hashedPassword: {
-        type: String,
-        required: false
-    },
-    salt: {
-        type: String,
-        required: false
-    },
+
+
+
     image: {
         type: String,
         required: true

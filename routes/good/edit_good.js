@@ -73,6 +73,10 @@ exports.post = function(req, res, next){
     var replaceObject = {};
 
     replaceObject.name = req.body.name;
+    replaceObject.short_des = req.body.short_des;
+    replaceObject.price = req.body.price;
+    replaceObject.long_des = req.body.long_des;
+
     var objectId = req.body.objectId;
 
     if (!Good.schema.methods.validateObj(replaceObject)) {
@@ -98,9 +102,52 @@ exports.post = function(req, res, next){
 
     Good.update({"_id": objectId }, {$set: replaceObject }, function(err, object, affected) {
         if (!err) {
-            Good.findOne({ "_id": objectId}, function(err, result) {
+
+            async.parallel([
+                    function(callback){
+                        Good.findOne({ _id: objectId }, function(err, result) {
+                            if (err) { /* handle err */ }
+
+                            if (result) {
+                                callback(null, result);
+                            } else {
+                                // we don't
+                            }
+                        });
+                    },
+                    function(callback){
+                        Cat.find(function(err, result) {
+                            if (err) next(err);
+                            callback(null, result);
+                        });
+                    },
+                    function(callback){
+                        Company.find(function(err, result) {
+                            if (err) next(err);
+                            callback(null, result);
+                        });
+                    } ,
+                    function(callback){
+                        Department.find(function(err, result) {
+                            if (err) next(err);
+                            callback(null, result);
+                        });
+                    }
+                ],
+// optional callback
+                function(err, results){
+                    console.log(results[0]);
+                    // the results array will equal ['one','two'] even though
+                    // the second function had a shorter timeout.
+
+                    res.render('good/edit_good', { title: 'Express', cats: results[1], companies: results[2], departs: results[3],  good: results[0], filePathView: filePathView  });
+                });
+
+
+
+           /* Good.findOne({ "_id": objectId}, function(err, result) {
                     res.render(filePath + '/edit_good', { title: 'Express', good: result, filePathView: filePathView  });
-            })
+            })*/
         }
     });
    

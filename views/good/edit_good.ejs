@@ -92,6 +92,23 @@
     </div>
 
 
+    <div class="form-group">
+        <label><strong>Введите короткое описание</strong></label>
+        <input class="form-control" type="text" name="short_des" value="<%- good.short_des %>">
+
+    </div>
+
+    <div class="form-group">
+        <label><strong>Введите цену*</strong></label>
+        <input class="form-control" type="text" name="price" value="<%- good.price %>">
+    </div>
+
+
+    <div class="form-group">
+        <label><strong>Введите полное описание товара</strong></label>
+        <textarea class="form-control" name="long_des" ><%- good.long_des %></textarea>
+
+    </div>
 
 
     <input type="hidden" value="<%- good._id %>" name="objectId"/>

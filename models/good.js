@@ -9,6 +9,21 @@ var schema = new Schema({
         unique: false,
         required: true
     },
+    short_des: {
+        type: String,
+        unique: false,
+        required: false
+    },
+    price: {
+        type: String,
+        unique: false,
+        required: false
+    },
+    long_des: {
+        type: String,
+        unique: false,
+        required: false
+    },
     belongs: {
         type: {
             catId: { type: Schema.Types.ObjectId, ref: 'Cat' },

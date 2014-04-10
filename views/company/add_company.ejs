@@ -74,14 +74,46 @@
 
                     <option value="<%- departs[i]._id %>" ><%- departs[i].name %></option>
 
-
                     <% } %>
-
 
                 </select>
             </div>
 
         </div>
+
+
+
+
+
+        <div class="form-group">
+            <label><strong>Введите короткое описание</strong></label>
+            <input class="form-control" type="text" name="snippet">
+
+        </div>
+
+        <div class="form-group">
+            <label><strong>Введите название компании на русском</strong></label>
+            <input class="form-control" type="text" name="name_rus">
+        </div>
+
+        <div class="form-group">
+            <label><strong>Введите цену доставки </strong></label>
+            <input class="form-control" type="text" name="delivery_price">
+        </div>
+
+        <div class="form-group">
+            <label><strong>Введите минимальную цену блюда компании</strong></label>
+            <input class="form-control" type="text" name="min_price">
+        </div>
+
+
+        <div class="form-group">
+            <label><strong>Введите полное описание компании</strong></label>
+            <textarea class="form-control" name="description"></textarea>
+        </div>
+
+
+
 
 
     <p>

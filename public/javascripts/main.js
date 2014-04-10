@@ -225,6 +225,18 @@ $(function() {
     $('#mytextbox').on("paste", function (e) { e.preventDefault(); });
 
 
+    $(".goods.disabled").on("click", function() {
+        alert("Перед добавлением товара добавьте подкатегории");
+    });
+
+    $(".cats.disabled").on("click", function() {
+        alert("Перед добавлением подкатегории добавьте категории");
+    });
+
+    $(".companies.disabled").on("click", function() {
+        alert("Перед добавлением категории добавьте департамент");
+    });
+
 
 });
 

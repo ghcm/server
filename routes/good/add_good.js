@@ -85,6 +85,9 @@ exports.post = function(req, res, next){
     }*/
 
     addObject.name = req.body.title;
+    addObject.short_des = req.body.short_des;
+    addObject.price = req.body.price;
+    addObject.long_des = req.body.long_des;
     addObject.belongs = {};
     addObject.belongs.catId = req.body.catId;
     addObject.belongs.companyId = req.body.companyId;
