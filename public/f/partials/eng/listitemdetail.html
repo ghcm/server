@@ -18,7 +18,7 @@
 
                                 <div class="col-lg-12 col-md-12 col-sm-12">
 
-                                    <a data-dismiss="modal" ng-click="changeRoute(product_detail.belongs.companyId, product_detail._id)" href="" ><button class="btn btn-default"  style="position: relative; bottom: -40px">Карточка товара</button></a>
+                                    <a data-dismiss="modal" ng-click="changeRoute(product_detail.belongs.companyId, product_detail._id)" href="" ><button class="btn btn-default"  style="position: relative; bottom: -40px">Full card</button></a>
                                     <!--<a href="products.html" class="btn btn-block">all products in category</a>-->
                                 </div>
                                 <!--</a>-->
@@ -31,8 +31,8 @@
                                 <div class="row">
 
                                     <div class="col-lg-7 col-md-7 col-sm-7">
-                                        <strong>Категория:</strong> <span>{{product_detail.firm_name_rus}}</span><br>
-                                        <strong>Подкатегория:</strong> <span>{{product_detail.firm_delivery_price}}</span><br><br><br>
+                                        <strong>Company:</strong> <span>{{product_detail.firm_name_rus}}</span><br>
+                                        <strong>Delivery price:</strong> <span>{{product_detail.firm_delivery_price}}</span><br><br><br>
                                     </div>
 
                                     <div class="col-lg-5 col-md-5 col-sm-5">
@@ -44,7 +44,7 @@
                                 <div class="row">
                                     <div class="col-lg-10 col-md-10 col-sm-10">
                                         <br>
-                                        <h3>Описание</h3>
+                                        <h3>Description</h3>
                                         <p>{{product_detail.short_des}}</p>
                                         <hr>
                                     </div>
@@ -52,13 +52,13 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-3  col-sm-3">
-                                        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-chevron-left"></i> Назад</button>
+                                        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6" >
                                         <form class="form-horizontal">
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">Кол-во</label>
+                                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">Count</label>
                                                     <div class="col-lg-7 col-md-7 col-sm-7 ">
                                                         <div class="controls">
                                                             <div class="btn-group">
@@ -90,7 +90,7 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#popular">
-                        Популярное
+                        Popular
                     </a>
                 </h4>
             </div>
