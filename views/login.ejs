@@ -116,7 +116,7 @@
       statusCode: {
         200: function() {
           form.html("Вы вошли в сайт").addClass('alert-success');
-          window.location.href = "/";
+          window.location.href = "/admin";
         },
         403: function(jqXHR) {
           var error = jqXHR.responseText;

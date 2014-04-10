@@ -38,10 +38,10 @@
     </div>
 
 
-    <div class="form-group">
+    <div class="form-group" >
         <label><strong>Выберите департамент*</strong></label>
         <div>
-            <select name="departId">
+            <select name="departId" class="selectpicker">
                 <% for (var i = 0; i < departs.length; i++) { %>
                     <% if (departs[i]._id == good.belongs.departId) { %>
                         <option value="<%- departs[i]._id %>" selected> <%- departs[i].name %></option>
@@ -54,12 +54,12 @@
     </div>
 
 
-    <div class="form-group">
+    <div class="form-group" id="companyIdParent">
         <label><strong>Выберите компанию</strong></label>
         <div>
-            <select name="companyId">
+            <select name="companyId" class="selectpicker">
                 <% for (var i = 0; i < companies.length; i++) { %>
-                <% if (companies[i]._id == good.belongs.companyId) { %>
+                <% if (companies[i]._id == good.belongs.companyId.toString()) { %>
                 <option value="<%- companies[i]._id %>" depart="<%- companies[i].department %>" selected> <%- companies[i].name %></option>
                 <% } else if (companies[i].department.toString() == good.belongs.departId.toString()) { %>
                 <option value="<%- companies[i]._id %>" depart="<%- companies[i].department %>" > <%- companies[i].name %></option>
@@ -74,15 +74,17 @@
 
 
 
-    <div class="form-group">
+    <div class="form-group" id="catIdParent">
         <label><strong>Выберите категорию*</strong></label>
         <div>
-            <select name="catId">
+            <select name="catId" class="selectpicker">
                 <% for (var i = 0; i < cats.length; i++) { %>
-                <% if (cats[i]._id == good.belongs.catId) { %>
+                <% if (cats[i]._id.toString() == good.belongs.catId.toString()) { %>
                     <option value="<%- cats[i]._id %>" company="<%- cats[i].companyId %>" selected="selected"> <%- cats[i].name %></option>
-                <% } else { %>
+                <% } else if (cats[i].companyId.toString() == good.belongs.companyId.toString()) { %>
                     <option value="<%- cats[i]._id %>" company="<%- cats[i].companyId %>"> <%- cats[i].name %></option>
+                <% } else { %>
+                <option value="<%- cats[i]._id %>" company="<%- cats[i].companyId %>" style="display: none"> <%- cats[i].name %></option>
                 <% }  %>
 
 
@@ -155,10 +157,24 @@
 
 </form>
 
+<link rel="stylesheet" href="/stylesheets/bootstrap-select.min.css"/>
+<script src="/stylesheets/bootstrap-select.min.js"></script>
+
 <script>
 
-    var a = $("select[name='companyId']").find(":selected").val();
-    $("select[name='catId']").find("option[company!='" + a + "']").hide();
+    $(window).on('load', function () {
+
+        $('.selectpicker').selectpicker({
+            'selectedText': 'cat'
+        });
+
+        $('.selectpicker').selectpicker('show');
+    });
+
+
+
+//    var a = $("select[name='companyId']").find(":selected").val();
+//    $("select[name='catId']").find("option[company!='" + a + "']").hide();
 
 </script>
 

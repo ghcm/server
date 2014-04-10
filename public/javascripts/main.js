@@ -5,12 +5,17 @@ $(function() {
     });
 
 
-    function departChange() {
+   function departChange() {
+
         var departId = $(this).val();
         var $companuIdselect = $("select[name='companyId']");
+        var $companyIdParent =  $("#companyIdParent");
+        var $catIdParent =  $("#catIdParent");
         $companuIdselect.find("option").show();
         $companuIdselect.find("option[depart!='" + departId + "']").hide();
 
+       $companyIdParent.show();
+       $catIdParent.show();
 
         var displayed = $companuIdselect.find("option").filter(function() {
             var element = $(this);
@@ -22,19 +27,34 @@ $(function() {
 
             return true;
         });
-        if (!displayed.find(":selected").length) {
+        if (displayed.length && !displayed.find(":selected").length) {
             displayed.eq(0).prop("selected","selected");
             $companuIdselect.trigger("change");
         }
 
+       if (!displayed.length) {
+           alert("У данного департамента нет категорий");
+           $("#companyIdParent").hide();
+           $("#catIdParent").hide();
+       }
+       $('.selectpicker').selectpicker('refresh');
+
+
+
     }
 
-    function companyChange() {
+
+    $("select[name='departId']").on("change", departChange);
+
+
+     function companyChange() {
         var companyId = $(this).val();
         var $catIdselect = $("select[name='catId']");
+        var $catIdParent =  $("#catIdParent");
         $catIdselect.find("option").show();
         $catIdselect.find("option[company!='" + companyId + "']").hide();
 
+         $catIdParent.show();
 
         var displayed = $catIdselect.find("option").filter(function() {
             var element = $(this);
@@ -46,13 +66,19 @@ $(function() {
 
             return true;
         });
-        if (!displayed.find("option:selected").length) {
+        if (displayed.length && !displayed.find("option:selected").length) {
             displayed.eq(0).prop("selected","selected");
         }
 
+         if (!displayed.length) {
+             alert("У данной категории нет подкатегорий");
+             $("#catIdParent").hide();
+         }
+         $('.selectpicker').selectpicker('refresh');
+
     }
 
-    $("select[name='departId']").on("change", departChange);
+
 
     $("select[name='companyId']").on("change", companyChange);
 
