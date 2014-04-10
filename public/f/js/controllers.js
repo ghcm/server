@@ -403,11 +403,12 @@ var commonMethods =  {
         }
 
         var arr = webStorage.get("products");
-        console.log("a");
 
         for (var i = 0; i < arr.length; i++) {
             //console.log( "id - " + id + "    arr[i].id - " + arr[i].id);
             if (arr[i]._id == id) {
+                console.log(arr[i]);
+
                 if (arr[i].count <= 1) return;
                 --arr[i].count;
                 arr[i].sum = arr[i].count*arr[i].price;

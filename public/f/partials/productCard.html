@@ -81,9 +81,9 @@
                                         <!--<select id="countValue" ng-options="count.i for count in countArray" class="input-mini" ng-model="count" ng-change="selectChanged()"></select>-->
                                         <!--<select id="countValue"  ng-model="countda" ng-options="option.item as option.name for option in countArray" ></select>-->
                                         <div class="btn-group">
-                                            <button class="btn btn-default btn-sm"  ng-click="changeCountMinus(product_detail.id)">-</button>
+                                            <button class="btn btn-default btn-sm"  ng-click="changeCountMinus(product_detail._id)">-</button>
                                             <div id="countValue" class="btn btn-default btn-sm" style="width: 40px;" type="text" >{{ count }}</div>
-                                            <button class="btn btn-default btn-sm" ng-click="changeCountPlus(product_detail.id)">+</button>
+                                            <button class="btn btn-default btn-sm" ng-click="changeCountPlus(product_detail._id)">+</button>
                                         </div>
 
                                     </div>
