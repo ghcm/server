@@ -376,7 +376,7 @@ var commonMethods =  {
 
         for (var i = 0; i < arr.length; i++) {
 
-            if (arr[i].id == id) {
+            if (arr[i]._id == id) {
 
                 ++arr[i].count;
                 arr[i].sum = arr[i].count*arr[i].price;
@@ -407,7 +407,7 @@ var commonMethods =  {
 
         for (var i = 0; i < arr.length; i++) {
             //console.log( "id - " + id + "    arr[i].id - " + arr[i].id);
-            if (arr[i].id == id) {
+            if (arr[i]._id == id) {
                 if (arr[i].count <= 1) return;
                 --arr[i].count;
                 arr[i].sum = arr[i].count*arr[i].price;
@@ -438,7 +438,7 @@ var commonMethods =  {
                 var arr = webStorage.get("products");
                 if (arr.length > 0) {
                     for (var i = 0; i < arr.length; i++) {
-                        if (arr[i].id ==  id) {
+                        if (arr[i]._id ==  id) {
                             $scope.isOrdered = "danger";
                             $scope.isOrderedText = "В корзине";
                             $scope.toBasket = commonMethods.changeLocationBasket;

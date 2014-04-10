@@ -15600,16 +15600,35 @@ angular.module('commonServices', ['ngResource']).
 
 function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
     $rootScope.header = "Pizza Firms";
-    if (!$routeParams.department) $routeParams.department = "pizza";
+
 
 
 
     $http.get('/getDepartId', {params: {depart: $routeParams.department}}).
         success(function(data, status, headers, config) {
-            $scope.departmentId = data[0]._id;
+            $scope.departmentId = (data) ? data._id : "";
             $scope.breadcumbs = {
-                depart: data[0].rusname
+                depart: (data) ? data.rusname : ""
             };
+            if (!$routeParams.department) $routeParams.department = data.name;
+
+
+            $http.get('/getFirmList', {params: {depart: $routeParams.department}}).
+                success(function(data, status, headers, config) {
+                    $scope.pizzafirms = data;
+                    $scope.department = $routeParams.department;
+
+                    //$scope.htmlReady();
+                }).
+                error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+
+            $rootScope.basket = webStorage.get("goodsCount");
+
+
+
         }).
         error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
@@ -15621,19 +15640,6 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
          });*/
 
 
-    $http.get('/getFirmList', {params: {depart: $routeParams.department}}).
-        success(function(data, status, headers, config) {
-            $scope.pizzafirms = data;
-            $scope.department = $routeParams.department;
-
-            //$scope.htmlReady();
-        }).
-        error(function(data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
-
-    $rootScope.basket = webStorage.get("goodsCount");
 
    // $scope.breadcumbs = commonMethods.getStaticBreadcumbs($routeParams.department);
 
@@ -15966,7 +15972,7 @@ var commonMethods =  {
 
         for (var i = 0; i < arr.length; i++) {
 
-            if (arr[i].id == id) {
+            if (arr[i]._id == id) {
 
                 ++arr[i].count;
                 arr[i].sum = arr[i].count*arr[i].price;
@@ -15997,7 +16003,7 @@ var commonMethods =  {
 
         for (var i = 0; i < arr.length; i++) {
             //console.log( "id - " + id + "    arr[i].id - " + arr[i].id);
-            if (arr[i].id == id) {
+            if (arr[i]._id == id) {
                 if (arr[i].count <= 1) return;
                 --arr[i].count;
                 arr[i].sum = arr[i].count*arr[i].price;
@@ -16015,7 +16021,7 @@ var commonMethods =  {
         
 
         $scope.isOrdered = "primary";
-        $scope.isOrderedText = "Order now";
+        $scope.isOrderedText = "Заказать";
         $scope.link = "";
         $scope.toBasket = $scope.toBasketFunc;
         $scope.count = 1;
@@ -16028,9 +16034,9 @@ var commonMethods =  {
                 var arr = webStorage.get("products");
                 if (arr.length > 0) {
                     for (var i = 0; i < arr.length; i++) {
-                        if (arr[i].id ==  id) {
+                        if (arr[i]._id ==  id) {
                             $scope.isOrdered = "danger";
-                            $scope.isOrderedText = "To cart";
+                            $scope.isOrderedText = "В корзине";
                             $scope.toBasket = commonMethods.changeLocationBasket;
                             $scope.count = arr[i].count;
                             //console.log($scope.count);
@@ -16038,7 +16044,7 @@ var commonMethods =  {
                         }
                         else {
                             $scope.isOrdered = "primary";
-                            $scope.isOrderedText = "Order now";
+                            $scope.isOrderedText = "Заказать";
                             $scope.link = "";
                             $scope.toBasket = $scope.toBasketFunc;
                             $scope.count = 1;
@@ -16070,7 +16076,7 @@ var commonMethods =  {
                     }
                     else {
                         $scope.isOrdered = "primary";
-                        $scope.isOrderedText = "Order now";
+                        $scope.isOrderedText = "Заказать";
                         $scope.link = "";
                         $scope.toBasket = $scope.toBasketFunc;
                         $scope.count = 1;
@@ -16099,7 +16105,7 @@ var commonMethods =  {
         webStorage.add("products", arr);
 
         $scope.isOrdered = "danger";
-        $scope.isOrderedText = "To cart";
+        $scope.isOrderedText = "В корзине";
 
         $rootScope.basketProductCount = webStorage.get("products").length;
         $scope.toBasket = commonMethods.changeLocationBasket;
