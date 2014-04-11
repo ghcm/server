@@ -25,7 +25,7 @@ exports.post = function(req, res, next){
     cat.save(function(err, cat, affected) {
         if (!err) {
             Company.find(function(err, result) {
-                res.render('goods_category/add_cat', { title: 'Express', cat: cat, message: "Категория успешно добавлена", companies: result });
+                res.render('goods_category/add_cat', { title: 'Express', cat: cat, message: "Категория успешно добавлена", companies: result, catsCount: 1 });
             });
         }
         else {

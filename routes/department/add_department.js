@@ -22,7 +22,7 @@ exports.post = function(req, res, next){
 
     depart.save(function(err, depart, affected) {
         if (!err) {
-            res.render('department/add_department', { title: 'Express', company: depart, message: "Раздел успешно добавлен" });
+            res.render('department/add_department', { title: 'Express', company: depart, message: "Раздел успешно добавлен", departsCount: 1 });
         }
         else {
             console.log(err);

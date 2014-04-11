@@ -62,10 +62,10 @@ exports.post = function(req, res, next){
     company.save(function(err, company, affected) {
         console.log(company);
         if (!err) {
-            res.render( filePath + '/show_company', { title: 'Express', filePathView: filePathView, company: company  });
+            res.render( filePath + '/show_company', { title: 'Express', filePathView: filePathView, company: company, companiesCount: 1  });
         }
         else {
-            console.log(err);
+
             res.render( filePath + '/add_company', { title: 'Express', filePathView: filePathView,  error: err.errors });
         }
     });
