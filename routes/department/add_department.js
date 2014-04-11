@@ -8,9 +8,6 @@ exports.get = function(req, res){
     res.render('department/add_department', { title: 'Express' });
 };
 
-
-
-
 var Department = require('../../models/department').Department;
 
 exports.post = function(req, res, next){
