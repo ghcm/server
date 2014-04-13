@@ -92,7 +92,10 @@ exports.post = function(req, res, next){
     addObject.belongs.catId = req.body.catId;
     addObject.belongs.companyId = req.body.companyId;
     addObject.belongs.departId  = req.body.departId;
-    console.log(addObject);
+
+    console.log("=========================================");
+    console.log(targetPath);
+    console.log("=========================================");
 
     good = new Good(addObject);
 
