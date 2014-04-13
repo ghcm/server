@@ -71,6 +71,11 @@ exports.post = function(req, res, next){
 
     var addObject = {};
 
+
+    console.log("=========================================");
+    console.log(filePath);
+    console.log("=========================================");
+
     if (req.files.file.name) {
         var tempPath = req.files.file.path,
             targetPath = path.dirname(req.files.file.path)  + "/" + filePath + "/"  + path.basename(req.files.file.path);
@@ -93,9 +98,7 @@ exports.post = function(req, res, next){
     addObject.belongs.companyId = req.body.companyId;
     addObject.belongs.departId  = req.body.departId;
 
-    console.log("=========================================");
-    console.log(targetPath);
-    console.log("=========================================");
+
 
     good = new Good(addObject);
 
