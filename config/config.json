@@ -1,6 +1,6 @@
 {
     "mongoose": {
-        "uri": "mongodb://username:a123123@ds031347.mongolab.com:31347/heroku_app23319278",
+        "uri": "mongodb://flowers:flowers@ds047037.mongolab.com:47037/heroku_app24094066",
         "options": {
             "server": {
                 "socketOptions": {
