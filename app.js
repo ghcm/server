@@ -20,7 +20,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.bodyParser({uploadDir:'/home/proger/www/server/public/files'}));
+app.use(express.bodyParser({uploadDir: __dirname + '/public/files'}));
 app.use(express.cookieParser('your secret here'));
 
 // Setup database

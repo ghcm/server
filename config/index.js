@@ -1,6 +1,6 @@
 var nconf = require('nconf');
 var join = require('path').join;
-bson = require('bson');
+var bson = require('bson');
 
 var ENV = process.env.NODE_ENV;
 
