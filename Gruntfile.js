@@ -48,7 +48,7 @@ module.exports = function(grunt) {
             files: ['public/f/js/tests/*.html']
         },
         gitpush: {
-            
+
         }
     });
 
