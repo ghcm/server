@@ -8,6 +8,7 @@ var i18n = require("i18n");
 var http = require('http');
 var path = require('path');
 var config = require('./config');
+
 var app = express();
 
 // all environments
@@ -48,6 +49,13 @@ app.use(function(req, res, next){
     res.locals.ln = i18n.__n;
     next();
 });
+
+app.use(function(req, res, next){
+    res.locals.logo = config.get("logo");
+    next();
+});
+
+
 app.use(i18n.init);
 
 
