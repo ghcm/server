@@ -39,7 +39,7 @@
                          <th class="text-center">Количество</th>
                          <th class="text-center">Каждый</th>
                          <th class="text-center">Фирма</th>
-                         <th class="text-center">Доставка</th>
+                         <!--<th class="text-center">Доставка</th>-->
                          <th class="text-center">Всего</th>
                      </tr>
                      </thead>
@@ -72,15 +72,19 @@
                          </td>
                          <td class="text-center text-vertical-middle">{{ product.price }}</td>
                          <td class="text-center text-vertical-middle">{{ product.firm_name_rus }}</td>
-                         <td class="text-center text-vertical-middle">{{ product.firm_delivery_price }}</td>
+                         <!--<td class="text-center text-vertical-middle">{{ product.firm_delivery_price }}</td>-->
                          <td class="text-center text-vertical-middle"><strong>{{ product.sum }}</strong></td>
                      </tr>
 
                      <tr>
-                         <td align="right" colspan="6">Итого без доставки:<br>Доставка:<br>Итого с доставкой: </td>
+                         <td align="right" colspan="6">
+                             <!--Итого без доставки:                             <br>-->
+                             <!--Доставка:                             <br>-->
+                             <!--Итого с доставкой: </td>-->
+                             Итого: </td>
                          <td align="right" colspan="1">
-                             <strong> {{ sumWithoutDelivery }},-</strong><br>
-                             {{ deliveryCost }},-<br>
+                             <!--<strong> {{ sumWithoutDelivery }},-</strong><br>-->
+                             <!--{{ deliveryCost }},-<br>-->
                              {{ sumWithDelivery }},-<br>
                          </td>
                      </tr>
@@ -141,7 +145,7 @@
                          <hr>
                          <div class="control-group">
                              <label class="checkbox">
-                                 <input id="termsandconditions" type="checkbox" value="yes"> Да, я согласен <a href="#">с договором &amp; условиями</a>
+                                 <!--<input id="termsandconditions" type="checkbox" value="yes"> Да, я согласен <a href="#">с договором &amp; условиями</a>-->
                              </label>
                          </div>
                      </fieldset>
@@ -201,8 +205,8 @@
                          <td align="right">{{ product.sum }},-</td>
                      </tr>
                      <tr>
-                         <td>Доставка:</td>
-                         <td align="right" colspan="2"> {{ deliveryCost }},-</td>
+                         <!--<td>Доставка:</td>-->
+                         <!--<td align="right" colspan="2"> {{ deliveryCost }},-</td>-->
                      </tr>
                      <tr>
                          <td>Платеж: наличными</td>

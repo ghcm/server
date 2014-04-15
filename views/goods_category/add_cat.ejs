@@ -32,7 +32,7 @@
         <div class="col-lg-10">
 
             <fieldset>
-                <legend>Введите название категории</legend>
+                <legend>Введите название подкатегории</legend>
                 <div class="form-group">
                     <label class="col-lg-2 control-label" for="companyname">Название</label>
                     <div class="col-lg-10">
@@ -46,7 +46,7 @@
     <div class="row">
         <div class="col-lg-10">
         <div class="form-group" style="padding-left: 70px; padding-top: 30px">
-            <label><strong>Выберите компанию*</strong></label>
+            <label><strong>Выберите категорию, к которой будет относиться подкатегория: </strong></label>
                 <select name="company">
                     <% for (var i = 0; i < companies.length; i++) { %>
                     <option value="<%- companies[i]._id %>"> <%- companies[i].name %></option>

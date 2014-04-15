@@ -3,11 +3,83 @@
 <% } %>
 <% layout('layout/layout') -%>
 
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        /*min-height: 5000px;*/
+    }
+
+    .sick {
+        position: absolute;
+        top: 0;
+        padding: 10px;
+        /* decor */
+        border: 1px solid #b3c9ce;
+        border-radius: 4px;
+        text-align: center;
+        font: italic 14px/1.3 arial, sans-serif;
+        color: #333;
+        background: #fff;
+        box-shadow: 3px 3px 3px rgba(0,0,0,.3);
+        z-index: 1000;
+    }
+
+    img {
+        cursor: pointer;
+    }
+
+
+</style>
+
+<script src="vendor/gallery/gallery.js"></script>
+<h4>Правила заполнения магазина:</h4>
+<ol>
+    <li>Магазин заполняется по следующей иерархии: <b>Департамент</b> -> <b>Категория</b> -> <b>Подкатегория</b> -> <b>Товар</b></li>
+    <li>Сначала необходимо добавить хотя бы один департамент, затем категорию, затем подкатегорию и в конце товар<br/><br/></li>
+    <li>
+        Пример отображения департамента в магазине: <br/><br/>
+        <img style="max-height: 200px; max-width: 200px" src="images/departments.png" link="images/departments.png" alt="" rel="gallery-image"/>
+        <br/><br/><br/><br/>
+    </li>
+    <li>
+        Пример отображения категорий в магазине: <br/><br/>
+        <img style="max-height: 200px; max-width: 200px" src="images/categories.png" link="images/categories.png" alt="" rel="gallery-image"/>
+        <br/><br/><br/><br/>
+    </li>
+    <li>
+        Пример отображения подкатегорий в магазине: <br/><br/>
+        <img style="max-height: 200px; max-width: 200px" src="images/podcats.png" link="images/podcats.png" alt="" rel="gallery-image"/>
+        <br/><br/><br/><br/>
+    </li>
+    <li>
+        Пример отображения товара в магазине: <br/><br/>
+        <img style="max-height: 200px; max-width: 200px" src="images/goods.png" link="images/goods.png" alt="" rel="gallery-image"/>
+        <br/><br/><br/>
+    </li>
+</ol>
 <!--<div id="shit">dfgdf</div>-->
 
 
 <script>
 
+    $(document).ready(function () {
+
+        $("img[rel='gallery-image']").gallery({ //выборка изображений для галереи
+            presizePercent: 0.7, //отношение выличины картинки к величине экрана
+            isCircle: true, //цикличность галереи
+            isModal: true, //является ли окно галереи модальным (можно ли его перетаскивать)
+            isCentered: true, //центрируется изображение или выезжает на месте клика
+            ajax: false, //аякосовая подгрузка или нет
+            leftButRoute: "vendor/gallery/img/slider_arrows.png", //файл с картинками для стрелок
+            rightButRoute: "vendor/gallery/img/slider_arrows.png", //файл с картинками для стрелок
+            closeButRoute: "vendor/gallery/img/close.png", //файл с закрывающей close кнопкой
+            expandButRoute: "vendor/gallery/img/fullexpand.png", //файл с картинкой, при клике на которую происходит увеличение изображения
+            loaderSrc: "vendor/gallery/img/loading.gif", //файл с индикатором загрузки файла
+            imageWrapperClassName: "sick"
+            // до полноразмерного
+        });
+    });
  /*   $.getScript('http://vk.com/js/api/openapi.js', function() {
 
 // Initialize VK OPEN API

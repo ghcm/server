@@ -54,8 +54,9 @@ exports.post = function(req, res, next){
     addObject.department = req.body.department;
     addObject.snippet = req.body.snippet;
     addObject.name_rus = req.body.name_rus;
-    addObject.delivery_price = req.body.delivery_price;
-    addObject.min_price = req.body.min_price;
+    addObject.description = req.body.description;
+//    addObject.delivery_price = req.body.delivery_price;
+//    addObject.min_price = req.body.min_price;
 
     company = new Company(addObject);
 

@@ -26,8 +26,6 @@
     <th>#</th>
     <th class="text-center">Изображение</th>
     <th class="text-center">Название</th>
-    <th class="text-center">Цена доставки</th>
-    <th class="text-center">Мин. цена блюда</th>
     <th class="text-center">Управление</th>
 </tr>
 </thead>
@@ -39,8 +37,7 @@
     <td>1</td>
     <td class="text-center"><a href="/show_company/<%- companies[i][j].name %>"><img src="<%- filePathView %><%- companies[i][j].image %>" alt="" style="max-height: 50px; max-width: 50px"></a></td>
     <td class="text-center"><%- companies[i][j].name %></td>
-    <td class="text-center"></td>
-    <td class="text-center"></td>
+
 
     <td class="text-center">
         <a href="edit_company/<%- companies[i][j].name %>" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>

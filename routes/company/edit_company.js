@@ -55,12 +55,36 @@ exports.post = function(req, res, next){
 
     replaceObject.name = req.body.name;
     replaceObject.department = req.body.departId;
+    replaceObject.snippet = req.body.snippet;
+    replaceObject.name_rus = req.body.name_rus;
+    replaceObject.description = req.body.description;
     var objectId = req.body.objectId;
+
+    console.log(replaceObject);
 
     if (!Company.schema.methods.validateObj(replaceObject)) {
         Company.findOne({ "_id": objectId}, function(err, result) {
-            console.log(result);
-            res.render(filePath + '/edit_company', { title: 'Express', error: "Please, check entered data", company: result, filePathView: filePathView  });
+            if (err) next(err);
+
+
+            async.parallel([
+                    function(callback){
+                        Department.find({}).exec(callback);
+                    },
+                    function(callback){
+                        Company.findOne({ "_id": objectId }).exec(callback);
+                    }
+                ],
+// optional callback
+                function(err, results){
+
+                    // the results array will equal ['one','two'] even though
+                    // the second function had a shorter timeout.
+                    res.render(filePath + '/edit_company', { title: 'Express', error: "Please, check entered data",  company: results[1], departs: results[0], filePathView: filePathView  });
+
+                });
+
+
         });
 
         return;
@@ -80,6 +104,7 @@ exports.post = function(req, res, next){
 
 
     Company.update({"_id": objectId }, {$set: replaceObject }, function(err, object, affected) {
+        if (err) next(err);
         if (!err) {
 
 

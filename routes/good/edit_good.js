@@ -140,7 +140,7 @@ exports.post = function(req, res, next){
                     // the results array will equal ['one','two'] even though
                     // the second function had a shorter timeout.
 
-                    res.render('good/edit_good', { title: 'Express', cats: results[1], companies: results[2], departs: results[3],  good: results[0], filePathView: filePathView  });
+                    res.render('good/edit_good', { title: 'Express', cats: results[1], companies: results[2], departs: results[3],  good: results[0], filePathView: filePathView, message: "Товар успешно отредактирован"  });
                 });
 
 

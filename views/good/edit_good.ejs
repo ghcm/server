@@ -12,10 +12,14 @@
 
         </div>
 
-    <% } %>
+    <% } else if (typeof message != "undefined") { %>
+<div class="alert alert-success"><%- message %></div>
 
 
-<form method="post" id="uploadForm" enctype="multipart/form-data"  enctype="multipart/form-data" action="/edit_good/<%- good.name %>" method="post">
+<% } %>
+
+
+<form method="post" id="uploadForm" enctype="multipart/form-data"  enctype="multipart/form-data" action="/edit_good/<%- good._id %>" method="post">
 
 
 
@@ -39,7 +43,7 @@
 
 
     <div class="form-group" >
-        <label><strong>Выберите департамент*</strong></label>
+        <label><strong>Выберите департамент</strong></label>
         <div>
             <select name="departId" class="selectpicker">
                 <% for (var i = 0; i < departs.length; i++) { %>
@@ -55,7 +59,7 @@
 
 
     <div class="form-group" id="companyIdParent">
-        <label><strong>Выберите компанию</strong></label>
+        <label><strong>Выберите категорию</strong></label>
         <div>
             <select name="companyId" class="selectpicker">
                 <% for (var i = 0; i < companies.length; i++) { %>
@@ -75,7 +79,7 @@
 
 
     <div class="form-group" id="catIdParent">
-        <label><strong>Выберите категорию*</strong></label>
+        <label><strong>Выберите подкатегорию</strong></label>
         <div>
             <select name="catId" class="selectpicker">
                 <% for (var i = 0; i < cats.length; i++) { %>
@@ -101,7 +105,7 @@
     </div>
 
     <div class="form-group">
-        <label><strong>Введите цену*</strong></label>
+        <label><strong>Введите цену</strong></label>
         <input class="form-control" type="text" name="price" value="<%- good.price %>">
     </div>
 
