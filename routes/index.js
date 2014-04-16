@@ -12,6 +12,8 @@ module.exports = function(app) {
 
     app.post("/logout", require('./logout').post);
 
+    app.post("/sendMail", require('./sendMail').post);
+
 
 //  companies
     app.get("/add_company", [checkAuth, checkDeparts],  require('./company/add_company').get);

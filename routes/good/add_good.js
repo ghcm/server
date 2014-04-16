@@ -7,6 +7,7 @@ Cat = require('../../models/cat').Cat;
 var Department = require('../../models/department').Department;
 Company = require('../../models/company').Company;
 
+
 var async = require("async");
 
 exports.get = function(req, res, next){
@@ -69,12 +70,8 @@ var filePathView = config.get("fileOrganizer:good:viewPath");
 
 exports.post = function(req, res, next){
 
+
     var addObject = {};
-
-
-    console.log("=========================================");
-    console.log(filePath);
-    console.log("=========================================");
 
     if (req.files.file.name) {
         var tempPath = req.files.file.path,

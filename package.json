@@ -18,7 +18,8 @@
     "bson": "*",
     "i18n": "*",
     "grunt": "*",
-    "grunt-cli": "*"
+    "grunt-cli": "*",
+    "nodemailer": "^0.6.2"
   },
   "devDependencies": {
     "grunt": "^0.4.4",

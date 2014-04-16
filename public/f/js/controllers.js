@@ -274,23 +274,22 @@ function BasketCtrl ($scope, webStorage, $rootScope, $http) {
 
           //  $scope.addOrder = Order.save({ "goodsArray": goods });
 
-/*        $.post("food/pizza/addOrder.php", { "goodsArray": goodsArray, "user": userInfo }, function (data) {
+       $http.post("/sendMail", { "goodsArray": goodsArray, "user": userInfo }, function (data) {
             if (data) {
                 var arr = [];
-                alert("Ваш заказ успешно добавлен. Номер заказа: " + data);
+                alert("Ваш заказ успешно добавлен.");
                 var orders = webStorage.get("orders");
                 var responseArr = data.split(",");
                 for (var i = 0; i < responseArr.length; i++) {
                     orders.push(responseArr[i]);
                 }
-
                 webStorage.add("orders", orders)
 
             }
             else {
-                alert("Произошла ошибка при добавлении заказа, пожалуйста, сообщите администратору." + data);
+                alert("Произошла ошибка при добавлении заказа, пожалуйста, сообщите администратору. " + data);
             }
-        })*/
+        })
 
 
      /*   $http({
@@ -327,7 +326,11 @@ function BasketCtrl ($scope, webStorage, $rootScope, $http) {
 
     $scope.confirmation = function (result) {
         if (typeof result == "boolean" && result === true) {
-            $scope.setTrashEmpty();        }
+            $scope.setTrashEmpty();
+        }
+
+
+
     }
 
     $scope.sumWithoutDelivery = changeSum();
