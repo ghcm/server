@@ -5,9 +5,6 @@
 function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
     $rootScope.header = "ИНТЕРНЕТ-МАГАЗИН";
 
-
-
-
     $http.get('/getDepartId', {params: {depart: $routeParams.department}}).
         success(function(data, status, headers, config) {
             $scope.departmentId = (data) ? data._id : "";
@@ -17,7 +14,7 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
             if (!$routeParams.department) $routeParams.department = data.name;
 
 
-            $http.get('/getFirmList', {params: {depart: $routeParams.department}}).
+            $http.get('/getFirmList', {params: {depart:  $scope.departmentId}}).
                 success(function(data, status, headers, config) {
                     $scope.pizzafirms = data;
                     $scope.department = $routeParams.department;

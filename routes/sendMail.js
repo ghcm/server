@@ -4,14 +4,12 @@ var User = require('../models/user').User;
 
 exports.post = function(req, res, next) {
 
-
-
     var goods = req.body.goodsArray;
     goods = JSON.parse(goods);
 
     var user = req.body.user;
     user = JSON.parse(user);
-    
+
     var text = "<b>Информация о заказчике:</b><br>-----------------------------------------------------------------------------------<br>";
 
     text+="ФИО: " + user.name + "<br/>";
