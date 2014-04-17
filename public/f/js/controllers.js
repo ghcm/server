@@ -3,7 +3,7 @@
 /* Controllers */
 
 function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
-    $rootScope.header = "Pizza Firms";
+    $rootScope.header = "ИНТЕРНЕТ-МАГАЗИН";
 
 
 
