@@ -77,7 +77,7 @@
                      </tr>
 
                      <tr>
-                         <td align="right" colspan="6">
+                         <td align="right" colspan="5">
                              <!--Итого без доставки:                             <br>-->
                              <!--Доставка:                             <br>-->
                              <!--Итого с доставкой: </td>-->
@@ -99,7 +99,7 @@
                          <button class="btn  btn-lg" ng-click="setTrashEmpty()"><i class="icon-trash"></i> Очистить корзину</button>
                      </div>
                      <div class="col-lg-4 col-md-4 col-xs-4">
-                         <button class="btn btn-primary pull-right btn-lg" data-target="#step2" data-toggle="tab">Далее <i class="icon-chevron-right icon-white"></i></button>
+                         <button class="btn btn-primary pull-right btn-lg" data-target="#step2" data-toggle="tab" ng-disabled="!basket.length">Далее <i class="icon-chevron-right icon-white"></i></button>
                      </div>
                  </div>
              </div>

@@ -2,6 +2,8 @@ Department = require('../models/department').Department;
 
 exports.get = function(app) {
 
+
+
     return function(req, res) {
 
         Department.find(function(err, result) {

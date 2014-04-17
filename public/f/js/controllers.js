@@ -7,14 +7,20 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
 
     $http.get('/getDepartId', {params: {depart: $routeParams.department}}).
         success(function(data, status, headers, config) {
-            $scope.departmentId = (data) ? data._id : "";
+            var listitems = data.listitems;
+            var depart = data.depart;
+            $scope.departmentId = (depart) ? depart._id : "";
             $scope.breadcumbs = {
-                depart: (data) ? data.rusname : ""
+                depart: (depart) ? depart.rusname : ""
             };
-            if (!$routeParams.department) $routeParams.department = data.name;
+
+            $scope.pizzafirms = listitems;
+            $scope.department  = $routeParams.department;
+            console.log();
+            if (!$routeParams.department) $routeParams.department = depart.name;
 
 
-            $http.get('/getFirmList', {params: {depart:  $scope.departmentId}}).
+  /*          $http.get('/getFirmList', {params: {depart:  $scope.departmentId}}).
                 success(function(data, status, headers, config) {
                     $scope.pizzafirms = data;
                     $scope.department = $routeParams.department;
@@ -24,7 +30,7 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
                 error(function(data, status, headers, config) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
-                });
+                });*/
 
             $rootScope.basket = webStorage.get("goodsCount");
 
@@ -55,7 +61,7 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
 
 function DetailCtrl($scope, $http, $routeParams, $rootScope, webStorage, $templateCache, $location) {
 
-    $rootScope.header = "Pizza App";
+    //$rootScope.header = "Pizza App";
    // $scope.categoryName = Pizza.get({ departName: $routeParams.department });//для breadcrumbs
 
 
@@ -231,6 +237,8 @@ function BasketCtrl ($scope, webStorage, $rootScope, $http) {
 
     console.log($scope.basket);
 
+    $scope.basketLength = $scope.basket.length;
+
     $scope.userInfo =  webStorage.get("user");
 
     $scope.name = $scope.userInfo.name;
@@ -271,22 +279,7 @@ function BasketCtrl ($scope, webStorage, $rootScope, $http) {
 
           //  $scope.addOrder = Order.save({ "goodsArray": goods });
 
-       $http.post("/sendMail", { "goodsArray": goodsArray, "user": userInfo }, function (data) {
-            if (data) {
-                var arr = [];
-                alert("Ваш заказ успешно добавлен.");
-                var orders = webStorage.get("orders");
-                var responseArr = data.split(",");
-                for (var i = 0; i < responseArr.length; i++) {
-                    orders.push(responseArr[i]);
-                }
-                webStorage.add("orders", orders)
 
-            }
-            else {
-                alert("Произошла ошибка при добавлении заказа, пожалуйста, сообщите администратору. " + data);
-            }
-        })
 
 
      /*   $http({
@@ -323,6 +316,31 @@ function BasketCtrl ($scope, webStorage, $rootScope, $http) {
 
     $scope.confirmation = function (result) {
         if (typeof result == "boolean" && result === true) {
+
+            var goods = webStorage.get("products");
+            var user = webStorage.get("user");
+
+            var goodsArray = JSON.stringify(goods);
+            var userInfo =  JSON.stringify(user);
+
+            $http.post("/sendMail", { "goodsArray": goodsArray, "user": userInfo }, function (data) {
+                if (data) {
+                    var arr = [];
+                    alert("Ваш заказ успешно добавлен.");
+                    var orders = webStorage.get("orders");
+                    var responseArr = data.split(",");
+                    for (var i = 0; i < responseArr.length; i++) {
+                        orders.push(responseArr[i]);
+                    }
+                    webStorage.add("orders", orders)
+
+                }
+                else {
+                    alert("Произошла ошибка при добавлении заказа, пожалуйста, сообщите администратору. " + data);
+                }
+            })
+
+
             $scope.setTrashEmpty();
         }
 
