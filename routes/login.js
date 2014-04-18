@@ -40,6 +40,5 @@ exports.post = function(req, res, next) {
 };
 
 exports.get = function(req, res){
-
     res.render('login', { title: 'Express' });
 };

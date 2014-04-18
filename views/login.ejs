@@ -108,7 +108,7 @@
 
     $.ajax({
       url: "/login",
-      data: Djhj,
+      data: form.serialize(),
       method: "POST",
       complete: function() {
         $(":submit", form).button("reset");
