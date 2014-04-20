@@ -13,7 +13,7 @@ var filePathView = config.get("fileOrganizer:company:viewPath");
 
 exports.get = function(req, res){
 
-    var companyName = req.params.companyName;
+    var companyId = req.params.companyName;
 
 
     async.parallel([
@@ -21,7 +21,7 @@ exports.get = function(req, res){
                 Department.find({}).exec(callback);
             },
             function(callback){
-                Company.findOne({ name: companyName }).exec(callback);
+                Company.findOne({ "_id": companyId }).exec(callback);
             }
         ],
 // optional callback

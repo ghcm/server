@@ -29,7 +29,7 @@
     <br><br>
 
     <div class="form-group">
-        <label><strong>Введите название на английском (например, citypizza)</strong></label><strong>
+        <label><strong>Введите название (например, Белые розы)</strong></label><strong>
         <input class="form-control" type="text" name="name">
     </strong></div>
 
@@ -72,7 +72,7 @@
                 <select name="department">
                     <% for (var i = 0; i < departs.length; i++) { %>
 
-                    <option value="<%- departs[i]._id %>" ><%- departs[i].name %></option>
+                    <option value="<%- departs[i]._id %>" ><%- departs[i].rusname %></option>
 
                     <% } %>
 
@@ -91,10 +91,10 @@
 
         </div>
 
-        <div class="form-group">
+<!--        <div class="form-group">
             <label><strong>Введите название  на русском</strong></label>
             <input class="form-control" type="text" name="name_rus">
-        </div>
+        </div>-->
 
         <div class="form-group">
             <label><strong>Введите полное описание </strong></label>

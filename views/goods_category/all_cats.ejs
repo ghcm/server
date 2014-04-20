@@ -46,7 +46,7 @@
                 <td><%- j %></td>
                 <td class="text-center"><%- companies[i][j].name %></td>
                 <td class="text-center">
-                    <a href="edit_cat/<%- companies[i][j].name %>" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="edit_cat/<%- companies[i][j]._id %>" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
                     <button action="del_cat" thisid="<%- companies[i][j]._id %>" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
                 </td>
             </tr>

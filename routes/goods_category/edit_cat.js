@@ -8,16 +8,14 @@ Company = require('../../models/company').Company;
 
 exports.get = function(req, res){
 
-    var catName = req.params.catName;
-
-
+    var catId = req.params.catName;
 
     async.parallel([
             function(callback){
                 Company.find({}).exec(callback);
             },
             function(callback){
-                Cat.findOne({ name: catName }).exec(callback);
+                Cat.findOne({ "_id": catId }).exec(callback);
             }
         ],
 // optional callback
@@ -50,7 +48,6 @@ exports.post = function(req, res, next){
 
     Cat.update({"_id": objectId }, {$set: replaceObject }, function(err, object, affected) {
         if (!err) {
-
             async.parallel([
                     function(callback){
                         Company.find({}).exec(callback);

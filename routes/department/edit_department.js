@@ -6,9 +6,9 @@ Department = require('../../models/department').Department;
 
 exports.get = function(req, res){
 
-    var departName = req.params.departName;
+    var departId = req.params.departName;
 
-    var myDocument = Department.findOne({ name: departName }, function(err, result) {
+    var myDocument = Department.findOne({ "_id": departId }, function(err, result) {
         if (err) { /* handle err */ }
 
         if (result) {
