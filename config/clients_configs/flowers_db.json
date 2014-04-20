@@ -1,10 +1,14 @@
 {
    "db": {
-       "uri": "mongodb://username:a123123@ds031347.mongolab.com:31347/heroku_app23319278"
+       "uri": "mongodb://flowers:flowers@ds047037.mongolab.com:47037/heroku_app24094066"
    },
     "logo": {
-        "name": "logo_en.png"
+        "name": "flowers.png"
     },
     "delivery_price": "300",
-    "freeDeliverAfter": "400"
+    "freeDeliverAfter": "400",
+    "contacts": {
+        "email": "real_my@mail.ru",
+        "phone": ""
+    }
 }

@@ -56,7 +56,7 @@ module.exports = function(grunt) {
    // grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-git');
+  //  grunt.loadNpmTasks('grunt-contrib-git');
     // Task definitions
-    grunt.registerTask('default', ['uglify', 'qunit']);
+    grunt.registerTask('default', ['uglify']);
 };

@@ -17,7 +17,7 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
             $scope.pizzafirms = listitems;
             $scope.department  = $routeParams.department;
             console.log();
-            if (!$routeParams.department) $routeParams.department = depart.name;
+            if (!$routeParams.department && depart && depart.name) $routeParams.department = depart.name;
 
 
   /*          $http.get('/getFirmList', {params: {depart:  $scope.departmentId}}).

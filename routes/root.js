@@ -1,5 +1,7 @@
 Department = require('../models/department').Department;
 
+var config = require("../config");
+
 exports.get = function(app) {
 
 
@@ -7,7 +9,7 @@ exports.get = function(app) {
     return function(req, res) {
 
         Department.find(function(err, result) {
-            res.render('f/index', {title: "express", environment: app.get("env"), departments: result});
+            res.render('f/index', {title: "express", environment: app.get("env"), departments: result, logo: {name: config.get("logo:name")}});
         });
 
     }

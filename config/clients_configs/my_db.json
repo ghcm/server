@@ -1,10 +1,14 @@
 {
    "db": {
-       "uri": "mongodb://flowers:flowers@ds047037.mongolab.com:47037/heroku_app24094066"
+       "uri": "mongodb://username:a123123@ds031347.mongolab.com:31347/heroku_app23319278"
    },
     "logo": {
-        "name": "flowers.png"
+        "name": "logo_en.png"
     },
     "delivery_price": "300",
-    "freeDeliverAfter": "400"
+    "freeDeliverAfter": "400",
+    "contacts": {
+        "email": "nostsaber@yandex.ru",
+        "phone": ""
+    }
 }

@@ -6,6 +6,8 @@ exports.get = function(req, res){
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
 
+    console.log(query.depart);
+
     Company.find({department: query.depart.toString()}, function(err, result) {
         res.json(result);
     });
