@@ -24,8 +24,9 @@ console.log(req.body.departId);
                for (var i = 0; i < companies.length; i++) {
                    Cat.remove({"companyId": companies[i]._id.toString()}, function(err, affected){console.log(affected);});
                }
+               Company.remove({department: req.body.departId}).exec(callback);
         });
-        Company.remove({department: req.body.departId}).exec(callback);
+
 
     },
      function(callback) {
