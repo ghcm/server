@@ -11,13 +11,13 @@ function ListCtrl($scope, $http, $rootScope, webStorage, $routeParams ) {
             var depart = data.depart;
             $scope.departmentId = (depart) ? depart._id : "";
             $scope.breadcumbs = {
-                depart: (depart) ? depart.rusname : ""
+                depart: (depart) ? depart.name : ""
             };
 
             $scope.pizzafirms = listitems;
             $scope.department  = $routeParams.department;
-            console.log();
-            if (!$routeParams.department && depart && depart.name) $routeParams.department = depart.name;
+
+            if (!$routeParams.department && depart && depart.name) $routeParams.department = (depart) ? depart.name : ""
 
 
   /*          $http.get('/getFirmList', {params: {depart:  $scope.departmentId}}).
