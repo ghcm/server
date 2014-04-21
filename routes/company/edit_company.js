@@ -56,8 +56,8 @@ exports.post = function(req, res, next){
     replaceObject.name = req.body.name;
     replaceObject.department = req.body.departId;
     replaceObject.snippet = req.body.snippet;
-    replaceObject.name_rus = req.body.name_rus;
-    replaceObject.description = req.body.description;
+   // replaceObject.name_rus = req.body.name_rus ? req.body.name_rus : "";
+   // replaceObject.description = req.body.description ? req.body.description : "";
     var objectId = req.body.objectId;
 
     console.log(replaceObject);
