@@ -23,11 +23,11 @@
 <!--<h1 class="text-center">Добавление товара</h1>-->
 
 <form enctype="multipart/form-data" action="/add_good" method="post">
-    <strong>Выберите изображение для загрузки</strong><br>
+    <strong><%= l('labels').imageLoad %></strong><br>
     <input type="file" name="file" required=""><br><br>
 
     <div class="form-group">
-        <label><strong>Введите название*</strong></label><strong>
+        <label><strong><%= l('labels').enterTitle %></strong></label><strong>
             <input class="form-control" type="text" name="title" required="">
         </strong></div><strong>
 
@@ -50,7 +50,7 @@
         </div>-->
 
             <div class="form-group">
-                <label><strong>Выберите департамент</strong></label>
+                <label><strong><%= l('labels').selectDepart %></strong></label>
                 <div>
                     <select name="departId"  class="selectpicker">
                         <% for (var i = 0; i < departs.length; i++) { %>
@@ -62,7 +62,7 @@
 
 
             <div class="form-group"  id="companyIdParent">
-                <label><strong>Выберите категорию</strong></label>
+                <label><strong><%= l('labels').selectCat %></strong></label>
                 <div>
                     <select name="companyId"  class="selectpicker">
                         <% for (var i = 0; i < companies.length; i++) { %>
@@ -75,7 +75,7 @@
 
 
         <div class="form-group"  id="catIdParent">
-            <label><strong>Выберите подкатегорию</strong></label>
+            <label><strong><%= l('labels').selectPodCat %></strong></label>
             <div>
                 <select name="catId"  class="selectpicker">
                     <% for (var i = 0; i < cats.length; i++) { %>
@@ -88,19 +88,19 @@
 
 
         <div class="form-group">
-            <label><strong>Введите короткое описание</strong></label>
+            <label><strong><%= l('labels').enterShortDes %></strong></label>
             <input class="form-control" type="text" name="short_des">
 
         </div>
 
         <div class="form-group">
-            <label><strong>Введите цену</strong></label>
+            <label><strong><%= l('labels').enterPrice %></strong></label>
             <input class="form-control" type="text" name="price">
         </div>
 
 
         <div class="form-group">
-            <label><strong>Введите полное описание товара</strong></label>
+            <label><strong><%= l('labels').enterFullDes %></strong></label>
             <textarea class="form-control" name="long_des"></textarea>
 
         </div>
@@ -117,7 +117,7 @@
 
         <p>
             <label>
-                <input type="submit" class="btn btn-primary" name="submit" id="submit" value="Отправить!">
+                <input type="submit" class="btn btn-primary" name="submit" id="submit" value="<%= l('buttons').send %>">
             </label>
             <br>
         </p>

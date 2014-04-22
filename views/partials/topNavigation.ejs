@@ -8,49 +8,49 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/admin"><%= l('administrator') %></a>
+            <a class="navbar-brand" href="/admin"><%= l('mainMenu').administrator %></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
         <li class="dropdown">
             <% if (catsCount) { %>
-                      <a href="#" class="dropdown-toggle goods" data-toggle="dropdown" ><%= l("goods") %> <b class="caret"></b></a>
+                      <a href="#" class="dropdown-toggle goods" data-toggle="dropdown" ><%= l("mainMenu").goods %> <b class="caret"></b></a>
             <% } else { %>
-                      <a href="#" class="dropdown-toggle goods disabled" data-toggle="dropdown" ><%= l("goods") %> <b class="caret"></b></a>
+                      <a href="#" class="dropdown-toggle goods disabled" data-toggle="dropdown" ><%= l("mainMenu").goods %> <b class="caret"></b></a>
             <% } %>
                       <ul class="dropdown-menu">
-                          <li><a href="/add_good">Добавить</a></li>
-                          <li><a href="/all_goods">Все товары</a></li>
+                          <li><a href="/add_good"><%= l("mainMenu").add_goods %></a></li>
+                          <li><a href="/all_goods"><%= l("mainMenu").all_goods %></a></li>
                       </ul>
                   </li>
 
              <li class="dropdown">
                  <% if (companiesCount) { %>
-                <a href="#" class="dropdown-toggle cats" data-toggle="dropdown"><%= l("goodsCats") %> <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle cats" data-toggle="dropdown"><%= l("mainMenu").goodsCats %> <b class="caret"></b></a>
                  <% } else { %>
-                <a href="#" class="dropdown-toggle cats disabled" data-toggle="dropdown"><%= l("goodsCats") %> <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle cats disabled" data-toggle="dropdown"><%= l("mainMenu").goodsCats %> <b class="caret"></b></a>
                  <% } %>
                 <ul class="dropdown-menu">
-                    <li><a href="/add_cat">Добавить</a></li>
-                    <li><a href="/all_cats">Все подкатегории</a></li>
+                    <li><a href="/add_cat"><%= l("mainMenu").add_goodCats %></a></li>
+                    <li><a href="/all_cats"><%= l("mainMenu").all_goodCats %></a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <% if (departsCount) { %>
-                <a href="#" class="dropdown-toggle companies" data-toggle="dropdown">Категории <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle companies" data-toggle="dropdown"><%= l("mainMenu").cats %><b class="caret"></b></a>
                 <% } else { %>
-                <a href="#" class="dropdown-toggle companies disabled" data-toggle="dropdown">Категории <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle companies disabled" data-toggle="dropdown"><%= l("mainMenu").cats %><b class="caret"></b></a>
                 <% } %>
                 <ul class="dropdown-menu">
-                    <li><a href="/add_company">Добавить категорию</a></li>
-                    <li><a href="/all_companies">Все категории</a></li>
+                    <li><a href="/add_company"><%= l("mainMenu").add_cats %></a></li>
+                    <li><a href="/all_companies"><%= l("mainMenu").all_cats %></a></li>
                 </ul>
              </li>
               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle departs" data-toggle="dropdown">Департаменты<b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle departs" data-toggle="dropdown"> <%= l("mainMenu").departs %><b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                      <li><a href="/add_department">Добавить раздел</a></li>
-                      <li><a href="/all_departments">Все разделы</a></li>
+                      <li><a href="/add_department"><%= l("mainMenu").add_departs %></a></li>
+                      <li><a href="/all_departments"><%= l("mainMenu").all_departs %></a></li>
                   </ul>
               </li>
             <!--     <li>
