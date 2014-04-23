@@ -11,8 +11,8 @@ var filePathView = config.get("fileOrganizer:good:viewPath");
 
 exports.get = function(req, res){
     var goodName = req.params.goodName;
-    console.log(goodName);
-    var myDocument = Good.findOne({ name: goodName }, function(err, result) {
+
+    var myDocument = Good.findOne({ _id: goodName }, function(err, result) {
         if (err) { /* handle err */ }
         console.log(result);
         if (result) {

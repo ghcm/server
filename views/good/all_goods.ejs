@@ -24,11 +24,11 @@
     <thead>
     <tr>
         <th>#</th>
-        <th class="text-center">Изображение</th>
-        <th class="text-center">Название</th>
-        <th class="text-center">Количество заказов</th>
-        <th class="text-center">Цена</th>
-        <th class="text-center">Управление</th>
+        <th class="text-center"><%= l('alls').image %></th>
+        <th class="text-center"><%= l('alls').title %></th>
+        <th class="text-center"><%= l('alls').orderCount %></th>
+        <th class="text-center"><%= l('alls').price %></th>
+        <th class="text-center"><%= l('alls').manage %></th>
     </tr>
     </thead>
 <tbody>
@@ -40,7 +40,7 @@
 
 <tr>
     <td><%- j %></td>
-    <td class="text-center"><a href="/show_good/<%- goods[i][j].name %>"><img src="<%- filePathView %><%- goods[i][j].image %>" alt="" style="max-height: 50px; max-width: 50px"></a></td>
+    <td class="text-center"><a href="/show_good/<%- goods[i][j]._id %>"><img src="<%- filePathView %><%- goods[i][j].image %>" alt="" style="max-height: 50px; max-width: 50px"></a></td>
     <td class="text-center"><%- goods[i][j].name %></td>
     <td class="text-center"></td>
     <td class="text-center"><%- goods[i][j].price %></td>

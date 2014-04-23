@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-lg-7 col-xs-7">
                         <div>
-                            <strong>Название:</strong> <%- good.name %>
+                            <strong><%= l('title') %>:</strong> <%- good.name %>
                         </div>
 
 
@@ -34,7 +34,7 @@
                     </div>-->
                     </div>
                     <div class="col-lg-1 col-xs-1">
-                        <a href="/edit_good/<%- good.name %>"  class="btn btn-info pull-right">Edit</a>
+                        <a href="/edit_good/<%- good._id %>"  class="btn btn-info pull-right"><%= l('buttons').edit %></a>
                     </div>
 
         </div>
