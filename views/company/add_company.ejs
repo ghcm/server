@@ -24,12 +24,12 @@
 
 <form method="post" id="uploadForm" enctype="multipart/form-data"  enctype="multipart/form-data" action="/add_company" method="post">
 
-    <strong>Выберите изображение для загрузки</strong><br>
+    <strong><%= l("labels").imageLoad %></strong><br>
     <input type="file" name="file" id="userPhotoInput">
     <br><br>
 
     <div class="form-group">
-        <label><strong>Введите название (например, Белые розы)</strong></label><strong>
+        <label><strong><%= l("labels").enterTitle %></strong></label><strong>
         <input class="form-control" type="text" name="name">
     </strong></div>
 
@@ -67,7 +67,7 @@
     <p style="font-size:9px">* - поля, обязательные для заполнения </p>-->
 
         <div class="form-group">
-            <label><strong>Выберите раздел</strong></label>
+            <label><strong><%= l("labels").selectDepart %></strong></label>
             <div>
                 <select name="department">
                     <% for (var i = 0; i < departs.length; i++) { %>
@@ -86,7 +86,7 @@
 
 
         <div class="form-group">
-            <label><strong>Введите короткое описание</strong></label>
+            <label><strong><%= l("labels").enterShortDes %></strong></label>
             <input class="form-control" type="text" name="snippet">
 
         </div>
@@ -120,7 +120,7 @@
 
     <p>
         <label>
-            <input type="submit" class="btn btn-primary" name="submit" id="submit" value="Отправить!">
+            <input type="submit" class="btn btn-primary" name="submit" id="submit" value="<%= l('buttons').send %>">
         </label>
         <br>
     </p>

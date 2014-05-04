@@ -28,9 +28,9 @@
     <div class="row">
         <div class="col-lg-10">
             <fieldset>
-                <legend>Введите название раздела (на английском и русском)</legend>
+                <legend><%= l('hgroup').editPodCat %></legend>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label" for="companyname">Название (англ.)</label>
+                    <label class="col-lg-2 control-label" for="companyname"><%= l('labels').enterTitle %></label>
                     <div class="col-lg-10">
                         <input class="form-control" name="cat_title" type="text" placeholder="Название на английском" required="" autofocus="" value="<%- cat.name %>">
                     </div>
@@ -43,7 +43,7 @@
     <div class="row">
         <div class="col-lg-10">
             <div class="form-group" style="padding-left: 20px; padding-top: 30px">
-                <label><strong>Выберите категорию*</strong></label>
+                <label><strong><%= l('labels').selectCat %></strong></label>
                 <select name="companyId">
                     <% for (var i = 0; i < companies.length; i++) { %>
                     <% if (companies[i]._id.toString() == cat.companyId) { %>
@@ -59,7 +59,7 @@
 
         <div class="row">
             <div class="col-lg-10">
-                <input type="submit" class="btn btn-primary pull-right btn-lg" value="Сохранить">
+                <input type="submit" class="btn btn-primary pull-right btn-lg" value="<%= l('buttons').send %>">
             </div>
         </div>
 

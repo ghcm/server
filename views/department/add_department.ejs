@@ -32,20 +32,20 @@
         <div class="col-lg-10">
 
             <fieldset>
-                <legend>Введите название раздела (на английском и русском)</legend>
+                <legend><%= l("hgroup").addDepart %></legend>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label" for="companyname">Название (англ.)</label>
+                    <label class="col-lg-2 control-label" for="companyname"><%= l("labels").enterTitle %></label>
                     <div class="col-lg-10">
-                        <input class="form-control" name="department_title" type="text" placeholder="Название на английском" required="" autofocus="">
+                        <input class="form-control" name="department_title" type="text" placeholder="<%= l("labels").enterTitle %>" required="" autofocus="">
                     </div>
                 </div>
             </fieldset>
 
 
             <div class="form-group">
-                <label class="col-lg-2 control-label" for="companyname">Название (рус.)</label>
+                <label class="col-lg-2 control-label" for="companyname"><%= l("labels").enterTitle %></label>
                 <div class="col-lg-10">
-                    <input class="form-control" name="department_title_rus" type="text" placeholder="Название на русском" required="" autofocus="">
+                    <input class="form-control" name="department_title_rus" type="text" placeholder="<%= l("labels").enterTitle %>" required="" autofocus="">
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
     </div>
     <div class="row">
         <div class="col-lg-10">
-            <input type="submit" class="btn btn-primary pull-right btn-lg" value="Сохранить">
+            <input type="submit" class="btn btn-primary pull-right btn-lg" value="<%= l("buttons").send %>">
         </div>
     </div>
 </form>
